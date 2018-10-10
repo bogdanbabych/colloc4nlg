@@ -51,6 +51,10 @@ if ($corpuslist) { # CGI run
     $annot=$cgiquery->param("annot");
 
     $collocationstat=(lc($cgiquery->param("searchtype") eq 'colloc'));
+# collocations for NLG
+    $collocation4nlg=(lc($cgiquery->param("searchtype") eq 'colloc4nlg'));
+    
+    
     $mistat=$cgiquery->param("mistat");
     $dstat=$cgiquery->param("dstat");
     $tstat=$cgiquery->param("tstat");
@@ -59,6 +63,25 @@ if ($corpuslist) { # CGI run
     $collocspanleft=$cgiquery->param("collocspanleft") || $cgiquery->param("cleft");
     $collocspanright=$cgiquery->param("collocspanright") || $cgiquery->param("cright");
     $collocfilter=$cgiquery->param("collocfilter") || $cgiquery->param("cfilter");
+
+# collocations for NLG
+    $collocspanleft1=$cgiquery->param("collocspanleft1") || $cgiquery->param("cleft1");
+    $collocspanright1=$cgiquery->param("collocspanright1") || $cgiquery->param("cright1");
+    $collocfilter1=$cgiquery->param("collocfilter1") || $cgiquery->param("cfilter1");
+
+    $collocspanleft2=$cgiquery->param("collocspanleft2") || $cgiquery->param("cleft2");
+    $collocspanright2=$cgiquery->param("collocspanright2") || $cgiquery->param("cright2");
+    $collocfilter2=$cgiquery->param("collocfilter2") || $cgiquery->param("cfilter2");
+
+    $collocspanleft3=$cgiquery->param("collocspanleft3") || $cgiquery->param("cleft3");
+    $collocspanright3=$cgiquery->param("collocspanright3") || $cgiquery->param("cright3");
+    $collocfilter3=$cgiquery->param("collocfilter3") || $cgiquery->param("cfilter3");
+
+    $collocspanleft4=$cgiquery->param("collocspanleft4") || $cgiquery->param("cleft4");
+    $collocspanright4=$cgiquery->param("collocspanright4") || $cgiquery->param("cright4");
+    $collocfilter4=$cgiquery->param("collocfilter4") || $cgiquery->param("cfilter4");
+
+
 
     $learningrestrictlist=$cgiquery->param("learningrestrictlist");
 
@@ -163,6 +186,19 @@ print qq{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://
 
 print qq{</head>\n<body>\n<div id="website">};
 
+
+if($collocation4nlg){
+    @searchlist = split /\s+/, $originalquery;
+    print "<strong>Query list:</strong><br>";
+    foreach $query (@searchlist){
+        print "$query";
+        print "<br>";
+    }
+    
+    
+    
+}
+    
 $searchstring=makecqpquery($originalquery);
 
 if ($collocationstat) {
@@ -227,6 +263,11 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
 	    print STDLOG "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
 	    $numoccur=$totalpairs;
 	    showcollocates();
+	} elsif ($collocation4nlg) {
+	    
+	    print "<strong>Under development</strong> <br> ";
+	    
+	    
 	} elsif ($numoccur) {
 	    showconcordance(\@storecontexts,0);
 	}

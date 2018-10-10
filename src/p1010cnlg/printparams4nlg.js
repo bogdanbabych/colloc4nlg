@@ -1,6 +1,6 @@
 
 document.write('  <div class="optionbox">');
-document.write('  <h2><input type="radio" name="searchtype" value="colloc"/> Collocations for NLG</h2>');
+document.write('  <h2><input type="radio" name="searchtype" value="colloc4nlg"/> Collocations for NLG</h2>');
 document.write('  ');
 document.write('  <p>');
 document.write('    <strong>Collocation scores</strong>:');
@@ -10,12 +10,15 @@ document.write('    &nbsp;<input type="checkbox" name="tstat" />T-score &nbsp;')
 document.write('    &nbsp;<input type="checkbox" name="llstat" checked /> Loglikelihood score');
 document.write('  </p>');
 document.write('  <p>');
-document.write('    <strong>Context</strong>:');
-document.write('    &nbsp;<input type="input" name="cleft" size="2" value="0" /> words on the left ');
-document.write('    &nbsp;<input type="input" name="cright" size="2" value="1" /> words on the right');
+document.write('    <strong>Context</strong>:<br>');
+document.write('    &nbsp;PoS<INPUT name=cfilter1 size=3>  <input type="input" name="cleft1" size="2" value="2" /> w left <input type="input" name="cright1" size="2" value="0" /> w right<br>');
+document.write('    &nbsp;PoS<INPUT name=cfilter2 size=3>  <input type="input" name="cleft2" size="2" value="1" /> w left <input type="input" name="cright2" size="2" value="0" /> w right<br>');
+document.write('    &nbsp;<strong>keyword</strong><br>');
+document.write('    &nbsp;PoS<INPUT name=cfilter3 size=3>  <input type="input" name="cleft3" size="2" value="0" /> w left <input type="input" name="cright3" size="2" value="1" /> w right<br>');
+document.write('    &nbsp;PoS<INPUT name=cfilter4 size=3>  <input type="input" name="cleft4" size="2" value="0" /> w left <input type="input" name="cright4" size="2" value="2" /> w right<br>');
 document.write('  </p>');
 document.write('  <p>');
-document.write('    <strong>POS tag of the collocate</strong>:&nbsp;<INPUT name=cfilter size=3> POS tags<br>');
+document.write('    <br>');
 document.write('  </p>');
 document.write('');
 document.write('  </div>');
