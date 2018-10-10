@@ -1,6 +1,6 @@
 
 document.write('  <div class="optionbox">');
-document.write('  <h2><input type="radio" name="searchtype" value="colloc4nlg"/> Collocations for NLG</h2>');
+document.write('  <h2><input type="radio" name="searchtype" value="colloc"/> Collocations for NLG</h2>');
 document.write('  ');
 document.write('  <p>');
 document.write('    <strong>Collocation scores</strong>:');
