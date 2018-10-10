@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<SCRIPT>
+function getSelectedTexts (select) {
+  var r = new Array();
+  for (var i = 0; i < select.options.length; i++)
+    if (select.options[i].selected)
+      r[r.length] = select.options[i].value;
+  return r;
+}
+function collect(before, s, after) {
+	window.returnValue = before + '"(' + s + ')"' + after;
+	window.close();
+}
+</SCRIPT>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<TITLE>English morph features</TITLE>
+<STYLE>
+SELECT { font-family: Arial; font-size: 12pt; }
+</STYLE>
+</HEAD>
+<BODY>
+
+<FORM>
+<CENTER>
+<select name="lemmalist" size="20" multiple>
+<OPTION VALUE=CC>CC	conjunction, coordinating (and)
+<OPTION VALUE=CD>CD	number, cardinal (four)
+<OPTION VALUE=CS>CS	conjunction, subordinating (until)
+<OPTION VALUE=DT>DT	determiner, general (a, the, this, that)
+<OPTION VALUE=EX>EX	existential there
+<OPTION VALUE=FW>FW	foreign word (ante, de)
+<OPTION VALUE=IN>IN	preposition (on, of)
+<OPTION VALUE=JJ>JJ	adjective, general (near)
+<OPTION VALUE=JJR>JJR	adjective, comparative (nearer)
+<OPTION VALUE=JJS>JJS	adjective, superlative (nearest)
+<OPTION VALUE=LS>LS	List item marker
+<OPTION VALUE=MD>MD	modal auxiliary (might, will)
+<OPTION VALUE=NN>NN	noun, common singular (action)
+<OPTION VALUE=NNS>NNS	noun, common plural (actions)
+<OPTION VALUE=NP>NP	noun, proper singular (Thailand, Thatcher)
+<OPTION VALUE=NPS>NPS	noun, proper plural (Americas, Atwells)
+<OPTION VALUE=PDT>PDT	determiner, pre- (all, both, half)
+<OPTION VALUE=PN>PN	pronoun, indefinite (anyone, nothing)
+<OPTION VALUE=POS>POS	possessive particle (', 's)
+<OPTION VALUE=PP>PP	pronoun, personal (I, he)
+<OPTION VALUE=PP$>PP$	pronoun, possessive (my, his)
+<OPTION VALUE=RB>RB	adverb, general (chronically, deep)
+<OPTION VALUE=RBR>RBR	adverb, comparative (easier, sooner)
+<OPTION VALUE=VB>VB	verb, base (believe)
+<OPTION VALUE=RBS>RBS	adverb, superlative (easiest, soonest)
+<OPTION VALUE=RP>RP	adverbial particle (back, up)
+<OPTION VALUE=SYM>SYM	symbol or formula (US$500, R300)
+<OPTION VALUE=TO>TO	infinitive marker (to)
+<OPTION VALUE=UH>UH	interjection (aah, oh, yes, no)
+<OPTION VALUE=VB>VB	verb, base (believe)
+<OPTION VALUE=VBD>VBD	verb, past tense (believed)
+<OPTION VALUE=VBG>VBG	verb, -ing (believing)
+<OPTION VALUE=VBN>VBN	verb, past participle (believed)
+<OPTION VALUE=VBZ>VBZ	verb, -s (believes)
+<OPTION VALUE=WDT>WDT	det, wh- (what, which, whatever, whichever)
+<OPTION VALUE=WP>WP	pronoun, wh- (who, that)
+<OPTION VALUE=WP$>WP$	pronoun, possessive wh- (whose)
+<OPTION VALUE=WRB>WRB	adv, wh- (how, when, where, why)
+</select>
+</CENTER>
+<CENTER>
+<BR>
+<P>
+&nbsp; 
+<INPUT type="button" value="OK" onclick="collect(' [pos=', getSelectedTexts(this.form.lemmalist), ']')">&nbsp; 
+<INPUT type="button" value="Reset" onclick='this.form.reset()'>&nbsp;
+<INPUT type="button" value="Cancel" onclick='window.close()'>&nbsp; 
+<p>
+<a href="http://www.ims.uni-stuttgart.de/projekte/corplex/TreeTagger/DecisionTreeTagger.html" target="_blank">The description of tags from the TreeTagger page</a>.
+</CENTER>
+</FORM>
+
+
+</BODY>
+</HTML>
+

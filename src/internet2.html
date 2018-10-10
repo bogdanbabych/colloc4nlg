@@ -1,0 +1,90 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="Serge Sharoff, hacked by Marco Baroni, ripped by Emiliano Guevara">
+<meta name="Keywords" content="Web Corpus">
+<link href="/corpus.css" rel="stylesheet" type="text/css">
+<TITLE>Leeds collection of Internet corpora</TITLE>
+<SCRIPT language="javascript" src="/jscript/grmselection.js">
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+<FORM ACTION="/cgi-bin/cqp.pl" NAME="reqForm" METHOD="GET">
+
+<table WIDTH="100%">
+<col width="85%">
+<col width="15%">
+<tr>
+<td>
+<H2>Querying Internet corpora</H2>
+<INPUT type=text name=q size=70>&nbsp;&nbsp;
+
+<br><INPUT type=radio name=c value="INTERNET-EN">English&nbsp;(<a href="javascript:getGrm('grm-en.html','q')">tags</a>)  
+<INPUT type=radio name=c value="INTERNET-ZH">Chinese&nbsp;(<a href="javascript:getGrm('grm-zh.html','q')">tags</a>)  
+<INPUT type=radio name=c value="I-AR">Arabic&nbsp;(<a href="javascript:getGrm('grm-ar.html','q')">tags</a>)  
+<INPUT type=radio name=c value="INTERNET-FR">French&nbsp;(<a href="javascript:getGrm('grm-fr.html','q')">tags</a>)  
+<INPUT type=radio name=c value="INTERNET-DE">German&nbsp;(<a href="javascript:getGrm('grm-de.html','q')">tags</a>)  
+<INPUT type=radio name=c value="INTERNET-IT">Italian&nbsp;(<a href="javascript:getGrm('grm-it.html','q')">tags</a>) 
+<INPUT type=radio name=c value="INTERNET-JP">Japanese&nbsp;(<a href="javascript:getGrm('grm-jp.html','q')">tags</a>) <br> 
+<INPUT type=radio name=c value="I-PL">Polish&nbsp;(<a href="javascript:getGrm('grm-pl.html','q')">tags&amp;grams</a>)  
+<INPUT type=radio name=c value="INTERNET-PT">Portuguese&nbsp;(<a href="javascript:getGrm('grm-pt.html','q')">tags</a>)  
+<INPUT type=radio name=c value="INTERNET-RU">Russian&nbsp;(<a href="javascript:getGrm('grm-ru.html','q')">tags&amp;grams</a>)  
+<INPUT type=radio name=c value="INTERNET-ES">Spanish&nbsp;(<a href="javascript:getGrm('grm-es.html','q')">tags</a>)  
+<INPUT type=radio name=c value="I-EL">Greek  
+<INPUT type=radio name=c value="INTERNET-UA" checked>Ukrainian  
+
+<BR>
+<INPUT type=submit>&nbsp;&nbsp;
+<INPUT type=reset >
+<INPUT type=checkbox name=cqpsyntaxonly> CQP syntax only (<a href="http://www.ims.uni-stuttgart.de/projekte/CorpusWorkbench/CQPExamples.html" target="_blank">Examples</a>)
+&nbsp;&nbsp;<b><a href="help.html">Getting help on the query interface</a></b>
+</td>
+<td align=right>
+<a href="http://www.smlc.leeds.ac.uk/cts" target="_blank"><img src="/img/cts_3D_logo.gif" HEIGHT="100" WIDTH="100" alt="Centre for Translation Studies"><BR>
+<font size=-2>Centre for Translation Studies</font>
+</a></td>
+</TR>
+</table>
+
+<H2>Set parameters of your query</H2>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript" src="/jscript/printparams.js"></SCRIPT> 
+<H3>Miscellaneous</H3> 
+Cyrillic: <INPUT type=checkbox name=transliteratein>Transliterate input &nbsp;&nbsp;<INPUT type=checkbox name=transliterateout>Transliterate output
+<p>
+</FORM>
+
+<a name="description"></a>
+<H2>Open source development of large corpora</H2>
+<p>The Internet corpora used here were developed using the same methodology in the following steps:
+<table>
+<!-- <tr><b><td>Step<td>English<td>German<td>Russian<td>Chinese</b> -->
+<tr><td>1.<td colspan=4><b>Select about 500 words</b> from a list of the most frequent word forms in your language.  It is important that selected words are sufficiently general, i.e. they do not belong to a specific domain, but they are not function words.  For instance, <i>picture, extent, raised, events</i> are good query words for English.  For German I experimented with lowercase wordforms only (i.e. adjectives, adverbs and verbs), which also produce good results.
+<tr><td>Query words:<td><a href="internet/seeds-en">English</a><td><a href="internet/seeds-de">German</a><td><a href="internet/seeds-ru">Russian</a><td><a href="internet/seeds-zh">Chinese</a>
+<tr><td>2.<td colspan=4><br><b>Produce a list of 5000-6000 queries</b>, each of which consists of 4 words (you may need more to get more links) using <a href="internet/build_random_tuples.pl">build_random_tuples.pl</a>.  If the language for which you want to collect a corpus is not listed by <a href="http://www.google.co.uk/advanced_search" target="_blank">Google</a> yet, add a couple of very frequent function words that are <i>not</i> used in cognate languages, e.g. <i>(має or її)</i> for Ukranian.  If you collect a corpus for a language with relatively few Internet pages, you may decrease the number of words in a query (however, this will also decrease the amount of connected text in the pages returned, so you'll get more price lists, forms, catalogues, etc).  Collect the top 10 URLs produced by Google for each query using <a href="internet/collect_urls_from_google.pl">collect_urls_from_google.pl</a>
+<tr><td>Queries:<td><a href="internet/queries-en">English</a><td><a href="internet/queries-de">German</a><td><a href="internet/queries-ru">Russian</a><td><a href="internet/queries-zh">Chinese</a>
+<tr><td>3.<td colspan=4><br><b>Download URLs</b> produced by Google using <a href="internet/print_pages_from_url_list.pl">print_pages_from_url_list.pl</a>.  The list of successfully downloaded URLs constitutes an open-source coprus.
+<tr><td>URL lists:<td><a href="internet/final-url-en.gz">English</a> (42133)<td><a href="internet/final-url-de.gz">German</a> (49505)<td><a href="internet/final-url-ru.gz">Russian</a> (33811)<td><a href="internet/final-url-zh.gz">Chinese</a> (30148)
+<tr><td>4.<td colspan=4><br>The set of downloaded files requires further <b>postprocessing</b>, such as correction of encodings, conversion of all texts to Unicode (I used <a href="http://recode.progiciels-bpi.ca/" target="_blank">GNU Recode</a> for all languages except Chinese, for which a better tool exists: <a href="http://www.mandarintools.com/javaconverter.html" target="_blank">http://www.mandarintools.com/javaconverter.html</a>), filtering out duplicate pages, removing navigation frames, etc, followed by lemmatisation and part-of-speech tagging.  Some of the steps are covered by my <a href="internet/filtercorpus.pl">filtercorpus.pl</a>
+<tr><td>5.<td colspan=4><br><b>Composition assessment</b>: take a sample of about 200 texts from the corpus and describe them according to a text typology, as discussed in: Sharoff, S (2006) <a href="/serge/publications/wacky-paper.pdf">Creating general-purpose corpora using automated search engine queries.</a> In M. Baroni, S. Bernardini (eds.) <i>WaCky! Working papers on the Web as Corpus</i>, Bologna, 2006.  I select a random sample from the final URL list using <a href="internet/getrandom.pl">getrandom.pl</a> and coded it using Mick O'Donnel's <a href="http://www.wagsoft.com/Coder/" target="_blank">Systemic Coder</a>.
+<tr><td>Descriptions:<td><a href="internet/internet-en.cd3">English</a><td><a href="internet/internet-de.cd3">German</a><td><a href="internet/internet-ru.cd3">Russian</a><td><a href="internet/internet-zh.cd3">Chinese</a>
+<tr><td>6.<td colspan=4><br>If you have another corpus for the same language, you can <b>compare their frequency lists</b> using the log-likelihood score (see Paul Rayson's <a href="http://ucrel.lancs.ac.uk/llwizard.html" target="_blank">Log-likelihood calculator</a>)
+<tr><td>Comparisons:<td><a href="internet/bnc-ien.num">English</a><td><a href="internet/ide-ids.num">German</a><td><a href="internet/rrc-iru.num">Russian</a><td><a href="internet/izh-xinhua.num">Chinese</a>
+</table>
+<p>
+Steps 2 and 3 above use customised versions of tools from Marco Baroni's <a href="http://sslmit.unibo.it/~baroni/bootcat.html" target="_blank">BootCat</a>, which also has a very extensive description of installation requirements and tool functions.  Have a look at them.
+
+<p>The Perl scripts are free software. You can redistribute them
+and/or modify them under the same terms as Perl itself.  The same
+applies to URL lists and other resources: you can freely use them in
+your research provided that you supply a link to this website: 
+<a href="http://corpus.leeds.ac.uk/">http://corpus.leeds.ac.uk/</a>.
+
+<p>
+
+
+The interface and corpora were developed by Serge Sharoff; contact me at <strong>s.sharoff<img src="img/at.gif">leeds.ac.uk</strong>, if you have further queries.
+
+</BODY>
+</HTML>
