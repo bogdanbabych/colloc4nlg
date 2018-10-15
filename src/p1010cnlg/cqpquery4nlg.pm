@@ -371,7 +371,7 @@ sub processcorpus {
     if (substr($searchstring,0,2) eq 'MU') {
 	$querylength=scalar(split(' \[',$searchstring))-1;
     };
-    if ($collocationstat) {
+    if ($collocationstat || $collocation4nlg) {
 	$onefrqc += scalar(@matches);
 	undef %nlemmas;
     };
@@ -382,7 +382,7 @@ sub processcorpus {
 	    $matchend+=$querylength-1;
 	}
 	$cl=$matchend-$curpos+1;
-	if ($collocationstat) {
+	if ($collocationstat || $collocation4nlg) {
 	    $matchlemma=getlemmas($curpos,0,$cl-1);
 	    undef @nlemma;
 	    if ($collocspanleft) {
@@ -696,14 +696,14 @@ sub printcollocstring {
 	if (($curlang eq 'ru') and ($transliterateout)) {
 	    $pair=cyr2lat($pair);
 	};
-	$searchstring="MU(meet [$defaultattrname='$w1'] [$defaultattrname='$w2'] -$collocspanleft $collocspanright)\&cqpsyntaxonly=1";
+	$searchstring4print="MU(meet [$defaultattrname='$w1'] [$defaultattrname='$w2'] -$collocspanleft $collocspanright)\&cqpsyntaxonly=1";
 	printf STDOUT qq{  <tr>
     <td>%s</td>
     <td align="right">%s</td>
     <td align="right">%s</td>
     <td align="right">%s</td>
     <td align="right">%3.2f</td>
-    <td align="center"><a target="_blank" href="$cqpsearchprefix$searchstring\&amp;corpuslist=$corpuslist">%s</a></td>
+    <td align="center"><a target="_blank" href="$cqpsearchprefix$searchstring4print\&amp;corpuslist=$corpuslist">%s</a></td>
   </tr>\n}, $pair, $pairs{$key}, $frqc1, $frqc2, $score,$messages{'examples'};
     };
 }

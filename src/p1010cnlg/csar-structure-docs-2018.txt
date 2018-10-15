@@ -1,0 +1,38 @@
+Purpose: developing CSAR analogue in Python
+  --> project for MWEs, engine for combinatory field model +
+  --> for lingenio's commercial implementation
+
+  --> for construction grammar induction, etc.
+  >> answering fundamental questions in linguistics
+
+
+  >> nature of linguistic research...
+
+
+
+structure of SCAR
+  [*.html] (internet.html)
+    - parameters(
+      + corpus selection;
+      [printparams.js]
+
+      - colloc4nlg
+      - conc
+      - colloc
+
+  [cqp.pl] (cqp4nlg.pl)
+    + {getting parameters}
+    + ($contextsize, $contexttype)=$contextsize=~/(\d+)\s*(\w*)/;
+    + {print html header}
+
+    - collocation4nlg
+
+    + $searchstring=makecqpquery($originalquery)
+    + @corpuslist=split ',', $corpuslist;
+    + foreach $corpus (@corpuslist) {
+        $numoccur+=processcorpus($corpus, $searchstring); }
+
+        % development:
+        % prepare search string --> in Perl / Python / JavaScript
+        >> for each -- SearchString :: form search strings ; then process them one after the other in a normal routine;
+        >> keep collecting collocation statistics... >>>

@@ -16,6 +16,8 @@ document.write('    &nbsp;PoS<INPUT name=cfilter2 size=3>  <input type="input" n
 document.write('    &nbsp;<strong>keyword</strong><br>');
 document.write('    &nbsp;PoS<INPUT name=cfilter3 size=3>  <input type="input" name="cleft3" size="2" value="0" /> w left <input type="input" name="cright3" size="2" value="1" /> w right<br>');
 document.write('    &nbsp;PoS<INPUT name=cfilter4 size=3>  <input type="input" name="cleft4" size="2" value="0" /> w left <input type="input" name="cright4" size="2" value="2" /> w right<br>');
+document.write('    <input type="hidden" name="cleft" value="0" />');
+document.write('    <input type="hidden" name="cright" value="0" />');
 document.write('  </p>');
 document.write('  <p>');
 document.write('    <br>');

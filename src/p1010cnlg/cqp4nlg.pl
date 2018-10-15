@@ -53,6 +53,13 @@ if ($corpuslist) { # CGI run
     $collocationstat=(lc($cgiquery->param("searchtype") eq 'colloc'));
 # collocations for NLG
     $collocation4nlg=(lc($cgiquery->param("searchtype") eq 'colloc4nlg'));
+    # collocation statistics still should work
+    if($collocation4nlg){
+        # $collocationstat = $collocation4nlg;
+    };
+    
+    
+    
     
     
     $mistat=$cgiquery->param("mistat");
@@ -81,6 +88,18 @@ if ($corpuslist) { # CGI run
     $collocspanright4=$cgiquery->param("collocspanright4") || $cgiquery->param("cright4");
     $collocfilter4=$cgiquery->param("collocfilter4") || $cgiquery->param("cfilter4");
 
+    if($collocation4nlg){
+
+        @collocspans4nlg = ();
+        push(@collocspans4nlg, "$collocspanleft1~$collocfilter1~$collocspanright1");
+        push(@collocspans4nlg, "$collocspanleft2~$collocfilter2~$collocspanright2");
+        push(@collocspans4nlg, "$collocspanleft3~$collocfilter3~$collocspanright3");
+        push(@collocspans4nlg, "$collocspanleft4~$collocfilter4~$collocspanright4");
+        
+    
+    };
+    
+
 
 
     $learningrestrictlist=$cgiquery->param("learningrestrictlist");
@@ -101,7 +120,7 @@ if ($corpuslist) { # CGI run
     };
 
 
-    if ($collocationstat) {
+    if ($collocationstat || $collocation4nlg) {
 	$contextsizecl='1w';
 	if ($measure) {
 	    $mistat=$measure=~/M/;
@@ -187,6 +206,11 @@ print qq{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://
 print qq{</head>\n<body>\n<div id="website">};
 
 
+# test printing
+print "collocationstat $collocationstat <br>\n";
+print "collocation4nlg $collocation4nlg <br>\n";
+
+
 if($collocation4nlg){
     @searchlist = split /\s+/, $originalquery;
     print "<strong>Query list:</strong><br>";
@@ -194,6 +218,7 @@ if($collocation4nlg){
         print "$query";
         print "<br>";
     }
+    # foreach $collocationspec (@collocspans4nlg){ print "CollocSpec: $collocationspec <br>\n" ;}
     
     
     
@@ -218,6 +243,14 @@ if ($collocationstat) {
     } else {
 	undef $collocfilter;
     }
+} elsif (collocation4nlg){
+    # duplicating collocationstat
+    $terminate=0;
+    $contextsize=1;
+    $contexttype='word';
+
+
+
 } else {
     if ($terminate) {$searchstring.=" cut $terminate"};
 }
@@ -234,6 +267,32 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     print STDOUT $messages{'empty-condition'};
 } elsif (($collocationstat) and ! (($mistat) or ($tstat) or ($llstat))) {
     print STDOUT $messages{'choose-score'};
+} elsif(collocation4nlg) {
+    
+    foreach $collocationspec (@collocspans4nlg){   
+        $numoccur = 0;   
+        print "CollocSpec: $collocationspec <br>\n" ;
+            if ($collocationspec =~ /(.+)~(.*)~(.+)/){
+                $collocspanleft= $1;
+                $collocspanright = $3;
+                $collocfilter = $2;
+                print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
+                @corpuslist=split ',', $corpuslist;
+                foreach $corpus (@corpuslist) {   
+                    $numoccur+=processcorpus($corpus, $searchstring);
+                                        
+            }
+
+            print STDLOG "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
+            $numoccur=$totalpairs;
+            showcollocates();
+            print "Corp; Search; Occurrences: $corpus $searchstring $numoccur <br>\n";
+                
+        }
+        
+    }
+
+    
 } else { 
     $cqpprocesstime=0;
     if ($corpuslist eq 'RU') {
