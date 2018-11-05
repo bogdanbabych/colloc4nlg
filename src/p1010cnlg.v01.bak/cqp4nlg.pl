@@ -54,7 +54,9 @@ if ($corpuslist) { # CGI run
 # collocations for NLG
     $collocation4nlg=(lc($cgiquery->param("searchtype") eq 'colloc4nlg'));
     # collocation statistics still should work
-    # if($collocation4nlg){ # $collocationstat = $collocation4nlg;  };
+    if($collocation4nlg){
+        # $collocationstat = $collocation4nlg;
+    };
     
     
     
@@ -85,15 +87,6 @@ if ($corpuslist) { # CGI run
     $collocspanleft4=$cgiquery->param("collocspanleft4") || $cgiquery->param("cleft4");
     $collocspanright4=$cgiquery->param("collocspanright4") || $cgiquery->param("cright4");
     $collocfilter4=$cgiquery->param("collocfilter4") || $cgiquery->param("cfilter4");
-    
-    $keywordposition4nlg0=$cgiquery->param("keywordposition4nlg") || $cgiquery->param("keywordposition4nlg");
-    $noofsentences4nlg=$cgiquery->param("noofsentences4nlg") || $cgiquery->param("noofsentences4nlg");
-    $noofsentences4nlg0 = $noofsentences4nlg + 0; # make sure this is the number
-    
-    $printproofcolloc4nlg0=$cgiquery->param("printproofcolloc4nlg");
-    
-    
-    
 
     if($collocation4nlg){
 
@@ -213,28 +206,23 @@ print qq{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://
 print qq{</head>\n<body>\n<div id="website">};
 
 
-# # test printing
-# # print "collocationstat $collocationstat <br>\n";
-# # print "collocation4nlg $collocation4nlg <br>\n";
-# # print "keywordposition4nlg0 = $keywordposition4nlg0 <br>\n";
-# # print "noofsentences4nlg0 = $noofsentences4nlg0 <br>\n";
-# # print "printproofcolloc4nlg0 = $printproofcolloc4nlg0 <br>\n";
+# test printing
+print "collocationstat $collocationstat <br>\n";
+print "collocation4nlg $collocation4nlg <br>\n";
 
 
-
-
-
-# # if($collocation4nlg){
-# #     @searchlist = split /\s+/, $originalquery;
-# #     print "<strong>Query list:</strong><br>";
-# #     foreach $query (@searchlist){
-# #         print "$query";
-# #         print "<br>";
-# #     }
-
-# ## foreach $collocationspan (@collocspans4nlg){ print "CollocSpan: $collocationspan <br>\n" ;}
- 
-# #}
+if($collocation4nlg){
+    @searchlist = split /\s+/, $originalquery;
+    print "<strong>Query list:</strong><br>";
+    foreach $query (@searchlist){
+        print "$query";
+        print "<br>";
+    }
+    # foreach $collocationspec (@collocspans4nlg){ print "CollocSpec: $collocationspec <br>\n" ;}
+    
+    
+    
+}
     
 $searchstring=makecqpquery($originalquery);
 
@@ -282,31 +270,17 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
 } elsif(collocation4nlg) {
     
     @AofPairs = ();
-    @LoLColloc = ();
-    %hKWords = ();
     foreach $collocationspec (@collocspans4nlg){
-        # we intialise it here...
         $numoccur = 0;
-        $numwords = 0; # not initialised , was doubling corpus size...
-        %pairs = ();
+        # %pairs = ();
         $totalpairs = 0;
-        # ## print "--------------cqp4nlg.pl-------------- <br>\n" ;
-        if ($printproofcolloc4nlg0){ print "CollocSpec: $collocationspec <br>\n" ;};
-        
-        # continue the loop if collocation context is not specified
-        if ($collocationspec =~ /(0)~~(0)/){
-            next;
-        };
-        
+        print "CollocSpec: $collocationspec <br>\n" ;
         if ($collocationspec =~ /(.+)~(.*)~(.+)/){
             $collocspanleft= $1;
             $collocspanright = $3;
             $collocfilter = $2;
-            # ## print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
+            print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
             @corpuslist=split ',', $corpuslist;
-            # already intialised
-            # %pairs = ();
-            # $numoccur = 0;
             foreach $corpus (@corpuslist) {   
                 $numoccur+=processcorpus($corpus, $searchstring);
                                     
@@ -316,70 +290,16 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
         print STDLOG "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
         $numoccur=$totalpairs;
         # foreach $el (keys %paris){ print "Pair: $el <br>\n"}
-        @collocationstr4nlg = showcollocates();
-        # ## print "<br> ---cqp4nlg: collocationstr4nlg --- : <br> \n";
-        # ## print @collocationstr4nlg ;
-        # ## print "\n<br>-------end: collocationstr4nlg ---<br>\n";
-
-        
-        # print "Debug: <br>\n";
-        # print "hPairs: ";
-        # print  keys %pairs ;
-        # print "<br><br>\n\n";
-        
-        # %LSavedPairs = %pairs;
-        my @collocationstr4nlgLocal = @collocationstr4nlg;
-        my ($ref_collKWordMatch, $ref_coll4nlgList) = prepareCollocList4NLG(@collocationstr4nlgLocal);
-        # ## print "ref_collKWordMatch: $ref_collKWordMatch <br>\n"; 
-        # ## print "ref_coll4nlgList: $ref_coll4nlgList <br>\n";
-        
-        my %collKWordMatch = %{$ref_collKWordMatch};
-        my @coll4nlgList = @{$ref_coll4nlgList};
-        # ## print "<br>\n";
-        # ## print "kw:<br>\n";
-        # ## print %collKWordMatch;
-        # ## print "<br>\n";
-        # ## print "colloc:<br>\n";
-        # ## print @coll4nlgList;
-        # ## print "<br>\n";
-        # ## print "<br>\n";
-        
-        # push @LKWords, @collKWordMatchList;
-        keys %collKWordMatch;
-        while (my ($key, $value) = each %collKWordMatch){
-            $hKWords{$key} += $value;
-            
-        }
-        
-        
-        # push @AofPairs, \%hSavedPairs;
-        # switch to processed list rather than copied list -- substituted
-        # push @LoLColloc, \@collocationstr4nlgLocal;
-        push @LoLColloc, \@coll4nlgList;
-        
+        showcollocates();
+        %hSavedPairs = %pairs;
+        push @AofPairs, \%hSavedPairs;
         # print "Corp; Search; Occurrences: $corpus $searchstring $numoccur <br>\n";
             
         }
         
     }
 
-    # recombinePairs(@AofPairs);
-    # create list of match lemmas from prev
-    
-    # ## print %hKWords;
-    @lKWords = keys %hKWords;
-    
-    if ($keywordposition4nlg0 eq "last"){
-        push (@LoLColloc, \@lKWords);
-        
-    }elsif($keywordposition4nlg0 eq "first"){
-        unshift(@LoLColloc, \@lKWords);
-    }elsif((($keywordposition4nlg0 + 0) <= scalar(@LoLColloc)) && (($keywordposition4nlg0 + 0) > -1)){
-        $keywordposition4nlg0 += 0;
-        splice(@LoLColloc, $keywordposition4nlg0, 0, \@lKWords);   
-    }
-    
-    recombineColloc4NLG(@LoLColloc);
+    recombinePairs(@AofPairs);
 
     
 } else { 

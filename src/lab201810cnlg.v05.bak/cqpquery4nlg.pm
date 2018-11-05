@@ -625,39 +625,14 @@ print STDERR "$key, $onefrqc $twofrqc\n" unless $onefrqc and $twofrqc;
 
 sub prepareCollocList4NLG{
     my @collocationstr4nlg = @_;
-    # my @collKWordMatchList = ();
-    my %collKWordMatch;
-    my @coll4nlgList = ();
-    # my @coll4nlgList = @collocationstr4nlg;
-    
-    foreach $collocpairscore (@collocationstr4nlg){
-        if ($collocpairscore =~ /^(.+)\t(.+)~(.*)$/){
-            my $kw = $1; # print "kw = $kw ; ";
-            my $coll = $2; # print "coll = $coll ; ";
-            my $sc = $3 + 0; # print "sc = $sc ; ";
-            my $collscore;
-            if ($printproofcolloc4nlg0){
-                $collscore = "$coll~$sc<br>\n"; # print "collscore = $collscore ; <br>\n";
-            
-            }else{
-                $collscore = "$coll"; # print "collscore = $collscore ; <br>\n";
-                
-            }
-            
-            $collKWordMatch{$kw}++ ;
-            push @coll4nlgList, $collscore;
-        }
-    }
-    # my @collKWordMatchList = keys %collKWordMatch;
-    ## print "<br>\n---prepareCollocList4NLG---list:<br>\n";
-    ## print @collKWordMatchList, " len: " , scalar(@collKWordMatchList) ; # %collKWordMatch;
-    ## print "<br>\n----<br>\n";
+    my @collKWordMatchList = ();
+    my %collKWordMatch = {};
+    my @coll4nlgList = @collocationstr4nlg;
     
     
     
 
-    # return (\@collKWordMatchList, \@coll4nlgList);
-    return (\%collKWordMatch, \@coll4nlgList);
+    return \@collKWordMatchList, \@coll4nlgList;
 
 
 }
@@ -665,18 +640,14 @@ sub prepareCollocList4NLG{
 
 
 sub recombineColloc4NLG{
-    # my $refNoOfSent, $refLoLColloc = @_;
-    # my $nOfSent = ${$refNoOfSent};
-    # my @LoLColloc = @{$refLoLColloc};
     my @LoLColloc = @_;
-    $nOfSent = $noofsentences4nlg0;
+    $nOfSent = 10;
     for (my $i = 1; $i <= $nOfSent; $i++){
-        print "<br>\n$i. ";
-        if ($printproofcolloc4nlg0){ print "<br>\n<br>\n";};
+        print "List: $i <br>\n";
         foreach $refLColloc (@LoLColloc){
             my @LColloc = @{$refLColloc};
             my $randomColloc = $LColloc[rand @LColloc];
-            print "$randomColloc ";
+            print "$randomColloc <br>\n";
             
         }
 
@@ -705,16 +676,13 @@ sub recombinePairs{
 sub showcollocates {
     computecollocates($onefrqc,$numwords,\%freq,\%pairs);
   # beginning of collocate page, titles an intro blurb
-    if ($printproofcolloc4nlg0){
-        printf STDOUT $messages{'colloc-header'}, $corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter;
-        
-    }
+    printf STDOUT $messages{'colloc-header'}, $corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter;
 
   # print short html anchor for each association measure requested
-  if ($llstat && $printproofcolloc4nlg0) { print STDOUT qq{<p><a href="#LL score">LL score</a></p>\n};}
-  if ($mistat && $printproofcolloc4nlg0) { print STDOUT qq{<p><a href="#MI score">MI score</a></p>\n};}
-  if ($dstat && $printproofcolloc4nlg0)  { print STDOUT qq{<p><a href="#Dice score">Dice score</a></p>\n\n};};
-  if ($tstat && $printproofcolloc4nlg0)  { print STDOUT qq{<p><a href="#T score">T score</a></p>\n\n};};
+  if ($llstat) { print STDOUT qq{<p><a href="#LL score">LL score</a></p>\n};}
+  if ($mistat) { print STDOUT qq{<p><a href="#MI score">MI score</a></p>\n};}
+  if ($dstat)  { print STDOUT qq{<p><a href="#Dice score">Dice score</a></p>\n\n};};
+  if ($tstat)  { print STDOUT qq{<p><a href="#T score">T score</a></p>\n\n};};
   my $i=0;
   # call nex sub for each ass-measure, building the collocate tables' headings
   if ($llstat) {
@@ -737,10 +705,7 @@ sub printscoretable {
     my ($name,$scoreref,$cutoff)=@_;
     my $i=0;
     my @collocationstr4nlg = ();
-    if ($printproofcolloc4nlg0){
-        collocateheader($name);
-    }
-    
+    collocateheader($name);
     foreach my $key (sort { ${$scoreref}{$b} <=> ${$scoreref}{$a} } keys %{$scoreref}) {
       printcollocstring($key,${$scoreref}{$key});
       $i++;
@@ -748,10 +713,7 @@ sub printscoretable {
       push @collocationstr4nlg, "$key~$score4nlg";
       last if $i>$cutoff;
     };
-    if ($printproofcolloc4nlg0){
-        print STDOUT $collocatefooter; # finish the table
-    }
-    
+    print STDOUT $collocatefooter; # finish the table
     
     # print "<br> collocationstr4nlg : <br> \n";
     # print @collocationstr4nlg ;
@@ -798,19 +760,14 @@ sub printcollocstring {
 	    $pair=cyr2lat($pair);
 	};
 	$searchstring4print="MU(meet [$defaultattrname='$w1'] [$defaultattrname='$w2'] -$collocspanleft $collocspanright)\&cqpsyntaxonly=1";
-    # removing for clarity -- to be restored:
-    if($printproofcolloc4nlg0){
-        printf STDOUT qq{  <tr>
-        <td>%s</td>
-        <td align="right">%s</td>
-        <td align="right">%s</td>
-        <td align="right">%s</td>
-        <td align="right">%3.2f</td>
-        <td align="center"><a target="_blank" href="$cqpsearchprefix$searchstring4print\&amp;corpuslist=$corpuslist">%s</a></td>
-      </tr>\n}, $pair, $pairs{$key}, $frqc1, $frqc2, $score,$messages{'examples'};
-        
-    }
-
+	printf STDOUT qq{  <tr>
+    <td>%s</td>
+    <td align="right">%s</td>
+    <td align="right">%s</td>
+    <td align="right">%s</td>
+    <td align="right">%3.2f</td>
+    <td align="center"><a target="_blank" href="$cqpsearchprefix$searchstring4print\&amp;corpuslist=$corpuslist">%s</a></td>
+  </tr>\n}, $pair, $pairs{$key}, $frqc1, $frqc2, $score,$messages{'examples'};
     };
 }
 

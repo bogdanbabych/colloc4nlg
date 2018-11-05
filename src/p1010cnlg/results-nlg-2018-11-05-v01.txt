@@ -1,0 +1,226 @@
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=switch&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=JJ&cleft1=0&cright1=2&cfilter2=NN&cleft2=0&cright2=3&cfilter3=&cleft3=0&cright3=0&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=0&noofsentences4nlg=100&cleft=0&cright=0
+
+1. switch light application
+
+1. switch light application
+2. switch artemisinin-based SW1
+3. switch â voltage
+4. switch private control
+5. switch actuated power
+6. switch • focus
+7. switch light network
+8. switch different wiring
+9. switch current continuity
+10. switch open decaf
+11. switch artemisinin-based assembly
+12. switch natural actuated
+13. switch traditional TV
+14. switch light air
+15. switch traditional attention
+16. switch digital phone
+17. switch green distance
+18. switch • oil
+19. switch traditional relay
+20. switch other alternative
+21. switch private computer
+22. switch SW1 flight
+23. switch traditional water
+
+
+
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=new&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=V*&cleft1=3&cright1=0&cfilter2=V*&cleft2=1&cright2=0&cfilter3=N*&cleft3=0&cright3=2&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=2&noofsentences4nlg=100&cleft=0&cright=0
+1. recruit purchase new see
+2. release promote new language
+3. adjust reflect new scheme
+4. herald migrate new class
+5. york teach new language
+6. formulate enter new information
+7. make discover new bill
+8. unveil innovate new housing
+9. recruit initiate new method
+10. set promote new open
+11. acquire deliver new website
+12. encourage justify new strategy
+
+V* 3, 0
+V* 1, 0
+new
+N* 0, 2
+
+
+
+
+save
+JJ 0, 1
+NN 0, 3
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=save&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=JJ&cleft1=0&cright1=1&cfilter2=N*&cleft2=0&cright2=3&cfilter3=&cleft3=0&cright3=&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=0&noofsentences4nlg=100&cleft=0&cright=0
+
+
+
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=deal&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=V*&cleft1=2&cright1=0&cfilter2=JJ&cleft2=1&cright2=0&cfilter3=&cleft3=0&cright3=0&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=last&noofsentences4nlg=20&cleft=0&cright=0&contextsize=60c&sort1=word&sort2=right&terminate=100&llstat=on&cleft=0&cright=1&cfilter=
+
+
+seal~47.5480266491504
+real~189.367486696166
+deal
+List: 2
+acknowledge~1.43097384977591
+lucrative~14.6153398771967
+deal
+List: 3
+help~57.3789170928067
+new~13.4807409419445
+deal
+List: 4
+understand~0.0479919552744832
+win~0.116708431814914
+deal
+List: 5
+cut~10.1030467060045
+current~1.18254259062815
+deal
+List: 6
+renegotiate~11.8082956191038
+real~189.367486696166
+deal
+List: 7
+want~23.4547396469861
+sweeten~31.9105058003813
+deal
+List: 8
+block~0.46675985895854
+political~0.01293199963402
+deal
+List: 9
+renegotiate~11.8082956191038
+reasonable~3.86008467493957
+deal
+List: 10
+make~13.5709864154924
+seal~47.5480266491504
+deal
+List: 11
+close~22.0009045107872
+understand~0.0479919552744832
+deal
+List: 12
+acknowledge~1.43097384977591
+possible~0.220096996927168
+deal
+List: 13
+try~2.71425212256145
+one-year~16.9772135648473
+deal
+List: 14
+make~13.5709864154924
+clinch~12.5739244468238
+deal
+List: 15
+kill~0.269480491930153
+first~0.272459719912149
+deal
+List: 16
+make~13.5709864154924
+lucrative~14.6153398771967
+deal
+List: 17
+negotiate~21.5815586110075
+similar~1.35312532880926
+deal
+List: 18
+win~0.116708431814914
+finance~1.96843124466977
+deal
+List: 19
+help~57.3789170928067
+record~0.686152406851761
+deal
+List: 20
+cut~10.1030467060045
+possible~0.220096996927168
+deal
+
+
+
+====
+
+
+understand~0.0479919552744832
+tentative~6.57585311635557
+deal
+List: 2
+cut~10.1030467060045
+good~869.241064795991
+deal
+List: 3
+swing~3.03914489666204
+acknowledge~1.43097384977591
+deal
+List: 4
+try~2.71425212256145
+huge~46.7697599092353
+deal
+List: 5
+cancel~3.92134570922281
+poor~0.0990267336310353
+deal
+List: 6
+block~0.46675985895854
+lucrative~14.6153398771967
+deal
+List: 7
+sweeten~31.9105058003813
+great~6541.88943944848
+deal
+List: 8
+let~6.62602033212897
+acknowledge~1.43097384977591
+deal
+List: 9
+sign~2.63576558869681
+three-year~11.1202118079314
+deal
+List: 10
+help~57.3789170928067
+learn~9.62567640322959
+deal
+List: 11
+finalize~11.8440104827869
+acknowledge~1.43097384977591
+deal
+List: 12
+seal~47.5480266491504
+finance~1.96843124466977
+deal
+List: 13
+sweeten~31.9105058003813
+secret~40.9230617450376
+deal
+List: 14
+kill~0.269480491930153
+finance~1.96843124466977
+deal
+List: 15
+seal~47.5480266491504
+current~1.18254259062815
+deal
+List: 16
+negotiate~21.5815586110075
+poor~0.0990267336310353
+deal
+List: 17
+close~22.0009045107872
+accept~1.61646747174382
+deal
+List: 18
+renegotiate~11.8082956191038
+block~0.46675985895854
+deal
+List: 19
+cancel~3.92134570922281
+'great~12.1163474069535
+deal
+List: 20
+renegotiate~11.8082956191038
+nice~3.26523361366708
+deal
