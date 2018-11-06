@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="Author" content="Serge Sharoff, hacked by Marco Baroni, ripped by Emiliano Guevara">
+<meta name="Keywords" content="Web Corpus">
+<link href="/corpus.css" rel="stylesheet" type="text/css">
+<TITLE>Leeds collection of Internet corpora</TITLE>
+<SCRIPT language="javascript" src="/jscript/grmselection.js">
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+<!-- <FORM ACTION="http://129.11.101.77/cgi-bin/cqp.pl" NAME="reqForm" METHOD="GET"> -->
+<FORM ACTION="/cgi-bin/cqp4nlg.pl" NAME="reqForm" METHOD="GET">
+
+<table WIDTH="100%">
+<col width="85%">
+<col width="15%">
+<tr>
+<td>
+<H2>NLG with collocations</H2>
+Keyword(s) <INPUT type=text name=q size=70>&nbsp;&nbsp;
+
+<br><INPUT type=radio name=c value="INTERNET-EN" checked>English&nbsp;(<a href="javascript:getGrm('grm-en.html','q')">tags</a>)  
+
+<!--  -->
+
+<INPUT type=radio name=c value="I-EN-CC-FINAL">English, Creative Commons&nbsp;(<a href="javascript:getGrm('grm-en.html','q')">tags</a>)   
+
+<!-- <INPUT type=radio name=c value="INTERNET-ZH">Chinese&nbsp;(<a href="javascript:getGrm('grm-zh.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="INTERNET-FI">Finnish&nbsp;  -->
+<!-- (<a href="javascript:getGrm('grm-fi.html','q')">tags</a>) -->
+<!-- <INPUT type=radio name=c value="I-AR-lemma">Arabic&nbsp;(<a href="javascript:getGrm('grm-ar.html','q')">tags</a>) -->
+<!-- <INPUT type=radio name=c value="I-FR">French&nbsp;(<a href="javascript:getGrm('grm-fr.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="INTERNET-DE">German&nbsp;(<a href="javascript:getGrm('grm-de.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="I-EL">Greek  -->
+<!-- <INPUT type=radio name=c value="ITWAC">Italian&nbsp;(<a href="javascript:getGrm('grm-it.html','q')">tags</a>)  -->
+<!-- <INPUT type=radio name=c value="INTERNET-JP">Japanese&nbsp;(<a href="javascript:getGrm('grm-jp.html','q')">tags</a>) <br>  -->
+<!-- <INPUT type=radio name=c value="I-PL">Polish&nbsp;(<a href="javascript:getGrm('grm-pl.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="INTERNET-PT">Portuguese&nbsp;(<a href="javascript:getGrm('grm-pt.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="I-RU">Russian&nbsp;(<a href="javascript:getGrm('grm-ru.html','q')">tags&amp;grams</a>)   -->
+<!-- <INPUT type=radio name=c value="INTERNET-ES">Spanish&nbsp;(<a href="javascript:getGrm('grm-es.html','q')">tags</a>)   -->
+<!-- <INPUT type=radio name=c value="KAWAC">Georgian -->
+<!-- <INPUT type=radio name=c value="INTERNET-UA">Ukrainian   -->
+<!-- <INPUT type=radio name=c value="FORUMS-LT">Lithuanian   -->
+
+
+<!--  -->
+
+
+<BR>
+<INPUT type=submit>&nbsp;&nbsp;
+<INPUT type=reset >
+<INPUT type=checkbox name=cqpsyntaxonly> CQP syntax only (<a href="http://www.ims.uni-stuttgart.de/projekte/CorpusWorkbench/CQPExamples.html" target="_blank">Examples</a>)
+&nbsp;&nbsp;<b><a href="help.html">Getting help on the query interface</a></b>
+</td>
+<td align=right>
+<a href="http://www.smlc.leeds.ac.uk/cts" target="_blank"><img src="/img/cts_3D_logo.gif" HEIGHT="100" WIDTH="100" alt="Centre for Translation Studies"><BR>
+<font size=-2>Centre for Translation Studies</font>
+</a></td>
+</TR>
+</table>
+
+<H2>Set parameters of your query</H2>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript" src="printparams4nlg.js"></SCRIPT> 
+<H3>Miscellaneous</H3> 
+Cyrillic: <INPUT type=checkbox name=transliteratein>Transliterate input &nbsp;&nbsp;<INPUT type=checkbox name=transliterateout>Transliterate output
+<p>
+</FORM>
+
+
+<p>The English CC corpus has been compiled from webpages with the <a href="http://creativecommons.org">Creative Commons</a> permissive licences.  The corpus is less balanced than the main I-EN (less professional news, more blogs and fanzines), but it can be redistributed without limitations.
+
+<p>The Perl scripts are free software. You can redistribute them
+and/or modify them under the same terms as Perl itself.  The same
+applies to URL lists and other resources: you can freely use them in
+your research provided that you supply a link to this website: 
+<a href="http://corpus.leeds.ac.uk/">http://corpus.leeds.ac.uk/</a>.
+
+<p>
+
+
+The interface and corpora were developed by Serge Sharoff <strong>s.sharoff<img src="img/at.gif">leeds.ac.uk</strong> and Bogdan Babych <strong>b.babych<img src="img/at.gif">leeds.ac.uk</strong>,contact us if you have further queries.
+
+</BODY>
+</HTML>
+
+

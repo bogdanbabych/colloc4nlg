@@ -91,6 +91,14 @@ if ($corpuslist) { # CGI run
     $noofsentences4nlg0 = $noofsentences4nlg + 0; # make sure this is the number
     
     $printproofcolloc4nlg0=$cgiquery->param("printproofcolloc4nlg");
+    $printproofscores4nlg0=$cgiquery->param("printproofscores4nlg");
+    $rankproofcolloc4nlg0=$cgiquery->param("rankproofcolloc4nlg");
+    
+    $printcartesianpr4nlg0=$cgiquery->param("printcartesianpr4nlg");
+    $onlycombinedcores4nlg0=$cgiquery->param("onlycombinedcores4nlg");
+    
+    
+    
     
     
     
@@ -101,7 +109,7 @@ if ($corpuslist) { # CGI run
         push(@collocspans4nlg, "$collocspanleft1~$collocfilter1~$collocspanright1");
         push(@collocspans4nlg, "$collocspanleft2~$collocfilter2~$collocspanright2");
         push(@collocspans4nlg, "$collocspanleft3~$collocfilter3~$collocspanright3");
-        push(@collocspans4nlg, "$collocspanleft4~$collocfilter4~$collocspanright4");
+        # push(@collocspans4nlg, "$collocspanleft4~$collocfilter4~$collocspanright4");
         
     
     };
@@ -219,6 +227,12 @@ print qq{</head>\n<body>\n<div id="website">};
 # # print "keywordposition4nlg0 = $keywordposition4nlg0 <br>\n";
 # # print "noofsentences4nlg0 = $noofsentences4nlg0 <br>\n";
 # # print "printproofcolloc4nlg0 = $printproofcolloc4nlg0 <br>\n";
+# # print "printcartesianpr4nlg0 = $printcartesianpr4nlg0 <br>\n";
+# # print "rankproofcolloc4nlg0 = $rankproofcolloc4nlg0 <br>\n";
+# # print "printproofscores4nlg0 = $printproofscores4nlg0 <br>\n";
+# # print "onlycombinedcores4nlg0 = $onlycombinedcores4nlg0 <br>\n";
+
+
 
 
 
@@ -285,11 +299,28 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     @LoLColloc = ();
     %hKWords = ();
     foreach $collocationspec (@collocspans4nlg){
+        # initialisation of variables
+        # ########
+        # previously global variables caused problems during repeated collocational search
         # we intialise it here...
         $numoccur = 0;
         $numwords = 0; # not initialised , was doubling corpus size...
+        # initialising frequency table, pairs record, etc --> remaining tables in memory caused problems in the past... 
         %pairs = ();
+        %freq = ();
+        %nlemmas = ();
         $totalpairs = 0;
+        $outcount=0;
+        $onefrqc = 0; # caused different results for first and further collocations
+        
+        # initialising collocation tables: have been creating problem for second / third, etc. collocation context, never initialised in cqpquery.*.pm
+        %loglikescore = ();
+        %miscore = ();
+        %dicescore = ();
+        %tscore = ();
+        # end initialising tables
+        
+        
         # ## print "--------------cqp4nlg.pl-------------- <br>\n" ;
         if ($printproofcolloc4nlg0){ print "CollocSpec: $collocationspec <br>\n" ;};
         
@@ -379,7 +410,42 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
         splice(@LoLColloc, $keywordposition4nlg0, 0, \@lKWords);   
     }
     
-    recombineColloc4NLG(@LoLColloc);
+    # introduce ranking here if needed: both conditions needed -- scores + request to use them for ranking
+    # create a new list from a hash?
+    if($printproofscores4nlg0 && $rankproofcolloc4nlg0){
+        print "Ranked selection of collocates<br><br>\n\n";
+        # recombine collocations wiht scores
+        # for each line -- calculate a combined score, record it as a value of a hash
+        # sort by values and print / save
+        @LoLCollocCartesianProduct = permute(@LoLColloc);
+        @lCollocScores = recombineColloc4NLGcartesianproductHashScores(@LoLCollocCartesianProduct); # calculate collocation scores
+        # printing the top of the list on screen
+        my $k = 0;
+        for $line_sc (@lCollocScores){
+            $k++;
+            if ($k > $noofsentences4nlg0){last;}
+            print "$k. $line_sc <br>\n";
+            
+            
+        }
+        if($printcartesianpr4nlg0){ # if there is a file name
+            
+            recombineColloc4NLGcartesianproductPrintList(@lCollocScores); # print ranked list to file
+        }
+        
+    }elsif($printcartesianpr4nlg0){
+        print "Random selection of collocates, file output link below <br><br>\n\n";
+        recombineColloc4NLG(@LoLColloc); # print random comibnations 
+        @LoLCollocCartesianProduct = permute(@LoLColloc);
+        recombineColloc4NLGcartesianproduct(@LoLCollocCartesianProduct); # print to file;
+        
+            
+    }else{
+        print "Random selection of collocates<br><br>\n\n";
+        recombineColloc4NLG(@LoLColloc); # print random comibnations on screen
+    }
+    
+    
 
     
 } else { 

@@ -1,3 +1,15 @@
+V.* 2 0
+JJ 1 0
+N.* 0 2
+kw = 2
+
+deal
+
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=deal&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=V.*&cleft1=2&cright1=0&cfilter2=JJ&cleft2=1&cright2=0&cfilter3=N.*&cleft3=0&cright3=2&keywordposition4nlg=2&noofsentences4nlg=100&printproofcolloc4nlg=on&printproofscores4nlg=on&rankproofcolloc4nlg=on&printcartesianpr4nlg=&onlycombinedcores4nlg=on&cleft=0&cright=0
+
+
+
+
 http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=switch&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=JJ&cleft1=0&cright1=2&cfilter2=NN&cleft2=0&cright2=3&cfilter3=&cleft3=0&cright3=0&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=0&noofsentences4nlg=100&cleft=0&cright=0
 
 1. switch light application
@@ -54,6 +66,16 @@ save
 JJ 0, 1
 NN 0, 3
 http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=save&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=JJ&cleft1=0&cright1=1&cfilter2=N*&cleft2=0&cright2=3&cfilter3=&cleft3=0&cright3=&cfilter4=&cleft4=0&cright4=0&keywordposition4nlg=0&noofsentences4nlg=100&cleft=0&cright=0
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -224,3 +246,511 @@ List: 20
 renegotiate~11.8082956191038
 nice~3.26523361366708
 deal
+
+
+
+
+=====erroros:
+
+
+
+this was for the query:
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=deal&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=V.*&cleft1=2&cright1=0&cfilter2=JJ&cleft2=1&cright2=0&cfilter3=N.*&cleft3=0&cright3=2&keywordposition4nlg=2&noofsentences4nlg=100&printproofcolloc4nlg=on&printproofscores4nlg=on&rankproofcolloc4nlg=on&printcartesianpr4nlg=&onlycombinedcores4nlg=on&cleft=0&cright=0
+
+
+-->>
+
+
+CollocSpec: 2~V.*~0 
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=2, right=0; Filter: V.*
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+deal ~~ have    1241        1458290 737.74  Examples
+deal ~~ do  387     730576  150.35  Examples
+deal ~~ help    147     103966  119.45  Examples
+deal ~~ seal    54      2683    113.82  Examples
+deal ~~ make    208     315671  98.99   Examples
+deal ~~ try 117     89358   90.90   Examples
+deal ~~ want    132     142680  81.95   Examples
+deal ~~ equip   40      2327    81.14   Examples
+deal ~~ strike  55      10898   78.13   Examples
+deal ~~ negotiate   40      3667    72.05   Examples
+deal ~~ need    121     175476  59.80   Examples
+deal ~~ sweeten 19      201 55.06   Examples
+deal ~~ sign    58      30766   54.86   Examples
+deal ~~ refuse  38      11209   46.60   Examples
+deal ~~ prepare 38      16006   40.09   Examples
+deal ~~ learn   59      58884   38.67   Examples
+deal ~~ close   51      42376   37.63   Examples
+deal ~~ cut 41      25163   35.97   Examples
+deal ~~ forced  26      9114    29.71   Examples
+deal ~~ let 49      56126   29.14   Examples
+deal ~~ reach   36      26198   28.74   Examples
+deal ~~ renegotiate 10      150 27.16   Examples
+deal ~~ clinch  8       111 22.05   Examples
+deal ~~ broker  13      2086    19.81   Examples
+deal ~~ finalize    10      799 18.69   Examples
+deal ~~ prefer  18      8063    18.46   Examples
+deal ~~ propose 23      18234   17.46   Examples
+deal ~~ attempt 26      25385   17.29   Examples
+deal ~~ ill-equip   6       70  17.08   Examples
+deal ~~ get 90      299795  16.40   Examples
+deal ~~ struggle    17      9845    15.37   Examples
+deal ~~ announce    18      12864   14.52   Examples
+deal ~~ secure  13      7400    11.86   Examples
+deal ~~ cancel  10      3749    11.10   Examples
+deal ~~ reject  11      6782    9.62    Examples
+deal ~~ tend    14      15439   8.55    Examples
+deal ~~ accept  13      20080   6.07    Examples
+deal ~~ ink 5       1634    5.88    Examples
+deal ~~ approve 11      14802   5.77    Examples
+deal ~~ choose  16      34262   5.39    Examples
+deal ~~ train   11      17818   4.92    Examples
+deal ~~ expect  16      38930   4.63    Examples
+deal ~~ disclose    5       2978    4.45    Examples
+deal ~~ bother  6       5211    4.30    Examples
+deal ~~ oversee 4       1755    4.14    Examples
+deal ~~ can’t   7       8585    3.95    Examples
+deal ~~ evolve  6       6337    3.78    Examples
+deal ~~ offer   16      47837   3.47    Examples
+deal ~~ intend  7       11368   3.12    Examples
+deal ~~ swing   4       3164    3.04    Examples
+deal ~~ suppose 8       15380   3.03    Examples
+deal ~~ fail    10      23785   2.97    Examples
+deal ~~ conclude    6       8959    2.89    Examples
+deal ~~ arrange 4       3599    2.81    Examples
+deal ~~ plan    16      55867   2.68    Examples
+deal ~~ pursue  4       5325    2.12    Examples
+deal ~~ finance 4       5816    1.97    Examples
+deal ~~ investigate 6       13491   1.91    Examples
+deal ~~ design  15      64188   1.64    Examples
+deal ~~ oppose  5       11222   1.59    Examples
+deal ~~ manage  7       20415   1.58    Examples
+deal ~~ block   6       16648   1.45    Examples
+deal ~~ go  41      246980  1.45    Examples
+deal ~~ acknowledge 4       8109    1.43    Examples
+deal ~~ surround    4       8188    1.42    Examples
+deal ~~ win 7       25045   1.12    Examples
+deal ~~ kill    7       27191   0.95    Examples
+deal ~~ believe 12      58492   0.93    Examples
+deal ~~ seek    6       23376   0.81    Examples
+deal ~~ continue    9       42648   0.75    Examples
+deal ~~ recognize   5       18447   0.75    Examples
+deal ~~ take    32      210901  0.70    Examples
+deal ~~ wish    5       19569   0.67    Examples
+deal ~~ confirm 4       15038   0.58    Examples
+deal ~~ aim 4       16833   0.45    Examples
+deal ~~ lose    7       36972   0.42    Examples
+deal ~~ eat 5       24110   0.40    Examples
+deal ~~ understand  8       44880   0.38    Examples
+deal ~~ exist   5       25591   0.33    Examples
+deal ~~ agree   6       33038   0.31    Examples
+deal ~~ begin   7       41716   0.26    Examples
+deal ~~ prevent 4       20650   0.26    Examples
+deal ~~ say 42      328779  0.19    Examples
+deal ~~ watch   5       30221   0.17    Examples
+deal ~~ structure   5       30978   0.15    Examples
+deal ~~ support 12      85366   0.15    Examples
+deal ~~ discuss 4       24292   0.14    Examples
+deal ~~ don’t   4       25426   0.11    Examples
+deal ~~ complete    6       42188   0.08    Examples
+deal ~~ sell    4       29350   0.04    Examples
+deal ~~ describe    5       43096   0.00    Examples
+deal ~~ start   10      88029   0.00    Examples
+deal ~~ allow   7       61956   0.00    Examples
+CollocSpec: 1~JJ~0 
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=1, right=0; Filter: JJ
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+great deal  2850    100802      5559.23 Examples
+big deal    1271    51632       2378.66 Examples
+have deal       1458290     737.74  Examples
+good deal   738 242485      626.69  Examples
+do deal     730576      150.35  Examples
+real deal   156 47256       137.91  Examples
+help deal       103966      119.45  Examples
+seal deal       2683        113.82  Examples
+make deal       315671      98.99   Examples
+try deal        89358       90.90   Examples
+want deal       142680      81.95   Examples
+equip deal      2327        81.14   Examples
+strike deal     10898       78.13   Examples
+negotiate deal      3667        72.05   Examples
+need deal       175476      59.80   Examples
+sweeten deal        201     55.06   Examples
+sign deal       30766       54.86   Examples
+refuse deal     11209       46.60   Examples
+prepare deal        16006       40.09   Examples
+learn deal      58884       38.67   Examples
+close deal      42376       37.63   Examples
+cut deal        25163       35.97   Examples
+sweet deal  30  5220        34.41   Examples
+huge deal   41  14434       33.36   Examples
+fair deal   37  12371       30.99   Examples
+forced deal     9114        29.71   Examples
+secret deal 35  11613       29.44   Examples
+let deal        56126       29.14   Examples
+reach deal      26198       28.74   Examples
+renegotiate deal        150     27.16   Examples
+raw deal    21  4344        22.34   Examples
+clinch deal     111     22.05   Examples
+four-year deal  11  392     21.23   Examples
+bad deal    56  54563       20.91   Examples
+broker deal     2086        19.81   Examples
+finalize deal       799     18.69   Examples
+prefer deal     8063        18.46   Examples
+propose deal        18234       17.46   Examples
+attempt deal        25385       17.29   Examples
+ill-equip deal      70      17.08   Examples
+get deal        299795      16.40   Examples
+one-shot deal   6   56      15.71   Examples
+struggle deal       9845        15.37   Examples
+special deal    32  23954       15.36   Examples
+exclusive deal  15  3451        15.20   Examples
+free-trade deal 6   69      15.05   Examples
+announce deal       12864       14.52   Examples
+45-month deal   4   7       14.43   Examples
+one-year deal   9   695     13.90   Examples
+whole deal  36  37313       12.57   Examples
+lucrative deal  8   696     11.88   Examples
+secure deal     7400        11.86   Examples
+cancel deal     3749        11.10   Examples
+'great deal 4   33      10.73   Examples
+profitable deal 9   1675        10.03   Examples
+reject deal     6782        9.62    Examples
+three-year deal 6   495     9.07    Examples
+tend deal       15439       8.55    Examples
+global deal 22  21636       8.13    Examples
+bum deal    5   516     7.01    Examples
+two-year deal   5   623     6.54    Examples
+five-year deal  5   647     6.45    Examples
+incredible deal 8   2895        6.41    Examples
+last-minute deal    4   283     6.35    Examples
+accept deal     20080       6.07    Examples
+ink deal        1634        5.88    Examples
+approve deal        14802       5.77    Examples
+choose deal     34262       5.39    Examples
+decent deal 8   3877        5.35    Examples
+same deal   47  99294       5.30    Examples
+tentative deal  4   503     5.22    Examples
+train deal      17818       4.92    Examples
+expect deal     38930       4.63    Examples
+disclose deal       2978        4.45    Examples
+bother deal     5211        4.30    Examples
+oversee deal        1755        4.14    Examples
+can’t deal  2   17170       3.95    Examples
+evolve deal     6337        3.78    Examples
+offer deal      47837       3.47    Examples
+nuclear deal    11  13264       3.22    Examples
+rough deal  5   2656        3.14    Examples
+intend deal     11368       3.12    Examples
+swing deal      3164        3.04    Examples
+suppose deal        15380       3.03    Examples
+fail deal       23785       2.97    Examples
+conclude deal       8959        2.89    Examples
+arrange deal        3599        2.81    Examples
+plan deal       55867       2.68    Examples
+new deal    57  160918      2.66    Examples
+pursue deal     5325        2.12    Examples
+amazing deal    7   8680        1.98    Examples
+finance deal        5816        1.97    Examples
+reasonable deal 7   8851        1.93    Examples
+investigate deal        13491       1.91    Examples
+design deal     64188       1.64    Examples
+oppose deal     11222       1.59    Examples
+manage deal     20415       1.58    Examples
+block deal      16648       1.45    Examples
+go deal     246980      1.45    Examples
+acknowledge deal        8109        1.43    Examples
+surround deal       8188        1.42    Examples CollocSpec: 0~N.*~2 
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=0, right=2; Filter: N.*
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+deal ~~ great       33425   100802  5559.23 Examples
+deal ~~ big     33425   51632   2378.66 Examples
+deal ~~ have        33425   1458290 737.74  Examples
+deal ~~ good        33425   242485  626.69  Examples
+deal ~~ breaker 65  33425   382 173.13  Examples
+deal ~~ do      33425   730576  150.35  Examples
+deal ~~ real        33425   47256   137.91  Examples
+deal ~~ help    6   33425   207932  119.45  Examples
+deal ~~ seal        33425   2683    113.82  Examples
+deal ~~ make        33425   315671  98.99   Examples
+deal ~~ try     33425   89358   90.90   Examples
+deal ~~ want        33425   142680  81.95   Examples
+deal ~~ equip       33425   2327    81.14   Examples
+deal ~~ strike  1   33425   21796   78.13   Examples
+deal ~~ negotiate       33425   3667    72.05   Examples
+deal ~~ need        33425   175476  59.80   Examples
+deal ~~ sweeten     33425   201 55.06   Examples
+deal ~~ sign        33425   30766   54.86   Examples
+deal ~~ refuse  1   33425   22418   46.60   Examples
+deal ~~ prepare     33425   16006   40.09   Examples
+deal ~~ learn       33425   58884   38.67   Examples
+deal ~~ close   2   33425   84752   37.63   Examples
+deal ~~ cut 2   33425   50326   35.97   Examples
+deal ~~ Iran    46  33425   11582   35.95   Examples
+deal ~~ sweet       33425   5220    34.41   Examples
+deal ~~ huge        33425   14434   33.36   Examples
+deal ~~ Norway  24  33425   2071    30.99   Examples
+deal ~~ fair        33425   12371   30.99   Examples
+deal ~~ forced      33425   9114    29.71   Examples
+deal ~~ secret  6   33425   23226   29.44   Examples
+deal ~~ let     33425   56126   29.14   Examples
+deal ~~ reach       33425   26198   28.74   Examples
+deal ~~ renegotiate     33425   150 27.16   Examples
+deal ~~ ResourceMatcher 6   33425   6   24.02   Examples
+deal ~~ raw     33425   4344    22.34   Examples
+deal ~~ clinch      33425   111 22.05   Examples
+deal ~~ four-year       33425   392 21.23   Examples
+deal ~~ money   71  33425   56614   20.98   Examples
+deal ~~ bad     33425   54563   20.91   Examples
+deal ~~ time    193 33425   280774  20.15   Examples
+deal ~~ broker  2   33425   4172    19.81   Examples
+deal ~~ fat 31  33425   10921   19.53   Examples
+deal ~~ attention   42  33425   22280   19.10   Examples
+deal ~~ finalize        33425   799 18.69   Examples
+deal ~~ prefer      33425   8063    18.46   Examples
+deal ~~ propose     33425   18234   17.46   Examples
+deal ~~ attempt 1   33425   50770   17.29   Examples
+deal ~~ ill-equip       33425   70  17.08   Examples
+deal ~~ get     33425   299795  16.40   Examples
+deal ~~ one-shot        33425   56  15.71   Examples
+deal ~~ stress  34  33425   17954   15.53   Examples
+deal ~~ struggle        33425   9845    15.37   Examples
+deal ~~ special     33425   23954   15.36   Examples
+deal ~~ exclusive       33425   3451    15.20   Examples
+deal ~~ free-trade      33425   69  15.05   Examples
+deal ~~ announce        33425   12864   14.52   Examples
+deal ~~ 45-month        33425   7   14.43   Examples
+deal ~~ uncertainty 18  33425   4430    14.25   Examples
+deal ~~ one-year        33425   695 13.90   Examples
+deal ~~ whole       33425   37313   12.57   Examples
+deal ~~ lucrative       33425   696 11.88   Examples
+deal ~~ secure      33425   7400    11.86   Examples
+deal ~~ Stat    11  33425   1649    11.27   Examples
+deal ~~ climate 26  33425   14690   11.15   Examples
+deal ~~ Redd    6   33425   166 11.14   Examples
+deal ~~ cancel      33425   3749    11.10   Examples
+deal ~~ goin    6   33425   180 10.89   Examples
+deal ~~ sympathy    10  33425   1328    10.82   Examples
+deal ~~ 'great      33425   33  10.73   Examples
+deal ~~ Copenhagen  10  33425   1371    10.67   Examples
+deal ~~ Niger   10  33425   1478    10.31   Examples
+deal ~~ speculation 11  33425   2025    10.20   Examples
+deal ~~ profitable      33425   1675    10.03   Examples
+deal ~~ reject      33425   6782    9.62    Examples
+deal ~~ three-year      33425   495 9.07    Examples
+deal ~~ tend        33425   15439   8.55    Examples
+deal ~~ global      33425   21636   8.13    Examples
+deal ~~ terrorism   13  33425   4645    8.11    Examples
+deal ~~ Jini    5   33425   228 8.03    Examples
+deal ~~ respect 24  33425   17751   7.76    Examples
+deal ~~ confusion   11  33425   3515    7.41    Examples
+deal ~~ Samir   4   33425   117 7.31    Examples
+deal ~~ Saddam  12  33425   4620    7.09    Examples
+deal ~~ bum     33425   516 7.01    Examples
+deal ~~ effort  31  33425   30204   6.96    Examples
+deal ~~ thought 24  33425   19692   6.84    Examples
+deal ~~ cash    16  33425   9464    6.57    Examples
+deal ~~ two-year        33425   623 6.54    Examples
+deal ~~ five-year       33425   647 6.45    Examples
+deal ~~ incredible      33425   2895    6.41    Examples
+deal ~~ Zanidean    4   33425   189 6.35    Examples
+deal ~~ last-minute     33425   283 6.35    Examples
+deal ~~ accept      33425   20080   6.07    Examples
+deal ~~ ink 2   33425   3268    5.88    Examples
+deal ~~ pride   8   33425   2284    5.79    Examples
+deal ~~ approve     33425   14802   5.77    Examples
+deal ~~ bravery 4   33425   264 5.69    Examples
+deal ~~ damage  19  33425   15147   5.61    Examples
+deal ~~ knowledge   30  33425   33068   5.53    Examples
+deal ~~ choose      33425   34262   5.39    Examples
+deal ~~ decent      33425   3877    5.35    Examples 1. have great deal great   23.8517326622049 
+2. have great deal big  23.0030503851652 
+3. have big deal great  23.0030503851652 
+4. do great deal great  22.2663538561866 
+5. have big deal big    22.1543681081255 
+6. help great deal great    22.03799861427 
+7. seal great deal great    21.9901237627574 
+8. make great deal great    21.8518137601726 
+9. have great deal have 21.8332807669614 
+10. have have deal great    21.8332807669614 
+11. try great deal great    21.7675084732252 
+12. have great deal good    21.6703825274199 
+13. have good deal great    21.6703825274199 
+14. want great deal great   21.6650723770489 
+15. equip great deal great  21.655165927886 
+16. strike great deal great 21.6178540263031 
+17. negotiate great deal great  21.5379482678289 
+18. do great deal big   21.4176715791469 
+19. do big deal great   21.4176715791469 
+20. need great deal great   21.3543045907368 
+21. sweeten great deal great    21.2732129911301 
+22. sign great deal great   21.2695869295869 
+23. help big deal great 21.1893163372303 
+24. help great deal big 21.1893163372303 
+25. seal big deal great 21.1414414857177 
+26. seal great deal big 21.1414414857177 
+27. refuse great deal great 21.1096330203016 
+28. make big deal great 21.0031314831329 
+29. make great deal big 21.0031314831329 
+30. have have deal big  20.9845984899217 
+31. have big deal have  20.9845984899217 
+32. prepare great deal great    20.9625149750651 
+33. learn great deal great  20.9274967481646 
+34. try big deal great  20.9188261961855 
+35. try great deal big  20.9188261961855 
+36. close great deal great  20.9008153767726 
+37. cut great deal great    20.8568490357219 
+38. have good deal big  20.8217002503802 
+39. have big deal good  20.8217002503802 
+40. want big deal great 20.8163901000092 
+41. want great deal big 20.8163901000092 
+42. equip great deal big    20.8064836508463 
+43. equip big deal great    20.8064836508463 
+44. strike big deal great   20.7691717492634 
+45. strike great deal big   20.7691717492634 
+46. negotiate big deal great    20.6892659907892 
+47. negotiate great deal big    20.6892659907892 
+48. forced great deal great 20.6715156095416 
+49. let great deal great    20.6526158804065 
+50. reach great deal great  20.6392490772901 
+51. renegotiate great deal great    20.5847207629869 
+52. do big deal big 20.5689893021072 
+53. need great deal big 20.5056223136971 
+54. need big deal great 20.5056223136971 
+55. sweeten big deal great  20.4245307140904 
+56. sweeten great deal big  20.4245307140904 
+57. sign big deal great 20.4209046525472 
+58. sign great deal big 20.4209046525472 
+59. have great deal breaker 20.3881578408941 
+60. clinch great deal great 20.3845048576188 
+61. help big deal big   20.3406340601906 
+62. seal big deal big   20.292759208678 
+63. broker great deal great 20.282136467576 
+64. refuse great deal big   20.2609507432619 
+65. refuse big deal great   20.2609507432619 
+66. have great deal do  20.2479019609432 
+67. do have deal great  20.2479019609432 
+68. do great deal have  20.2479019609432 
+69. have do deal great  20.2479019609432 
+70. finalize great deal great   20.227111898951 
+71. prefer great deal great 20.2150286615238 
+72. have great deal real    20.1621759199842 
+73. have real deal great    20.1621759199842 
+74. propose great deal great    20.1621661166622 
+75. make big deal big   20.1544492060932 
+76. attempt great deal great    20.1531101852839 
+77. ill-equip great deal great  20.1415486156704 
+78. prepare great deal big  20.1138326980254 
+79. prepare big deal great  20.1138326980254 
+80. get great deal great    20.1035116333699 
+81. do good deal great  20.0850037214017 
+82. do great deal good  20.0850037214017 
+83. learn big deal great    20.0788144711249 
+84. learn great deal big    20.0788144711249 
+85. try big deal big    20.0701439191458 
+86. close great deal big    20.0521330997329 
+87. close big deal great    20.0521330997329 
+88. struggle great deal great   20.0422790450256 
+89. have help deal great    20.0195467190266 
+90. help great deal have    20.0195467190266 
+91. have great deal help    20.0195467190266 
+92. help have deal great    20.0195467190266 
+93. cut big deal great  20.0081667586822 
+94. cut great deal big  20.0081667586822 
+95. announce great deal great   19.988677413718 
+96. have seal deal great    19.971671867514 
+97. have great deal seal    19.971671867514 
+98. seal have deal great    19.971671867514 
+99. seal great deal have    19.971671867514 
+100. want big deal big  19.9677078229695 
+
+===
+
+
+now initialising tables....
+
+
+
+
+Preposition problem:
+
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=deal&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=V.*&cleft1=3&cright1=0&cfilter2=IN&cleft2=2&cright2=0&cfilter3=JJ&cleft3=1&cright3=0&keywordposition4nlg=last&noofsentences4nlg=100&printproofcolloc4nlg=on&printproofscores4nlg=on&rankproofcolloc4nlg=on&printcartesianpr4nlg=V-3-0-IN-2-0-JJ-1-0-deal-v01.txt&onlycombinedcores4nlg=on&cleft=0&cright=0
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=2, right=0; Filter: IN
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+deal ~~ until   14  33425   44675   0.37    Examples
+
+
+
+
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=2, right=0; Filter: IN
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+deal ~~ that    266     1736320 6.22    Examples
+deal ~~ until   14      44675   2.74    Examples
+deal ~~ if  66      404420  2.15    Examples
+deal ~~ under   18      90973   1.25    Examples
+deal ~~ whether 10      50075   0.71    Examples
+deal ~~ after   25      161200  0.62    Examples
+deal ~~ since   12      78141   0.28    Examples
+deal ~~ before  14      101689  0.15    Examples
+deal ~~ of  511     4488691 0.07    Examples
+
+vs.
+http://corpus.leeds.ac.uk/cgi-bin/cqp4nlg.pl?q=deal&c=INTERNET-EN&searchtype=colloc4nlg&llstat=on&cfilter1=IN&cleft1=2&cright1=0&cfilter2=JJ&cleft2=1&cright2=0&cfilter3=&cleft3=0&cright3=0&keywordposition4nlg=last&noofsentences4nlg=100&printproofcolloc4nlg=on&printproofscores4nlg=on&rankproofcolloc4nlg=on&printcartesianpr4nlg=IN-2-0-JJ-1-0-deal-v02.txt&onlycombinedcores4nlg=on&cleft=0&cright=0
+
+
+
+Corpus: INTERNET-EN; Tokens: 190134231
+Query: [word="deal"]
+
+Colloc: left=2, right=0; Filter: IN
+
+LL score
+
+LL score
+Collocation Joint   Freq1   Freq2   LL score    Concordance
+deal ~~ that    266     1736320 6.22    Examples
+deal ~~ until   14      44675   2.74    Examples
+deal ~~ if  66      404420  2.15    Examples
+deal ~~ under   18      90973   1.25    Examples
+deal ~~ whether 10      50075   0.71    Examples
+deal ~~ after   25      161200  0.62    Examples
+deal ~~ since   12      78141   0.28    Examples
+deal ~~ before  14      101689  0.15    Examples
+deal ~~ of  511     4488691 0.07    Examples
+
+

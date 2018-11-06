@@ -375,6 +375,8 @@ sub processcorpus {
     };
     if ($collocationstat || $collocation4nlg) {
 	$onefrqc += scalar(@matches);
+	if($printproofcolloc4nlg0){ print "onefrqc = $onefrqc<br>\n"; };
+	
 	undef %nlemmas;
     };
     if ($cqpquery->ok) {
@@ -636,8 +638,9 @@ sub prepareCollocList4NLG{
             my $coll = $2; # print "coll = $coll ; ";
             my $sc = $3 + 0; # print "sc = $sc ; ";
             my $collscore;
-            if ($printproofcolloc4nlg0){
-                $collscore = "$coll~$sc<br>\n"; # print "collscore = $collscore ; <br>\n";
+            # if ($printproofcolloc4nlg0){
+            if ($printproofscores4nlg0){
+                $collscore = "$coll~$sc"; # print "collscore = $collscore ; <br>\n";
             
             }else{
                 $collscore = "$coll"; # print "collscore = $collscore ; <br>\n";
@@ -672,7 +675,7 @@ sub recombineColloc4NLG{
     $nOfSent = $noofsentences4nlg0;
     for (my $i = 1; $i <= $nOfSent; $i++){
         print "<br>\n$i. ";
-        if ($printproofcolloc4nlg0){ print "<br>\n<br>\n";};
+        # if ($printproofcolloc4nlg0){ print "<br>\n<br>\n";};
         foreach $refLColloc (@LoLColloc){
             my @LColloc = @{$refLColloc};
             my $randomColloc = $LColloc[rand @LColloc];
@@ -683,6 +686,109 @@ sub recombineColloc4NLG{
     }
         
 }
+
+
+sub recombineColloc4NLGcartesianproduct{
+    my @LoLColloc = @_;
+    print "<br><br>\n\n Recombining collocations. This may take some time. Results will be printed on <a href='http://corpus.leeds.ac.uk/corpuslabs/lab201810cnlg/labspace/'>http://corpus.leeds.ac.uk/corpuslabs/lab201810cnlg/labspace/</a><br>\n";
+    open(my $fh, '>', "/data/html/corpuslabs/lab201810cnlg/labspace/$printcartesianpr4nlg0") or die "Could not open file '$printcartesianpr4nlg0' $!";
+
+    for $el (@LoLColloc){
+        print $fh join(" ", @$el), "\n";
+    }
+    close $fh;
+    print "done<br>\n";
+        
+}
+
+
+
+sub recombineColloc4NLGcartesianproductHashScores{
+    my @LoLColloc = @_;
+    my %hCollocScores = (); # output
+    my @lCollocScores = (); # returned sorted list?
+    
+    for $el (@LoLColloc){
+        # print $fh join(" ", @$el), "\n";
+        my $lineCollocStr = join(" ", @$el);
+        my @lineColloc = @$el;
+        my $lineCollocStrNoScores = "";
+        my @lineCollocNoScores = (); # for collecting clean words, without scores if that is required for output
+        my $scCombined = 0;
+        
+        for $word (@lineColloc){
+            my $wd = ""; 
+            my $sc = 1; 
+            my $logsc = 0;
+            if($word =~ /^(.+)~(.+)$/){
+                $wd = $1;
+                $sc = $2 + 1;
+                $logsc = log($sc);
+            }elsif($word =~ /^(.+)$/){
+                $wd = $1;
+                $sc = 1;
+                $logsc = 0;
+            }else{
+                next;    
+            };
+            push(@lineCollocNoScores, $wd); 
+            $scCombined += $logsc;
+        };
+        
+        $lineCollocStrNoScores = join(" ", @lineCollocNoScores);
+        if($onlycombinedcores4nlg0){
+            $hCollocScores{$lineCollocStrNoScores} = $scCombined;
+        }else{
+            $hCollocScores{$lineCollocStr} = $scCombined;
+        }
+        
+        
+    };
+    
+    # $onlycombinedcores4nlg0
+    
+    my @lCollocScoresSorted = sort {$hCollocScores{$b} <=> $hCollocScores{$a}} keys %hCollocScores;
+    for $line (@lCollocScoresSorted){
+        my $sc = $hCollocScores{$line};
+        my $line_sc = "$line\t$sc";
+        push(@lCollocScores, $line_sc);
+        # 
+    
+    };
+    
+    return @lCollocScores;
+
+    
+}
+
+sub recombineColloc4NLGcartesianproductPrintList{
+    my @LtoPrint = @_;
+    print "<br><br>\n\n Recombining collocations. This may take some time. Results will be printed on <a href='http://corpus.leeds.ac.uk/corpuslabs/lab201810cnlg/labspace/'>http://corpus.leeds.ac.uk/corpuslabs/lab201810cnlg/labspace/</a><br>\n";
+    open(my $fh, '>', "/data/html/corpuslabs/lab201810cnlg/labspace/$printcartesianpr4nlg0") or die "Could not open file '$printcartesianpr4nlg0' $!";
+    for $line_sc (@LtoPrint){
+        print $fh $line_sc, "\n";
+    }
+   
+    close $fh;
+    print "done<br>\n";
+
+}
+
+
+
+sub permute {
+    my $last = pop @_;
+    unless(@_) {
+           return map([$_], @$last);
+    }
+
+    return map { 
+                 my $left = $_; 
+                 map([@$left, $_], @$last)
+               } 
+               permute(@_);
+}
+
 
 
 sub recombinePairs{
