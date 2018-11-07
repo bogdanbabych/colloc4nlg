@@ -1,6 +1,6 @@
-Purpose: developing CSAR analogue in Python
+Long-term Purpose: developing CSAR analogue in Python
   --> project for MWEs, engine for combinatory field model +
-  --> for lingenio's commercial implementation
+  --> for industrial implementations
 
   --> for construction grammar induction, etc.
   >> answering fundamental questions in linguistics
