@@ -1,0 +1,29 @@
+4/12/2018
+
+task: lexicalised patterns/ contructions
+
+useful function: extract patterns for a given word / word embedding:
+    - e.g.:
+
+save VV  save
+50  CD  @card@
+%   NN  %
+off IN  off
+select  JJ  select
+fisher-price    NN  fisher-price
+deal    NN  deal
+of  IN  of
+the DT  the
+day NN  day
+
+--> VV CD NN IN JJ NN deal/NN IN DT NN
+
+
+then: input -- list of PoS codes 
+
+
+<s> What goes great with the best deal ? </s>
+<s> You deserve the most reliable internet available. </s>
+<s> Get your choice of amazing gifts. </s>
+<s> This season, enjoy your tech at its best. </s>
+

@@ -36,3 +36,28 @@ structure of SCAR
         % prepare search string --> in Perl / Python / JavaScript
         >> for each -- SearchString :: form search strings ; then process them one after the other in a normal routine;
         >> keep collecting collocation statistics... >>>
+
+        
+        
+        
+Development notes:
+
+
+further stage:
+    - keyword -> pattern automation
+    - pattern extraction automation (using Stanford parser output, etc)
+    
+    
+    principle of the interface:
+        - keyword is typed in
+        matched patterns are extracted ; presented; selected --> 
+        
+        
+        chosen patterns are used in generation of local contexts
+        
+        patterns are chained, (top) results of the previous search are used for further search 
+            >> co-occurrence filter / ranking needed >> should make sense... ?
+
+    >> understanding the need and the requirements for the combinatory field model...
+    
+    

@@ -1,0 +1,94 @@
+
+
+
+save	VV	save
+50	CD	@card@
+%	NN	%
+off	IN	off
+select	JJ	select
+fisher-price	NN	fisher-price
+deal	NN	deal
+of	IN	of
+the	DT	the
+day	NN	day
+
+
+
+family	NN	family
+pizza	NN	pizza
+deal	NN	deal
+for	IN	for
+only	JJ	only
+$22.99	NN	$22.99
+&	CC	&
+family	NN	family
+pasta	NN	pasta
+deal	NN	deal
+for	IN	for
+only	JJ	only
+$32.99	NN	$32.99
+
+
+
+save	VV	save
+an	DT	an
+extra	JJ	extra
+$5	NN	$5
+to	TO	to
+$30	NN	$30
+off	IN	off
+local	JJ	local
+deal	NN	deal
+
+
+
+get	VV	get
+meal	NN	meal
+deal	NN	deal
+for	IN	for
+$5.99	NN	$5.99
+
+
+get	VV	get
+hot	JJ	hot
+dog	NN	dog
+meal	NN	meal
+deal	NN	deal
+for	IN	for
+only	JJ	only
+$4.49	NN	$4.49
+
+
+
+denim	NN	denim
+deal	NN	deal
+buy	VVP	buy
+1	CD	1
+,	,	,
+get	VVP	get
+1	CD	1
+at	IN	at
+50	CD	@card@
+%	NN	%
+off	RB	off
+
+
+enjoy	VV	enjoy
+$6.99	JJ	$6.99
+meal	NN	meal
+deal	NN	deal
+
+
+$10	NN	$10
+off	IN	off
+your	PP$	your
+first	JJ	first
+local	JJ	local
+deal	NN	deal
+
+
+get	VV	get
+new	JJ	new
+deal	NN	deal
+every	DT	every
+day	NN	day
