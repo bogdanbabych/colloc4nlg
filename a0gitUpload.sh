@@ -1,3 +1,3 @@
 git add .
-git commit -m "s010x development: single phrase to sentence - baseline update"
+git commit -m "s020x development: current stage by 1/01/2019: reject list implemented"
 git push

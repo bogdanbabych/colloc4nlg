@@ -128,44 +128,31 @@ if ($corpuslist) { # CGI run
     if($nlgFilterTemplate0){
         $strDebugX = "";
         @nlgFilterTemplate1 = split / /, $nlgFilterTemplate0;
-        
-        my ($ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop, $ref_nlgFilterTemplateXLofLGo, $ref_rejectTemp) = prepareNlgFilterTemplateX4NLG(@nlgFilterTemplate1);
+        my ($ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop, $ref_nlgFilterTemplateXLofLGo) = prepareNlgFilterTemplateX4NLG(@nlgFilterTemplate1);
         # process the command string: find pos filters, banned lexemes, injected words for positions
-        
         
         @nlgFilterTemplateXPos = @{$ref_nlgFilterTemplateXPos};
         @nlgFilterTemplateXLofLStop = @{$ref_nlgFilterTemplateXLofLStop};
         @nlgFilterTemplateXLofLGo = @{$ref_nlgFilterTemplateXLofLGo};
-        @rejectTemp = @{$ref_rejectTemp};
-        
-        @nlgFilterTemplateX1 = @nlgFilterTemplateXPos;
         
         $ICountEl = 0;
-        
-        # @injectTemp = ();
         foreach my $el (@nlgFilterTemplateXPos){
             $strDebugX = $strDebugX . "\n<br>:: nlgFilterTemplateXPos [ $ICountEl ] = ";
             $strDebugX = $strDebugX .  $nlgFilterTemplateXPos[$ICountEl];
             $strDebugX = $strDebugX .  " :: <br>\n";
-            my $ref_LStop = $nlgFilterTemplateXLofLStop[$ICountEl];
-            my $ref_LGo = $nlgFilterTemplateXLofLGo[$ICountEl];
-            @LStop = @{$ref_LStop};
-            @LGo = @{$ref_LGo};
-            # $strDebugX = $strDebugX . "    ref_LStop = $ref_LStop ;; ref_LGo = $ref_LGo <br>\n";
-            
+            my @LStop = $nlgFilterTemplateXLofLStop[$ICountEl];
+            my @LGo = $nlgFilterTemplateXLofLGo[$ICountEl];
             foreach my $wStop (@LStop){
-                $strDebugX = $strDebugX .  ": wStop=$wStop :<br>\n";
+                $strDebugX = $strDebugX .  ": $wStop :<br>\n";
                 
             }
             foreach my $wGo (@LGo){
-                $strDebugX = $strDebugX .  ": wGo=$wGo :<br>\n";
+                $strDebugX = $strDebugX .  ": $wGo :<br>\n";
                 
             }
             $ICountEl++;
-    
+
         }
-        # $strDebugX = $strDebugX . "     rejectTemp = @rejectTemp <br>\n";
-        
         
     }
     
@@ -353,17 +340,14 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     # implement functionality for sentence generation here, out of components
     # print "list: @nlgFilterTemplate1 <br>\n";
     # print debug string:
-    # print "\n\n<br><br>debug string: <br>\n $strDebugX <br>\n -- end debug string<br>\n\n";
-    print " $strDebugX <br>\n\n ";
+    print $strDebugX;
     
     @nlgFilterTemplateLeft = ();
     @nlgFilterTemplateRight = ();
     $nlgFilterTemplateFocus = '';
     $BoolFocusFound = 0;
     
-    # foreach $el (@nlgFilterTemplate1){ # replacing : now the string can hold inject and reject lists...
-    $ICountPoS = 0;
-    foreach $el (@nlgFilterTemplateX1){
+    foreach $el (@nlgFilterTemplate1){
         
         if ($el =~ /^\!(.+)/){
             $nlgFilterTemplateFocus = $1 ;
@@ -470,7 +454,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
             # my @coll4nlgList2clean = cleanupCollList4NLG(@coll4nlgList);
             my @coll4nlgList2clean = cleanupCollList4NLG( sort {$coll4KWordSc{$b} <=> $coll4KWordSc{$a}} keys %coll4KWordSc );
-            # print "coll4nlgList = @coll4nlgList <br>\n";
+            print "coll4nlgList = @coll4nlgList <br>\n";
             print "coll4nlgList2clean = @coll4nlgList2clean <br>\n";
             ## debugging
             my @keysColl4KWordSc = keys(%coll4KWordSc);

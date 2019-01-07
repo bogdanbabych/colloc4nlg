@@ -725,57 +725,20 @@ sub prepareNlgFilterTemplateX4NLG{
     my @nlgFilterTemplateXPos = ();
     my @nlgFilterTemplateXLofLStop = ();
     my @nlgFilterTemplateXLofLGo = (); 
-    my @rejectTemp = ();
     
     foreach my $el ( @nlgFilterTemplateX ){
-        my @nlgFilterTemplateXLStop = (); # list of strings
-        my @nlgFilterTemplateXLGo = (); # list of strings
-        
-        if ($el =~ /=/){
-            @LElWords = split /=/, $el;
-            # $strDebugX = $strDebugX .  "    LElWords = @LElWords<br>\n";
-            push @nlgFilterTemplateXPos, $LElWords[0];
-            $SWordsRejectInject = $LElWords[1]; 
-            # $strDebugX = $strDebugX . "    SWordsRejectInject = $SWordsRejectInject<br>\n";
-            @LWordsRejectInject = split(/\,/, $SWordsRejectInject); $ILen = scalar(@LWordsRejectInject); 
-            # $strDebugX = $strDebugX . "    LWordsRejectInject = @LWordsRejectInject; $ILen <br>\n";
-             
-            my $ICountElWords = 0;
-            foreach my $SWord (@LWordsRejectInject){
-                $ICountElWords++;
-                # $strDebugX = $strDebugX . " SWord=$SWord ";
-                ##### delete next string #### 
-                # if($ICountElWords <= 1){ $strDebugX = $strDebugX . " ICountElWords = $ICountElWords "; next; }; # first el of the array is PoS, skip
-                
-                # remove leading identifiers: stop / go list
-                if($SWord =~ /^;(.+)/){ # reject word
-                    # $strDebugX = $strDebugX . " xSWordX = $1 ";
-                    push @nlgFilterTemplateXLStop, $1;
-                    push @rejectTemp, $1;
-                }elsif($SWord =~ /^:(.+)/){ # inject word
-                    # $strDebugX = $strDebugX . " +SWord+ = $1 ";
-                    push @nlgFilterTemplateXLGo, $1;
-                    
-                }else{ # undefined so far, possibly for future functionality; ignore
-                
-                };
-                
-                
-            }
-
-            
+        if ($el =~ /'~'/){
+            @LEls = split /'~'/, $el;
+            print "    LEls = @LEls<br>\n";
         }else{
             push @nlgFilterTemplateXPos, $el;
-            push @nlgFilterTemplateXLStop, "[NONE]";
-            push @nlgFilterTemplateXLGo, "[NONE]";
+            push @nlgFilterTemplateXLofLStop, "[NONE]";
+            push @nlgFilterTemplateXLofLGo, "[NONE]";
     
         };
-        push @nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLStop ;
-        push @nlgFilterTemplateXLofLGo, \@nlgFilterTemplateXLGo; 
-    
     }
     
-    return (\@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLofLGo, \@rejectTemp);
+    return (\@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLofLGo);
     # 
     
 }
@@ -827,11 +790,6 @@ sub recombineCollocHash4NLG{
             if ($collocation =~ /[0-9]/){
                 next;                
             };
-            if ( grep( /^$collocation$/, @rejectTemp ) ) { # reject collocations in stoplist
-                next;
-            };
-            # if (){};
-            
             $currComb++;
             if($currComb > $maxComb){ 
                 print " :: currComb = $currComb [break] :: "; 

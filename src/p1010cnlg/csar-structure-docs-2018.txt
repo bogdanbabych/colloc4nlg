@@ -61,3 +61,77 @@ further stage:
     >> understanding the need and the requirements for the combinatory field model...
     
     
+    
+Notes -- tasks by 14 Dec 2018
+    - right hand side direction
+    - recovery :: failed match
+    - verification cross-matching mechanism;
+    - ranking >> off-line; on-line, etc. collocation ranking
+    
+    (0) filtering of numerals
+    
+    >> construction grammar theoretical framework...
+    
+    
+    27/12/2018
+    - fixing issues with scores, etc.
+    - printing -- references?
+    
+    // initial things
+    --> then :: one position+multiple collocations
+                multiple positions + multiple collocations development
+                
+                
+                >> scoring, etc.
+                
+    - right hand side 
+    
+    - multiple keywords
+    
+    removing items from the list:
+        valid? + resubmit query
+        interface for this - command line
+        
+        
+        28350 instances found --> when the beam search did not work...
+        20250 --> after beam search cutoff...
+        
+        injecting words
+        removing words --> command line interface >> implementing in JavaScript; 
+        
+        
+        WP V.* J.* IN DT J.* !deal/NN
+      --> WP V.* J.*=;valid,;good IN=:to,:of DT J.* !deal/NN
+      WP V.* J.*=;valid IN=:to,:from DT J.* !deal/NN  
+        
+    
+    * 30/12/2018
+    
+    
+    implementation notes:
+    1. end-to-end system:
+        - keyword extraction;
+        - patterns selection;
+        - pattern population + ranking 
+        - running patterns on collocations
+        - filtering + interpreting results;
+        >> interactive loop
+        
+    2. focus on implementation + Lingenio
+    
+    3. immediate stage: a 2D data structure --> proper implementation and usage; populating with lexical choices; 
+            - potentially populating wiht structure
+            
+    4. be ready to move to Pyton implementation --> development framework...
+    
+    word embedding externsions
+        >> combinatory field model;
+        >> experimental research 
+        >> construction grammar; 
+        
+        
+    
+    
+    
+    
+    
