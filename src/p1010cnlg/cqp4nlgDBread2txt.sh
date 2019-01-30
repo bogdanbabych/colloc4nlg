@@ -1,0 +1,1 @@
+perl cqp4nlgDBread2txt.pl >cqp4nlgDBread2txt.out

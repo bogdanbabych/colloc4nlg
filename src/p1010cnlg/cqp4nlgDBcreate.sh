@@ -1,0 +1,1 @@
+perl cqp4nlgDBcreate.pl < bnc-corpus10M.out

@@ -129,7 +129,13 @@ Notes -- tasks by 14 Dec 2018
         >> experimental research 
         >> construction grammar; 
         
-        
+
+
+WP V.* J.*=;valid,;redeemable,;in-store,;safe,;eligible,;available IN=:to,:from DT J.* !deal/NN
+
+
+for each lemma + pos combination -- choose patterns...
+
     
     
     

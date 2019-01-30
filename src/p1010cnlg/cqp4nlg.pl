@@ -108,6 +108,12 @@ if ($corpuslist) { # CGI run
     $printcartesianpr4nlg0=$cgiquery->param("printcartesianpr4nlg");
     $onlycombinedcores4nlg0=$cgiquery->param("onlycombinedcores4nlg");
     
+    $kwText4nlg0=$cgiquery->param("kwText4nlg");
+    $kwTextBrief4nlg0=$cgiquery->param("kwTextBrief4nlg");
+    $kwTextTfIdf4nlg0=$cgiquery->param("kwTextTfIdf4nlg");
+    
+    
+    
     
     
     
@@ -324,7 +330,7 @@ if ($collocationstat) {
     } else {
 	undef $collocfilter;
     }
-} elsif (collocation4nlg){
+} elsif ($collocation4nlg){
     # duplicating collocationstat
     $terminate=0;
     $contextsize=1;
@@ -343,6 +349,16 @@ print STDLOG "remote_host=$remote_host\n" unless $remote_host=~/leeds.ac.uk/;
 print STDLOG "$searchstring"; # it'll be followed by the number of occurrences, if we do not die
 
 #print STDOUT "<p><strong>Query</strong>:$searchstring</p>";
+
+
+if($kwText4nlg0) { # a separate module run before the main routine -- to find keywords / templates and submit them to further processing
+    print "kwText4nlg0 = $kwText4nlg0 <br>\n";
+    print "kwTextBrief4nlg0 = $kwTextBrief4nlg0 <br>\n";
+    print "kwTextTfIdf4nlg0 = $kwTextTfIdf4nlg0 <br>\n";
+    
+    
+}
+
 
 if ($originalquery=~/^\s*\[?\]?\s*$/) {
     print STDOUT $messages{'empty-condition'};
@@ -535,7 +551,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     # then here add processing for the right context -- also recursively.
     
 
-} elsif(collocation4nlg) {
+} elsif($collocation4nlg) {
     
     @AofPairs = ();
     @LoLColloc = ();
