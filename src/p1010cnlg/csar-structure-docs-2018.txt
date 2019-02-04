@@ -136,6 +136,13 @@ WP V.* J.*=;valid,;redeemable,;in-store,;safe,;eligible,;available IN=:to,:from 
 
 for each lemma + pos combination -- choose patterns...
 
+
+dev 4/02/2019
+    - creating a command line interface / cgi 
+    - continue to work with the database
+    
+
+
     
     
     
