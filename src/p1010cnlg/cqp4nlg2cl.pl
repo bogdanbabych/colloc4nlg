@@ -11,7 +11,7 @@ use CWB::CL;
 use Getopt::Long;
 use lib("/corpora/tools");
 use smallutils;
-use cqpquery4nlg;
+use cqpquery4nlg2cl;
 
 #use strict;
 
@@ -20,7 +20,7 @@ $spammessagelimit=1000;
 binmode( STDOUT, ":utf8" );
 
 
-my $is_cgi = defined $ENV{'GATEWAY_INTERFACE'};
+$is_cgi = defined $ENV{'GATEWAY_INTERFACE'};
 
 
 
@@ -130,6 +130,7 @@ if ($corpuslist) { # CGI run
 
 } else { # non-CGI
     undef $cgiquery;
+    GetOptions ('template=s' => \$nlgFilterTemplate0, 'keyword=s' => \$nlg4Keyword);
     # GetOptions ('D=s' => \$corpuslist, 'parallel=s' => \$parallel, 'align=i' => \$showhorizontal, 'q=s' => \$originalquery, 's1=s' => \$sort1option, 's2=s' => \$sort2option, 'ini=s' => \$inifile, 'context=s' => \$contextsize, 
 	# 'terminate=i' => \$terminate, 'coll=i' => \$collocationstat, 'vector=i' => \$maxvector, 'measure=s' => \$measure, 
 	# 'leftspan=i' => \$collocspanleft, 'rightspan=i' => \$collocspanright, 'filter=s' => \$collocfilter, 'dictionary=s' => \$dictionary, 
@@ -348,52 +349,55 @@ if ($originalquery=~/\xC3[\x80-\xBF]/) {
     $searchtitle="$corpuslist: $originalquery";
 }
 
+if ($is_cgi){ # printing to webpage;
+    print "Content-type: text/html\; charset=$encoding\n\n";
+    print qq{<html><head><meta http-equiv="Content-Type" content="text/html; charset=$encoding">\n};
+    print qq{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=$encoding" />
+    <meta name="Author" content="Serge Sharoff, hacked by Marco Baroni, ripped by Emiliano Guevara" />
+    <meta name="Keywords" content="Web Corpus" />
+    <title>$searchtitle</title>
+    <link href="/corpus.css" rel="stylesheet" type="text/css">
+    };
+    
+    print qq{</head>\n<body>\n<div id="website">};
 
-print "Content-type: text/html\; charset=$encoding\n\n";
-print qq{<html><head><meta http-equiv="Content-Type" content="text/html; charset=$encoding">\n};
-print qq{<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="content-type" content="text/html; charset=$encoding" />
-<meta name="Author" content="Serge Sharoff, hacked by Marco Baroni, ripped by Emiliano Guevara" />
-<meta name="Keywords" content="Web Corpus" />
-<title>$searchtitle</title>
-<link href="/corpus.css" rel="stylesheet" type="text/css">
-};
+    # # test printing
+    # # print "collocationstat $collocationstat <br>\n";
+    # # print "collocation4nlg $collocation4nlg <br>\n";
+    # # print "keywordposition4nlg0 = $keywordposition4nlg0 <br>\n";
+    # # print "noofsentences4nlg0 = $noofsentences4nlg0 <br>\n";
+    # # print "printproofcolloc4nlg0 = $printproofcolloc4nlg0 <br>\n";
+    # # print "printcartesianpr4nlg0 = $printcartesianpr4nlg0 <br>\n";
+    # # print "rankproofcolloc4nlg0 = $rankproofcolloc4nlg0 <br>\n";
+    # # print "printproofscores4nlg0 = $printproofscores4nlg0 <br>\n";
+    # # print "onlycombinedcores4nlg0 = $onlycombinedcores4nlg0 <br>\n";
+    
+    # print "nlgOutputPhrase0 = $nlgOutputPhrase0 <br>\n";
+    # print "nlgOutputSentence0 = $nlgOutputSentence0 <br>\n";
+    print "nlgFilterTemplate0 = $nlgFilterTemplate0 <br>\n";
+    print "is_cgi = $is_cgi<br><br>\n\n";
+    
+    # print "debugStr4ngl = $debugStr4ngl <br>\n" ;
+    
+    
+    
+    # # if($collocation4nlg){
+    # #     @searchlist = split /\s+/, $originalquery;
+    # #     print "<strong>Query list:</strong><br>";
+    # #     foreach $query (@searchlist){
+    # #         print "$query";
+    # #         print "<br>";
+    # #     }
+    
+    # ## foreach $collocationspan (@collocspans4nlg){ print "CollocSpan: $collocationspan <br>\n" ;}
+     
+    # #}
 
-print qq{</head>\n<body>\n<div id="website">};
 
-
-# # test printing
-# # print "collocationstat $collocationstat <br>\n";
-# # print "collocation4nlg $collocation4nlg <br>\n";
-# # print "keywordposition4nlg0 = $keywordposition4nlg0 <br>\n";
-# # print "noofsentences4nlg0 = $noofsentences4nlg0 <br>\n";
-# # print "printproofcolloc4nlg0 = $printproofcolloc4nlg0 <br>\n";
-# # print "printcartesianpr4nlg0 = $printcartesianpr4nlg0 <br>\n";
-# # print "rankproofcolloc4nlg0 = $rankproofcolloc4nlg0 <br>\n";
-# # print "printproofscores4nlg0 = $printproofscores4nlg0 <br>\n";
-# # print "onlycombinedcores4nlg0 = $onlycombinedcores4nlg0 <br>\n";
-
-# print "nlgOutputPhrase0 = $nlgOutputPhrase0 <br>\n";
-# print "nlgOutputSentence0 = $nlgOutputSentence0 <br>\n";
-print "nlgFilterTemplate0 = $nlgFilterTemplate0 <br>\n";
-print "is_cgi = $is_cgi<br><br>\n\n";
-
-# print "debugStr4ngl = $debugStr4ngl <br>\n" ;
-
-
-# # if($collocation4nlg){
-# #     @searchlist = split /\s+/, $originalquery;
-# #     print "<strong>Query list:</strong><br>";
-# #     foreach $query (@searchlist){
-# #         print "$query";
-# #         print "<br>";
-# #     }
-
-# ## foreach $collocationspan (@collocspans4nlg){ print "CollocSpan: $collocationspan <br>\n" ;}
- 
-# #}
+} # end: if($is_cgi) {print...}
     
 $searchstring=makecqpquery($originalquery);
 
@@ -436,9 +440,13 @@ print STDLOG "$searchstring"; # it'll be followed by the number of occurrences, 
 
 
 if($kwText4nlg0) { # a separate module run before the main routine -- to find keywords / templates and submit them to further processing
-    print "kwText4nlg0 = $kwText4nlg0 <br>\n";
-    print "kwTextBrief4nlg0 = $kwTextBrief4nlg0 <br>\n";
-    print "kwTextTfIdf4nlg0 = $kwTextTfIdf4nlg0 <br>\n";
+
+
+    if ($is_cgi){ # printing to webpage;
+        print "kwText4nlg0 = $kwText4nlg0 <br>\n";
+        print "kwTextBrief4nlg0 = $kwTextBrief4nlg0 <br>\n";
+        print "kwTextTfIdf4nlg0 = $kwTextTfIdf4nlg0 <br>\n";
+    } # end: if ($is_cgi){  print... }
     
     
 }
@@ -450,11 +458,13 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     print STDOUT $messages{'choose-score'};
 
 } elsif ($nlgOutputSentence0) { # sentence-level collocations
-    # implement functionality for sentence generation here, out of components
-    # print "list: @nlgFilterTemplate1 <br>\n";
-    # print debug string:
-    # print "\n\n<br><br>debug string: <br>\n $strDebugX <br>\n -- end debug string<br>\n\n";
-    print " $strDebugX <br>\n\n ";
+    if ($is_cgi){
+        # implement functionality for sentence generation here, out of components
+        # print "list: @nlgFilterTemplate1 <br>\n";
+        # print debug string:
+        # print "\n\n<br><br>debug string: <br>\n $strDebugX <br>\n -- end debug string<br>\n\n";
+        print "strDebugX = $strDebugX <br>\n\n ";
+    };
     
     @nlgFilterTemplateLeft = ();
     @nlgFilterTemplateRight = ();
@@ -496,11 +506,14 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     push @LFocus, $nlgFilterTemplateFocus; # each element of this list becomes a searchstring == this will be re-initialised on each stage
     
     foreach $elPoS (@nlgFilterTemplateLeft){ # processing LEFT side of the focus; (RIGHT to be added later;)
-        # print "j= $j <br>\n";
-        print "\n<br>$elPoS: ";
+        if ($is_cgi){ 
+            # print "j= $j <br>\n";
+            print "\n<br>$elPoS: ";
+        };
         @LFocusNew0 = (); # new focus -- compiling from list of collocates
-        print "LFocus = @LFocus:<br>\n";
-        
+        if ($is_cgi){ 
+            print "LFocus = @LFocus:<br>\n";
+        };
         $fc = 0; # focus counter
         foreach $focus (@LFocus){
             # print "<br>\n";
@@ -571,7 +584,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             # my @coll4nlgList2clean = cleanupCollList4NLG(@coll4nlgList);
             my @coll4nlgList2clean = cleanupCollList4NLG( sort {$coll4KWordSc{$b} <=> $coll4KWordSc{$a}} keys %coll4KWordSc );
             # print "coll4nlgList = @coll4nlgList <br>\n";
-            print "coll4nlgList2clean = @coll4nlgList2clean <br>\n";
+            if ($is_cgi){ print "coll4nlgList2clean = @coll4nlgList2clean <br>\n";};
             ## debugging
             my @keysColl4KWordSc = keys(%coll4KWordSc);
             ## print "keys coll4KWordSc = @keysColl4KWordSc <br>\n" ;
@@ -607,7 +620,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     # print "nlgFilterTemplateFocus = $nlgFilterTemplateFocus<br>\n";
     my @nlgFilterTemplateFocusL3 = ();
     my %nlg4FilterTemplateFocusL3;
-    print "nlgFilterTemplateFocus = $nlgFilterTemplateFocus <br>\n";
+    if ($is_cgi){ print "nlgFilterTemplateFocus = $nlgFilterTemplateFocus <br>\n";};
     %nlg4FilterTemplateFocusL3 = ( $nlgFilterTemplateFocus => 1, );
     
     push @nlgFilterTemplateFocusL3, $nlgFilterTemplateFocus;
@@ -619,16 +632,19 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     # random selections:
     
     if ($nlgOutputSentenceFile0){
-        print "Random selection of collocates will be written to file <strong>$nlgOutputSentenceFile0</strong><br><br>\n\n";
+        if ($is_cgi){ 
+            print "Random selection of collocates will be written to file <strong>$nlgOutputSentenceFile0</strong><br><br>\n\n";
+        }
 
         recombineColloc4NLG2File(@LofLNLGColl);
     }
 
-    
-    print "Random selection of collocates<br><br>\n\n";
+    if ($is_cgi){ 
+        print "Random selection of collocates<br><br>\n\n";
+    }
     # recombineColloc4NLG(@LofLNLGColl); # print random comibnations on screen - swapped;
     recombineCollocHash4NLG(@LofH4NLGColl); # print comibnations based on scores on screen
-    recombineColloc4NLG(@LofLNLGColl); # print random comibnations on screen
+    ### recombineColloc4NLG(@LofLNLGColl); # print random comibnations on screen
     
 
     
@@ -664,7 +680,10 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
         
         
         # ## print "--------------cqp4nlg.pl-------------- <br>\n" ;
-        if ($printproofcolloc4nlg0){ print "CollocSpec: $collocationspec <br>\n" ;};
+        if ($printproofcolloc4nlg0){ 
+            if ($is_cgi){ print "CollocSpec: $collocationspec <br>\n"; };
+            
+        };
         
         # continue the loop if collocation context is not specified
         if ($collocationspec =~ /(0)~~(0)/){
@@ -756,7 +775,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     # introduce ranking here if needed: both conditions needed -- scores + request to use them for ranking
     # create a new list from a hash?
     if($printproofscores4nlg0 && $rankproofcolloc4nlg0){
-        print "Ranked selection of collocates<br><br>\n\n";
+        if ($is_cgi){ print "Ranked selection of collocates<br><br>\n\n";};
         # recombine collocations wiht scores
         # for each line -- calculate a combined score, record it as a value of a hash
         # sort by values and print / save
@@ -767,7 +786,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
         for $line_sc (@lCollocScores){
             $k++;
             if ($k > $noofsentences4nlg0){last;}
-            print "$k. $line_sc <br>\n";
+            if ($is_cgi){print "$k. $line_sc <br>\n";};
             
             
         }
@@ -777,14 +796,14 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
         }
         
     }elsif($printcartesianpr4nlg0){
-        print "Random selection of collocates, file output link below <br><br>\n\n";
+        if ($is_cgi){ print "Random selection of collocates, file output link below <br><br>\n\n";};
         recombineColloc4NLG(@LoLColloc); # print random comibnations 
         @LoLCollocCartesianProduct = permute(@LoLColloc);
         recombineColloc4NLGcartesianproduct(@LoLCollocCartesianProduct); # print to file;
         
             
     }else{
-        print "Random selection of collocates<br><br>\n\n";
+        if ($is_cgi){ print "Random selection of collocates<br><br>\n\n"; };
         recombineColloc4NLG(@LoLColloc); # print random comibnations on screen
     }
     
@@ -834,7 +853,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     }
 };
 
-print STDOUT "</html>\n";
+if ($is_cgi){ print STDOUT "</html>\n";};
 close(STDLOG);
 
 sub utest {
