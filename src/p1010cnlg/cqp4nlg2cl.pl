@@ -21,6 +21,8 @@ binmode( STDOUT, ":utf8" );
 
 
 $is_cgi = defined $ENV{'GATEWAY_INTERFACE'};
+$strDebugX = "";
+
 
 
 
@@ -225,8 +227,9 @@ if(not $is_cgi){
     $debugStr4ngl .= "\$encoding = $encoding; <br>\n";
     $debugStr4ngl .= "\$similaritysearch = $similaritysearch; <br>\n";
     $debugStr4ngl .= "\$debuglevel = $debuglevel; <br>\n";
-    $debugStr4ngl .= "\$nlg4Keyword = $nlg4Keyword; <br>\n"   
+    $debugStr4ngl .= "\$nlg4Keyword = $nlg4Keyword; <br>\n";
     # $debugStr4ngl .= "\$corpuslist = $corpuslist; <br>\n";
+    $strDebugX .= "\$nlg4Keyword = :$nlg4Keyword:; <br>\n";
 
     
 }
@@ -249,6 +252,7 @@ if(not $is_cgi){
     };
 
     if($nlg4Keyword){
+        $strDebugX .= "$nlg4Keyword<br>\n";
         print STDERR "nlg4Keyword = $nlg4Keyword\n";
         my $filename101 = '/data/html/corpuslabs/lab201810cnlg/cqp4nlgDBGen02TemplatesCanada2018.gdbm';
         tie %hashDB1, 'GDBM_File', $filename101, &GDBM_READER, 0640; 
@@ -257,12 +261,18 @@ if(not $is_cgi){
         
         if(exists $hashDB1{$nlg4Keyword}){
             $nlgFilterTemplate0 = $hashDB1{$nlg4Keyword};
+            $strDebugX .= "DB1: \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
+            print STDERR "DB1: \$nlgFilterTemplate0 = $nlgFilterTemplate0 \n";
             
         }elsif(exists $hashDB2{$nlg4Keyword}){
             $nlgFilterTemplate0 = $hashDB2{$nlg4Keyword};
+            $strDebugX .= "DB2: \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
+            print STDERR "DB2: \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
             
         }else{
             $nlgFilterTemplate0 = "";
+            $strDebugX .= "DB0: \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
+            print STDERR "DB0: \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
     
         };
         
@@ -270,7 +280,8 @@ if(not $is_cgi){
     };
 
     if($nlgFilterTemplate0){
-        $strDebugX = "";
+        $strDebugX .= "in nlgFilterTemplate0 \$nlgFilterTemplate0 = $nlgFilterTemplate0<br>\n";
+        # $strDebugX = "";
         @nlgFilterTemplate1 = split / /, $nlgFilterTemplate0;
         
         my ($ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop, $ref_nlgFilterTemplateXLofLGo, $ref_rejectTemp) = prepareNlgFilterTemplateX4NLG(@nlgFilterTemplate1);
