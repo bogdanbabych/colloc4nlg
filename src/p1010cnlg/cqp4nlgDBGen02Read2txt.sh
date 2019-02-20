@@ -1,1 +1,1 @@
-perl cqp4nlgDBGen02Read2txt.pl >cqp4nlgDBGen02Read2txt.out
+perl cqp4nlgDBGen02Read2txt.pl >./cqp4nlgDBGen02TemplatesX01.out

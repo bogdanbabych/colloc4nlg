@@ -3,7 +3,7 @@
 use GDBM_File ;
 my ($filename, $filename2, %hashDB, %hashDB2, $key, $val);
 
-$filename = './cqp4nlgKW2Templates01.gdbm';
+$filename = './cqp4nlgDBGen02TemplatesX01.gdbm';
 # splitting on the first tab;
 
 tie %hashDB, 'GDBM_File', $filename, &GDBM_WRCREAT, 0640;
