@@ -4068,7 +4068,7 @@ deadbolt	VV CD NN IN NN NN NN NN !deadbolt/NN
 deadbolts	CD NN IN NN NNS CC !deadbolts/NNS
 deadpool	CD NN IN !deadpool/NN
 deadwood	VV CD NN IN !deadwood/NN
-deal	NNS NN NN NNS !deal/NN
+deal	WP V.* J.*=;valid,;redeemable,;in-store,;safe IN=:to,:from DT J.* !deal/NN
 dealextreme	!dealextreme/NN
 deals	NN NN NNS !deal/NNS
 dealsof	MD !dealsof/VV DT NN

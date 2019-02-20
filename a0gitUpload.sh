@@ -1,3 +1,3 @@
 git add .
-git commit -m "s020x development: current stage by 1/01/2019: reject list implemented"
+git commit -m "s030x development: template database compiled"
 git push
