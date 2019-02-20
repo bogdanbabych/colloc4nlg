@@ -28,7 +28,8 @@ document.write('    &nbsp;Show collocations: <INPUT type="checkbox" name=printpr
 document.write('    &nbsp;Print all recombinations in file: <INPUT type=text name=printcartesianpr4nlg size=15/> Only combined scores: <INPUT type="checkbox" name=onlycombinedcores4nlg checked /> <br>');
 document.write('    <input type="hidden" name="cleft" value="0" />');
 document.write('    <input type="hidden" name="cright" value="0" />');
-document.write('    &nbsp;Keywords from text: <INPUT type="checkbox" name=kwText4nlg checked /> <br>');
+document.write('    &nbsp;Keyword: <input type="input" name="nlg4Keyword" value="deal" size="50"></input><br>');
+document.write('    &nbsp;Infer keywords from text: <INPUT type="checkbox" name=kwText4nlg checked /> <br>');
 document.write('    &nbsp;<textarea name="kwTextBrief4nlg" rows="20" cols="80"> Creative brief text </textarea> tf.idf keywords: <INPUT type="checkbox" name=kwTextTfIdf4nlg checked /> <br>');
 document.write('  </p>');
 document.write('  <p>');
