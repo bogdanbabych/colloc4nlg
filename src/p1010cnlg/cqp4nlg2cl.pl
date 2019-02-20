@@ -119,6 +119,8 @@ if ($corpuslist) { # CGI run
     $kwTextBrief4nlg0=$cgiquery->param("kwTextBrief4nlg");
     $kwTextTfIdf4nlg0=$cgiquery->param("kwTextTfIdf4nlg");
     
+    $nlg4Keyword = $cgiquery->param("nlg4Keyword");
+    
 
     $learningrestrictlist=$cgiquery->param("learningrestrictlist");
     $encoding=$cgiquery->param("encoding") || $encoding;
@@ -223,6 +225,7 @@ if(not $is_cgi){
     $debugStr4ngl .= "\$encoding = $encoding; <br>\n";
     $debugStr4ngl .= "\$similaritysearch = $similaritysearch; <br>\n";
     $debugStr4ngl .= "\$debuglevel = $debuglevel; <br>\n";
+    $debugStr4ngl .= "\$nlg4Keyword = $nlg4Keyword; <br>\n"   
     # $debugStr4ngl .= "\$corpuslist = $corpuslist; <br>\n";
 
     
@@ -241,6 +244,27 @@ if(not $is_cgi){
         push(@collocspans4nlg, "$collocspanleft2~$collocfilter2~$collocspanright2");
         push(@collocspans4nlg, "$collocspanleft3~$collocfilter3~$collocspanright3");
         # push(@collocspans4nlg, "$collocspanleft4~$collocfilter4~$collocspanright4");
+        
+    
+    };
+
+    if($nlg4Keyword){
+        print STDERR "nlg4Keyword = $nlg4Keyword\n";
+        my $filename101 = '/data/html/corpuslabs/lab201810cnlg/cqp4nlgDBGen02TemplatesCanada2018.gdbm';
+        tie %hashDB1, 'GDBM_File', $filename101, &GDBM_READER, 0640; 
+        my $filename102 = '/data/html/corpuslabs/lab201810cnlg/cqp4nlgDBGen02TemplatesBNC1994.gdbm';
+        tie %hashDB2, 'GDBM_File', $filename102, &GDBM_READER, 0640;
+        
+        if(exists $hashDB1{$nlg4Keyword}){
+            $nlgFilterTemplate0 = $hashDB1{$nlg4Keyword};
+            
+        }elsif(exists $hashDB2{$nlg4Keyword}){
+            $nlgFilterTemplate0 = $hashDB2{$nlg4Keyword};
+            
+        }else{
+            $nlgFilterTemplate0 = "";
+    
+        };
         
     
     };
