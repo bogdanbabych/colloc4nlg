@@ -1,0 +1,4 @@
+HASH(0x1375cb8) product  availability/NN 	2.72447225725265
+HASH(0x1375cb8) system  availability/NN 	2.05051349711782
+HASH(0x1375cb8) stock  availability/NN 	1.9818105589663
+HASH(0x1375cb8) size  availability/NN 	1.81601900823555

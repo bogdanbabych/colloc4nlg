@@ -1,0 +1,1 @@
+HASH(0x29bc950) requirement/NNS 	0.693147180559945

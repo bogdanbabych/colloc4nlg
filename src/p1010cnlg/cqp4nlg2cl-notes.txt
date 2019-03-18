@@ -1,0 +1,160 @@
+
+March 2019
+[documentation for the current stage of implementation]
+    - documenting functions;
+    - implementing collocation field framework....
+    
+Generation of collocates in the current implementation:
+cqp4nlg2cl.pl = main module
+
+    // stages where the command branch line is implemented:
+
+    if($nlg4Keyword){
+        --> link DBs;
+        --> try to retrieve templates
+        
+    if($nlgFilterTemplate0){
+    
+        prepareNlgFilterTemplateX4NLG(@nlgFilterTemplate1) -->
+            my ($ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop, $ref_nlgFilterTemplateXLofLGo, $ref_rejectTemp)
+            // reject list :: needs to be updated --> reject for a given position, not overall reject (?)
+            
+            @nlgFilterTemplateXPos --> list of PoS codes for each position
+            @nlgFilterTemplateXLofLStop --> stop words
+            @nlgFilterTemplateXLofLGo --> go words
+            @rejectTemp --> temporary solution for reject words ( deprecated ?)
+            
+            @nlgFilterTemplateX1 = @nlgFilterTemplateXPos;
+    
+    ...        
+    elsif ($nlgOutputSentence0) { # sentence-level collocations // checked by default:
+        // <strong>Sentence context</strong> <input type="radio" name="nlgOutputType" value="nlgOutputSentence" checked /> in printparams4nlg.js
+        
+        splitting the main list into the following:
+        
+        nlgFilterTemplateX1 --> 
+            @nlgFilterTemplateLeft = ();
+            @nlgFilterTemplateRight = ();
+            $nlgFilterTemplateFocus = ''; 
+                // at the moment only one focus word is allowed
+                
+        
+
+        push @LFocus, $nlgFilterTemplateFocus; # each element of this list becomes a searchstring == this will be re-initialised on each stage
+                // use the list since a list of collocates may be the focus, e.g., top N words
+                // future: possibility to process multiple keywords, can be several keywords, one after another, in focus -- at different positions? 
+                    (the current implementation doesn't allow this).
+                
+
+        // to implement the collocation field here:
+        
+        // todo: implement here multiple possible words (also skip-grams) to be in 'focus'
+        // todo: re-engineer this part :: new data structure with multiple collocates which are updated itiratively...
+
+        
+        // this is a very clumsy implementation -- a new data structure is needed and an algorithm around it
+        
+        my @LofH4NLGColl; # list of hashes of collocates for each position, with associated scores -- now to be used as the main data structure
+        
+        foreach $elPoS (@nlgFilterTemplateLeft){ # processing LEFT side of the focus; (RIGHT to be added later;)
+            // for each position 
+            @LFocusNew0 = (); # new focus -- compiling from list of collocates
+            foreach $focus (@LFocus){
+                // main processing of the query...
+                //   --> processcorpus() function:
+                
+                ... $numoccur+=processcorpus($corpus, $searchstring);  
+                
+                // returning a ranked list of collocates and making a local copy of this list
+                @collocationstr4nlg = showcollocates();
+                my @collocationstr4nlgLocal = @collocationstr4nlg; 
+                
+                // preparing rank collocation lists to be used in search:
+                prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
+                    --> my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc)
+                
+                    my %collKWordMatch = %{$ref_collKWordMatch};
+                        // number of different keywords found for a given collocation search 
+                        // (an underspecified template, e.g., want.+ may return several lexical 'keywords'
+                        // collKWordMatch[keyword] = FrqInCollocList
+                    my %coll4KWordSc = %{$ref_coll4KWordSc}; # collocations (keys) and collocation scores (values);
+                        // main data hash: 
+                        // coll4KWordSc[collocation] = score # as returned by the &showcollocates() function
+                    my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
+                        // this is for selecting the top element to become the focus in the next stage 
+                        // ranked list , colloc~score: as returned by the &showcollocates() function
+                        // possible to show only collocates, no scores, depending on flag $printproofscores4nlg0
+ 
+            
+                    unshift @LofH4NLGColl, \%coll4KWordSc; # udating main data structure (!now Hash!): adding to the beginning of the list, reversed!
+                    push @LFocusNew0, $coll4nlgList[0]; # at the moment only one el in focus used, to be updated later
+                    @LFocusNew = prepareFocus4NLG(@LFocusNew0);
+            
+            @LFocus = @LFocusNew;
+        
+        push @LofH4NLGColl, \%nlg4FilterTemplateFocusL3; # the last one -- is pushed to the end of the list (!now Hash!)
+        recombineCollocHash4NLG(@LofH4NLGColl); # print comibnations based on scores on screen
+            // this needs to be redesigned for the new data structure
+
+
+
+        
+[redesign for the new implementation with collocation field]       
+    1. replacing 
+        my @LofH4NLGColl; # list of hashes of collocates for each position, with associated scores -- now to be used as the main data structure
+    with a new data structure that support collocation fields (as described in the document "collocation-algorithm-v02.docx"
+    
+    Two coordinated Arrays:
+    
+    a. Array of arrays of arrays holding the collocation matrix:
+    
+    (
+        (
+        (position1, part-of-speech, lexical_stop, lexical_go), (collocates-with-scores-from-positionX),... (collocates-with-scores-from-position-Z)
+        ),
+        ...
+        (
+        (positionN, part-of-speech, lexical_stop, lexical_go), (collocates-with-scores-from-positionX),... (collocates-with-scores-from-position-Z)
+        )
+    )
+    
+    b. Integrated collocation array, where all scores are merged
+    
+    (
+        (
+        (position1, part-of-speech, lexical_stop, lexical_go), (collocates-with-scores-from-all-positions)
+        ),
+        ...
+        (
+        (positionN, part-of-speech, lexical_stop, lexical_go), (collocates-with-scores-from-all-positions)
+        )
+    )
+    
+    2.
+    - the algorithm recursively goes over all lexical item in the data structure and populates collocation lists for all positions
+    - the data structure is updated on each iteration
+    - the topN collocations may converge over several iterations; if not we try with 2 or 3 iterations
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                
+    
+
+
+
+[list of keywords to try]
+range
+deal
+spring
+offer
+select
+selected
+style
+feature

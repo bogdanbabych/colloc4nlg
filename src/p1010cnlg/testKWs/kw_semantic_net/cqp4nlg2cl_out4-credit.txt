@@ -1,0 +1,13 @@
+<h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p>HASH(0x29d1608) trade  credit/NN 	3.57588538215843
+HASH(0x29d1608) statement  credit/NN 	3.45381457954918
+HASH(0x29d1608) service  credit/NN 	3.44568576348413
+HASH(0x29d1608) store  credit/NN 	3.18802664939572
+HASH(0x29d1608) statment  credit/NN 	2.33760974141057
+HASH(0x29d1608) trade-in  credit/NN 	1.88053307323425
+HASH(0x29d1608) process  credit/NN 	1.83950416742553
+HASH(0x29d1608) club  credit/NN 	1.80590356830911
+HASH(0x29d1608) gaming  credit/NN 	1.73422947197668
+HASH(0x29d1608) fee  credit/NN 	1.4487076909361
+HASH(0x29d1608) IKEA  credit/NN 	1.2797074411699
+HASH(0x29d1608) game  credit/NN 	1.17580282211675
+HASH(0x29d1608) value  credit/NN 	1.05909938787966

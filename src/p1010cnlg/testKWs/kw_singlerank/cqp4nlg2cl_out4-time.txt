@@ -1,0 +1,18 @@
+<h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p>HASH(0x2b352a8) manufacturer  limited  time/NN 	10.2986012633454
+HASH(0x2b352a8) quantity  limited  time/NN 	9.31233329423124
+HASH(0x2b352a8) manufacturer  lim­ited  time/NN 	6.48755572701188
+HASH(0x2b352a8) quantity  lim­ited  time/NN 	5.50128775789774
+HASH(0x2b352a8) manufacturer  perfect  time/NN 	5.25028886973097
+HASH(0x2b352a8) manufacturer  local  time/NN 	5.04185679583397
+HASH(0x2b352a8) manufacturer  first  time/NN 	4.84370515941031
+HASH(0x2b352a8) quantity  perfect  time/NN 	4.26402090061683
+HASH(0x2b352a8) quantity  local  time/NN 	4.05558882671983
+HASH(0x2b352a8) quantity  first  time/NN 	3.85743719029616
+HASH(0x2b352a8) manufacturer  right  time/NN 	3.60257469188749
+HASH(0x2b352a8) manufacturer  same  time/NN 	3.55192001432086
+HASH(0x2b352a8) manufacturer  good  time/NN 	3.16138610416205
+HASH(0x2b352a8) manufacturer  great  time/NN 	2.83999576769793
+HASH(0x2b352a8) quantity  right  time/NN 	2.61630672277334
+HASH(0x2b352a8) quantity  same  time/NN 	2.56565204520672
+HASH(0x2b352a8) quantity  good  time/NN 	2.17511813504791
+HASH(0x2b352a8) quantity  great  time/NN 	1.85372779858379

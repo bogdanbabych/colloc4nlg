@@ -1,0 +1,15 @@
+HASH(0x1adaa70) one  day  amazing/JJ 	5.06612785689111
+HASH(0x1adaa70) boxing  day  amazing/JJ 	3.50292376476813
+HASH(0x1adaa70) therapy  day  amazing/JJ 	2.60342823385366
+HASH(0x1adaa70) day-any  day  amazing/JJ 	2.54337139657915
+HASH(0x1adaa70) pre-Labour  day  amazing/JJ 	2.54337139657915
+HASH(0x1adaa70) hyal-urea  day  amazing/JJ 	2.54337139657915
+HASH(0x1adaa70) labour  day  amazing/JJ 	2.37928567373403
+HASH(0x1adaa70) one-  day  amazing/JJ 	2.30967676111471
+HASH(0x1adaa70) cone  day  amazing/JJ 	2.30688579988329
+HASH(0x1adaa70) mother  day  amazing/JJ 	2.19403364395114
+HASH(0x1adaa70) pre-boxing  day  amazing/JJ 	2.16787912122489
+HASH(0x1adaa70) community  day  amazing/JJ 	2.10595135889839
+HASH(0x1adaa70) earth  day  amazing/JJ 	2.05879754943987
+HASH(0x1adaa70) appreciation  day  amazing/JJ 	1.9776831396598
+HASH(0x1adaa70) opening  day  amazing/JJ 	1.96816884938324
