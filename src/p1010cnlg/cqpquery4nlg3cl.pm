@@ -793,6 +793,10 @@ sub recombineCollocHash4NLG2Hashes{
     my %hBeamCombLine = %{$ref_hBeamCombLine} ;
     my %hBeamComb0 ;
     
+    $nBC = scalar(keys %hBeamComb);
+    $nBCL = scalar(keys %hBeamCombLine)
+    print STDERR "BeamComb = $nBC; BeamCombLine = $nBCL\n\n";
+    
     if (scalar(keys %hBeamComb) == 0 and scalar(keys %hBeamCombLine) == 0 ){
         %hBeamComb0 = {};
     }elsif( scalar(keys %hBeamComb) == 0  ){
@@ -822,8 +826,8 @@ sub recombineCollocHash4NLG{
     my $maxComb = 15; # to implement this as an optional feature --> if needed we restrict the search space
     my $curComb = 0;
     my @LoHCollocSc = @_;
-    # my %hBeamComb = {};
-    my %hBeamComb;
+    my %hBeamComb = {};
+    # my %hBeamComb;
     # my %hBeamComb;
     # print "is_cgi = $is_cgi <br>\n";
     if ( $is_cgi ){ print "LoHCollocSc = @LoHCollocSc <br>\n"; };
