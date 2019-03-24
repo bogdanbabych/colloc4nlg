@@ -837,7 +837,7 @@ sub runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from t
 
 
 # ### collocation field generation: recursive generation and updating of collocations in the template
-sub runCollocField4NLG(){
+sub runCollocField4NLG{
     
     @LTemplatePoS = @_;
     print STDERR "runCollocField4NLG ::  LTemplatePoS = @LTemplatePoS \n\n";
