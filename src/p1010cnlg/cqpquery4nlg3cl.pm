@@ -856,10 +856,10 @@ sub findMaxIndex2DList{
             if ($i2D < scalar(@L1DInput)){
                 push (@L1DLinearisation, $L1DInput[$i2D]);
             }
-        
+        }        
     }
 
-    return $IMaxLen, @L1DLinearisation;
+    return $IMaxLen, \@L1DLinearisation;
 }
 
 
