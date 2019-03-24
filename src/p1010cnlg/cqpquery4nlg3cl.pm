@@ -855,7 +855,7 @@ sub recombineCollocHash4NLG{
             
             if ( $is_cgi ){ print "$collocation : $score ;;   "; };
         }
-        print STDERR "\n";
+        print STDERR "recombineCollocHash4NLG:\n\n";
     
         $ref_hBeamComb0 = recombineCollocHash4NLG2Hashes(\%hBeamComb , \%hBeamCombLine);
         %hBeamComb0 = %{$ref_hBeamComb0};
