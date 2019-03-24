@@ -497,6 +497,9 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
     print STDOUT $messages{'choose-score'};
 
 } elsif ($nlgOutputSentence0) { # sentence-level collocations
+
+    runCollocChain4nlgOutputSentence04NLGv3();
+    
     if ($is_cgi){
         # implement functionality for sentence generation here, out of components
         # print "list: @nlgFilterTemplate1 <br>\n";
@@ -565,13 +568,13 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             # print "searchstring = $searchstring<br>\n";
             
             
-            initialiseVarsCollocSearch4NLG();
+            initialiseVarsCollocSearch4NLGv3();
             
             # initialising query parameters
             # !!!!!!!
             # do main search here:
 
-            $collocspanleft= 1;
+            $collocspanleft= 1; # dynamic determination of value ....
             $collocspanright = 0;
             $collocfilter = $elPoS;
             
@@ -655,7 +658,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             print "Random selection of collocates will be written to file <strong>$nlgOutputSentenceFile0</strong><br><br>\n\n";
         }
 
-        recombineColloc4NLG2File(@LofLNLGColl);
+        recombineColloc4NLG2File(@LofLNLGColl); # randomly selected collocation items, not ranked...
     }
 
     if ($is_cgi){ 

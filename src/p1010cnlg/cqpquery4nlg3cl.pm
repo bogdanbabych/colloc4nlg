@@ -630,7 +630,7 @@ print STDERR "$key, $onefrqc $twofrqc\n" unless $onefrqc and $twofrqc;
 # initialisation of variables for correct collocation statistics in repeated collocation calls:
 # ### v3 functions: begin
 
-sub initialiseVarsCollocSearch4NLG(){
+sub initialiseVarsCollocSearch4NLGv3(){
     
     print STDERR "initialiseVarsCollocSearch4NLG() :: \n\n";
     # initialisation of variables (copy code -- move to proper position)
@@ -654,11 +654,15 @@ sub initialiseVarsCollocSearch4NLG(){
     %tscore = ();
     # end initialising tables
     
-
-
 } # end: initialiseVarsCollocSearch4NLG()
 
+sub runCollocChain4nlgOutputSentence04NLGv3(){
+    
+    print STDERR "runCollocChain4nlgOutputSentence04NLGv3: nlgFilterTemplateX1 = @nlgFilterTemplateX1\n\n";
+    
 
+
+}
 
 
 
