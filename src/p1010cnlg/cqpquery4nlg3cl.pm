@@ -656,6 +656,7 @@ sub initialiseVarsCollocSearch4NLGv3(){
     
 } # end: initialiseVarsCollocSearch4NLG()
 
+# ### moving code to be replaced to a function, regression testing
 sub runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from the main workflow
     
     print STDERR "runCollocChain4nlgOutputSentence04NLGv3: nlgFilterTemplateX1 = @nlgFilterTemplateX1\n\n";
@@ -833,6 +834,14 @@ sub runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from t
 
 
 } # ### end: runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from the main workflow
+
+
+# ### collocation field generation: recursive generation and updating of collocations in the template
+sub runCollocField4NLG(@LTemplatePoS){
+    print STDERR "runCollocField4NLG ::  LTemplatePoS = @LTemplatePoS \n\n";
+
+} # ### end: sub runCollocField4NLG()
+
 
 
 
