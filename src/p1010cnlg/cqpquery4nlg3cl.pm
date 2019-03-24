@@ -836,11 +836,32 @@ sub runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from t
 } # ### end: runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from the main workflow
 
 
+# create a scheduler
+sub runCollocField2Scheduler4NLG{
+    my @LTemplatePoS = @_;
+    
+    # go over template and find keywords; 
+    for my $iTPosition (0 .. $#LTemplatePoS) {
+        print STDERR "position=$iTPosition : \n";
+        
+        
+    }
+    
+    
+    print STDERR " unCollocField2Scheduler4NLG :: \n\n";
+
+}
+
+    
+        
+            
 # ### collocation field generation: recursive generation and updating of collocations in the template
 sub runCollocField4NLG{
     
-    @LTemplatePoS = @_;
+    my @LTemplatePoS = @_;
     print STDERR "runCollocField4NLG ::  LTemplatePoS = @LTemplatePoS \n\n";
+    
+    runCollocField2Scheduler4NLG(@LTemplatePoS);
     
     
 
