@@ -794,7 +794,7 @@ sub recombineCollocHash4NLG2Hashes{
     my %hBeamComb0 ;
     
     $nBC = scalar(keys %hBeamComb);
-    $nBCL = scalar(keys %hBeamCombLine)
+    $nBCL = scalar(keys %hBeamCombLine);
     print STDERR "BeamComb = $nBC; BeamCombLine = $nBCL\n\n";
     
     if (scalar(keys %hBeamComb) == 0 and scalar(keys %hBeamCombLine) == 0 ){
