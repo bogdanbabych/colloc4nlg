@@ -822,7 +822,8 @@ sub recombineCollocHash4NLG{
     my $maxComb = 15; # to implement this as an optional feature --> if needed we restrict the search space
     my $curComb = 0;
     my @LoHCollocSc = @_;
-    my %hBeamComb = {};
+    # my %hBeamComb = {};
+    my %hBeamComb;
     # my %hBeamComb;
     # print "is_cgi = $is_cgi <br>\n";
     if ( $is_cgi ){ print "LoHCollocSc = @LoHCollocSc <br>\n"; };
