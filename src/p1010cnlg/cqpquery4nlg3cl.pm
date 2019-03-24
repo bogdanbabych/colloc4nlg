@@ -842,7 +842,8 @@ sub findMaxIndex2DList{
     my @L2DInput = @_;
     foreach my $ref_L1DInput (@L2DInput){
         my $ICurrMax = scalar( @{ $ref_L1DInput } )
-        print STDERR "@{ $ref_L1DInput }\n";
+        @L1DInput = @{ $ref_L1DInput };
+        print STDERR " @L1DInput \n";
         if ($IMaxLen < $ICurrMax){
             $IMaxLen = $ICurrMax;
         }
