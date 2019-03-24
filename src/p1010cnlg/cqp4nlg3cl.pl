@@ -567,27 +567,6 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             
             initialiseVarsCollocSearch4NLG();
             
-            # initialisation of variables (copy code -- move to proper position)
-            # ########
-            # previously global variables caused problems during repeated collocational search
-            # we intialise it here...
-            $numoccur = 0;
-            $numwords = 0; # not initialised , was doubling corpus size...
-            # initialising frequency table, pairs record, etc --> remaining tables in memory caused problems in the past... 
-            %pairs = ();
-            %freq = ();
-            %nlemmas = ();
-            $totalpairs = 0;
-            $outcount=0;
-            $onefrqc = 0; # caused different results for first and further collocations
-            
-            # initialising collocation tables: have been creating problem for second / third, etc. collocation context, never initialised in cqpquery.*.pm
-            %loglikescore = ();
-            %miscore = ();
-            %dicescore = ();
-            %tscore = ();
-            # end initialising tables
-            
             # initialising query parameters
             # !!!!!!!
             # do main search here:
