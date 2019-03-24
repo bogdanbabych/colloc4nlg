@@ -840,15 +840,26 @@ sub runCollocChain4nlgOutputSentence04NLGv3(){ # function:  removing code from t
 sub findMaxIndex2DList{
     my $IMaxLen = 0;
     my @L2DInput = @_;
+    my @L1DLinearisation = ();
     foreach my $ref_L1DInput (@L2DInput){
         my $ICurrMax = scalar( @{ $ref_L1DInput } );
         # debug
-        @L1DInput = @{ $ref_L1DInput }; print STDERR " @L1DInput \n";
+        my @L1DInput = @{ $ref_L1DInput }; print STDERR " @L1DInput \n";
         if ($IMaxLen < $ICurrMax){
             $IMaxLen = $ICurrMax;
         }
     }
-    return $IMaxLen;
+    
+    for (my $i2D = 0; $i2D < $IMaxLen; $i2D++){
+        foreach my $ref_L1DInput (@L2DInput){
+            my @L1DInput = @{ $ref_L1DInput }; 
+            if ($i2D < scalar(@L1DInput)){
+                push (@L1DLinearisation, $L1DInput[$i2D]);
+            }
+        
+    }
+
+    return $IMaxLen, @L1DLinearisation;
 }
 
 
@@ -858,6 +869,7 @@ sub runCollocField2Scheduler4NLG{
     
     # go over template and find keywords; 
     my @LoLScheduler = ();
+    my @LSchedule = ();
     for my $iTPosition (0 .. $#LTemplatePoS) {
         # print STDERR "position=$iTPosition : ";
         if ($LTemplatePoS[$iTPosition] =~ /^!/){
@@ -877,8 +889,11 @@ sub runCollocField2Scheduler4NLG{
     };
     
     
-    my $IMaxLenScheduler = findMaxIndex2DList(@LoLScheduler);
-    print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler\n\n";
+    my $IMaxLenScheduler, $ref_L1DLinearisation = findMaxIndex2DList(@LoLScheduler);
+    @L1DLinearisation = @{ $ref_L1DLinearisation };
+    
+    print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler\n";
+    print STDERR " unCollocField2Scheduler4NLG :: L1DLinearisation = @L1DLinearisation\n\n";
 
 }
 
