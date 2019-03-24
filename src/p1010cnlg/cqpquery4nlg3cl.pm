@@ -798,7 +798,7 @@ sub recombineCollocHash4NLG2Hashes{
     print STDERR "BeamComb = $nBC; BeamCombLine = $nBCL\n\n";
     
     if (scalar(keys %hBeamComb) == 0 and scalar(keys %hBeamCombLine) == 0 ){
-        # %hBeamComb0 = {};
+        # %hBeamComb0 = {}; # removed to avoid an initial hash reference; empty hash returned
     }elsif( scalar(keys %hBeamComb) == 0  ){
         %hBeamComb0 = %hBeamCombLine;
     }elsif( scalar(keys %hBeamCombLine) == 0  ){
