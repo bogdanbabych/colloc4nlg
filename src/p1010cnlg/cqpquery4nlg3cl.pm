@@ -837,6 +837,8 @@ sub recombineCollocHash4NLG{
                 next;
             };
             # if (){};
+
+            print $fhDebugFile4NLG "recombineCollocHash4NLG: collocation = $collocation\n";
             
             $currComb++;
             if($currComb > $maxComb){ 

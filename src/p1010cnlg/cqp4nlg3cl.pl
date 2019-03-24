@@ -29,6 +29,10 @@ $strDebugX = "";
 readconffile('/corpora/tools/cqp.conf');
 readmessagefile('/corpora/tools/messages.conf');
 
+# this will be redirected to standard error file in the shell script
+# open($fhDebugFile4NLG, ">", "cqp4nlg3clDebug.txt") or die "Can't open > cqp4nlg3clDebug.txt: $!";
+
+
 $|=1;
 
 $originalquery=""; # the search string
