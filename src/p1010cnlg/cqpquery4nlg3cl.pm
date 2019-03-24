@@ -844,8 +844,8 @@ sub runCollocField2Scheduler4NLG{
     for my $iTPosition (0 .. $#LTemplatePoS) {
         # print STDERR "position=$iTPosition : ";
         if ($LTemplatePoS[$iTPosition] =~ /^!/){
-            @LTemplatesLeft = (0 .. $iTPosition - 1)
-            @LTemplatesRight = ($iTPosition + 1 .. $#LTemplatePoS)
+            @LTemplatesLeft = (0 .. $iTPosition - 1);
+            @LTemplatesRight = ($iTPosition + 1 .. $#LTemplatePoS);
             print STDERR " unCollocField2Scheduler4NLG :: LTemplatesLeft=@LTemplatesLeft\n";
             print STDERR " unCollocField2Scheduler4NLG :: LTemplatesRight=@LTemplatesRight\n";
             
@@ -854,7 +854,7 @@ sub runCollocField2Scheduler4NLG{
         };
         
         
-    }
+    };
     
     
     print STDERR " unCollocField2Scheduler4NLG :: \n\n";
