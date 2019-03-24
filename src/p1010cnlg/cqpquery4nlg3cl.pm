@@ -628,8 +628,20 @@ print STDERR "$key, $onefrqc $twofrqc\n" unless $onefrqc and $twofrqc;
 
 # NLG functions go here:
 # initialisation of variables for correct collocation statistics in repeated collocation calls:
+# ### v3 functions: begin
 
+sub initialiseVarsCollocSearch4NLG(){
     
+    print STDERR "initialiseVarsCollocSearch4NLG() :: \n\n";
+
+
+} # end: initialiseVarsCollocSearch4NLG()
+
+
+
+
+
+# ### v3 functions: end
 
 # preparing focus - using collocation statistics, to be extended -- > e.g., using intersection of lists, or ranking list by numbers of occurrences in collocation tables
 sub prepareFocus4NLG(@LFocusNew0){

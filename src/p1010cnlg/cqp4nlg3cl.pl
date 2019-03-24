@@ -565,7 +565,8 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
             # print "searchstring = $searchstring<br>\n";
             
             
-
+            initialiseVarsCollocSearch4NLG();
+            
             # initialisation of variables (copy code -- move to proper position)
             # ########
             # previously global variables caused problems during repeated collocational search
