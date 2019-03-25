@@ -911,7 +911,11 @@ sub printLoL{
     my @LoL = @_;
     foreach $ref_el (@LoL){
         @LEl = @{ $ref_el };
-        print STDERR "    @LEl\n";
+        if (scalar (@LEl) == 0){
+            print STDERR "    () \n";
+        }else{ 
+            print STDERR "    @LEl \n";
+        };
         # for $SEl (@LEl){
         #     print STDERR "\n";
         # }
