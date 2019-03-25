@@ -944,7 +944,9 @@ sub runCollocField4NLG{
     
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
 
+    # debug printing of the main data structure
     my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  "; printLoL(@nlgFilterTemplateXLoLLexProtected);
+    # this is a dynamic LoL structure, where updates will be generated
     my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  "; printLoL(@nlgFilterTemplateXLoLLex);
     my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
     my @nlgFilterTemplateXPos = @{ $ref_nlgFilterTemplateXPos }; print STDERR " nlgFilterTemplateXPos :  @nlgFilterTemplateXPos \n";
@@ -1135,10 +1137,14 @@ sub prepareNlgFilterTemplateX4NLGv3{
         my @LKWs = (); # this is added empty if a keyword is not found
         if ($poskw =~ /\//){
             my @LKwPos = split /\//, $poskw;
-            my $SKW = @LKwPos[0]; my $SPoS = @LKwPos[1];
+            my $SKW = @LKwPos[0]; 
+            my $SKWnoEM ;
+            if ($SKW =~ /^!(.+)$/){ $SKWnoEM = $1; }else{ $SKWnoEM = $SKW; }; # strip leading exclamation mark
+
+            my $SPoS = @LKwPos[1];
             
             # convert a keyword to a list; this list will be added to the LofLists for lexical items
-            push(@LKWs, $SKW);
+            push(@LKWs, $SKWnoEM);
             push(@nlgFilterTemplateXPosOnly, $SPoS);
             
         }else{
