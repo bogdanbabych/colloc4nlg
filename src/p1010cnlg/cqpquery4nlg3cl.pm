@@ -951,7 +951,7 @@ sub printLoH{
 sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
     # calculating positions for collocation generation
     # function 1.1 to update
-    my ( $IPosition, $ILenTemplate, $ref_hLoLDFieldStat ) = @_;
+    my ( $IPositionFocus, $ILenTemplate, $ref_hLoLDFieldStat ) = @_;
     # my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :  @nlgFilterTemplateXPosOnly \n";
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
 
@@ -969,17 +969,26 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
     
     my @LoLPositionDistNFiltersOut = (); # output 
     
+    # focus words will be taken directly from identified positions, recursively, from the dynamic data structure
+    # what is needed for collocation search: 
+    # 1. Position of the focus
+    # 2. Part-of-Speech of the focus
+    # 3. Distance to colloction (collocation span) -- including direction
+    # 4. PoS filter restriction on collocation
+    
+    $SPoSFocus = $nlgFilterTemplateXPosOnly[$IPositionFocus];
+    
     for ( my $iPosit = 0; $iPosit < $ILenTemplate; $iPosit++ ){
-        $IDistance = $iPosit - $IPosition;
+        $IDistance = $iPosit - $IPositionFocus;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
         print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :!!: IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
-        my @LPositionDistanceFilter = ( $IPosition, $IDistance, $SPoSFilter );
-        push(@LoLPositionDistNFiltersOut, \@LPositionDistanceFilter);
+        my @LPositionPoSDistanceFilter = ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter );
+        push(@LoLPositionPoSDistNFiltersOut, \@LPositionPoSDistanceFilter);
     }
     
     
     
-    return @LoLPositionDistNFiltersOut;
+    return @LoLPositionPoSDistNFiltersOut;
 
 } # end: runCollocField2updtDFieldPosition2CalculatePositions4NLG
 
@@ -988,8 +997,8 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # main collocation execution engine
     # function 1.2 to update
-    my ( $IPosition, $IDistance, $SPoSFilter ) = @_;
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter \n";
+    my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @_;
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG  :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
     
 
 } # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
@@ -1010,13 +1019,13 @@ sub runCollocField2updtDFieldPosition4NLG{
     # determine the list of lists of items that are needed to run a collocation search
     # distances, positions, filters
     # calling function 1.1.
-    @LoLPositionDistNFiltersOut = runCollocField2updtDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(  @vLoHDFiedDynam ), $ref_hLoLDFieldStat );
+    my @LoLPositionPoSDistNFiltersOut = runCollocField2updtDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(  @vLoHDFiedDynam ), $ref_hLoLDFieldStat );
         
     # for each position pair run collocation search, given parameters (separate function).
-    foreach $ref_LPositionDistanceFilter (@LoLPositionDistNFiltersOut){
-        @LPositionDistanceFilter = @{ $ref_LPositionDistanceFilter };
+    foreach $ref_LPositionPoSDistanceFilter (@LoLPositionPoSDistNFiltersOut){
+        my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
         # calling function 1.2
-        runCollocField2updtDFieldPosition2runCollocSearch4NLG(@LPositionDistanceFilter);
+        runCollocField2updtDFieldPosition2runCollocSearch4NLG(@LPositionPoSDistanceFilter);
         
     }
 
