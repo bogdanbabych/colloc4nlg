@@ -991,24 +991,22 @@ sub runCollocField2updateDFieldStatPosition2runCollocSearch4NLG{
 
 } # end: runCollocField2updateDFieldStatPosition2runCollocSearch4NLG
         
-sub runCollocField2updateDFieldPosition4NLG{
+sub runCollocField2updtDFieldPosition4NLG{
     # update collocation field for one specific position: 
     # steps: calculate needed positions; 
     my ($IPosition, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     
     
-    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updateDFieldPosition4NLG :  @nlgFilterTemplateXPosOnly \n";
+    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updtDFieldPosition4NLG :  @nlgFilterTemplateXPosOnly \n";
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
 
     # debug printing 
-    print STDERR " runCollocField2updateDFieldPosition4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
-    print STDERR " runCollocField2updateDFieldPosition4NLG :: IPosition = $IPosition \n";
+    print STDERR " runCollocField2updtDFieldPosition4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
+    print STDERR " runCollocField2updtDFieldPosition4NLG :: IPosition = $IPosition \n";
     
     
     @LoLPositionDistNFiltersOut = runCollocField2updateDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(@nlgFilterTemplateXPosOnly), $ref_hLoLDFieldStat );
-    
-    print STDERR " runCollocField2updateDFieldStatPosition4NLG :: LDistNFilters = @LDistNFilters \n";
-    
+        
     # for each position pair run collocation search, given parameters (separate function).
     foreach $ref_LPositionDistanceFilter (@LoLPositionDistNFiltersOut){
         @LPositionDistanceFilter = @{ $ref_LPositionDistanceFilter };
@@ -1061,7 +1059,7 @@ sub runCollocField4NLG{
         # list of hashes in the data structure ?
         # 2 steps: 1. updating the data structure for each position
         # runCollocField2updateDFieldStatPosition4NLG($IPosition, $ref_nlgFilterTemplateXPosOnly, $ref_vLoHDFiedDynam);
-        runCollocField2updateDFieldPosition4NLG($IPosition, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
+        runCollocField2updtDFieldPosition4NLG($IPosition, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
     
     }
     # 2 steps: 2: at the end: collect top lists, copy to Protected and generate collocation searches;
