@@ -993,13 +993,13 @@ sub runCollocField4NLG{
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
 
     # debug printing of the main data structure
-    my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  "; printLoL(@nlgFilterTemplateXLoLLexProtected);
+    my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  \n"; printLoL(@nlgFilterTemplateXLoLLexProtected);
     # this is a dynamic LoL structure, where updates will be generated
-    my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  "; printLoL(@nlgFilterTemplateXLoLLex);
+    my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
     my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
     my @nlgFilterTemplateXPos = @{ $ref_nlgFilterTemplateXPos }; print STDERR " nlgFilterTemplateXPos :  @nlgFilterTemplateXPos \n";
-    my @nlgFilterTemplateXLofLStop = @{ $ref_nlgFilterTemplateXLofLStop }; print STDERR " nlgFilterTemplateXLofLStop :  "; printLoL(@nlgFilterTemplateXLofLStop);
-    my @nlgFilterTemplateXLofLGo = @{ $ref_nlgFilterTemplateXLofLGo }; print STDERR " nlgFilterTemplateXLofLGo :  "; printLoL(@nlgFilterTemplateXLofLGo);
+    my @nlgFilterTemplateXLofLStop = @{ $ref_nlgFilterTemplateXLofLStop }; print STDERR " nlgFilterTemplateXLofLStop :  \n"; printLoL(@nlgFilterTemplateXLofLStop);
+    my @nlgFilterTemplateXLofLGo = @{ $ref_nlgFilterTemplateXLofLGo }; print STDERR " nlgFilterTemplateXLofLGo :  \n"; printLoL(@nlgFilterTemplateXLofLGo);
     
     # (\@nlgFilterTemplateXLoLLexProtected, \@nlgFilterTemplateXLoLLex, \@nlgFilterTemplateXPosOnly, \@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop,  \@nlgFilterTemplateXLofLGo )
     
@@ -1216,7 +1216,7 @@ sub prepareNlgFilterTemplateX4NLGv3{
         push(@nlgFilterTemplateXLoLLexProtected, \@LKWs);
         push(@nlgFilterTemplateXLoLLex, \@LKWs);
         
-        push(@vLoHDFiedDynam, %hPosition); # preparing hashes for keywords, and empty values for 
+        push(@vLoHDFiedDynam, \%hPosition); # preparing hashes for keywords, and empty values for 
     }
     
 
