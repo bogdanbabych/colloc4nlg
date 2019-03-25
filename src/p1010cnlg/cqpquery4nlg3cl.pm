@@ -922,7 +922,23 @@ sub printLoL{
     }
 
 }  # end: sub printLoL
+
+
+sub runCollocField2updateDFieldStat2CalculatePositions4NLG{
+    # calculating positions for collocation generation
+
+} # end: runCollocField2updateDFieldStat2CalculatePositions4NLG
+
         
+sub runCollocField2updateDFieldStat4NLG{
+    # update collocation field for one specific position: 
+    # steps: calculate needed positions; 
+    runCollocField2updateDFieldStat2CalculatePositions4NLG();
+    
+    # for each position pair run collocation search, given parameters (separate function).
+
+} # runCollocField2updateDFieldStat4NLG
+
             
 # ### collocation field generation: recursive generation and updating of collocations in the template
 sub runCollocField4NLG{
@@ -955,7 +971,17 @@ sub runCollocField4NLG{
     
     # (\@nlgFilterTemplateXLoLLexProtected, \@nlgFilterTemplateXLoLLex, \@nlgFilterTemplateXPosOnly, \@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop,  \@nlgFilterTemplateXLofLGo )
     
-    # execute collocation searches updating the data structure
+    # execute collocation searches, according to the schedule, and updating the data structure
+    foreach $IPosition (@LSchedule){
+        # execute collocation search, calculating positions and updating the data structure ; ~ is used for separating scores;
+        # list of hashes in the data structure ?
+        # 2 steps: 1. updating the data structure for each position
+        runCollocField2updateDFieldStat4NLG();
+    
+    }
+    # 2 steps: 2: at the end: collect top lists, copy to Protected and generate collocation searches;
+
+    
     
     
 
