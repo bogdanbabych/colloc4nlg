@@ -858,7 +858,7 @@ sub findMaxIndex2DList{
             }
         }        
     }
-
+    # returning the maximum length and the linearised sequence for the schedule
     return $IMaxLen, \@L1DLinearisation;
 }
 
@@ -869,13 +869,15 @@ sub runCollocField2Scheduler4NLG{
     
     # go over template and find keywords; 
     my @LoLScheduler = ();
+    my @LSchedulerKWs = (); # keywords
     my @LSchedule = ();
     for my $iTPosition (0 .. $#LTemplatePoS) {
         # print STDERR "position=$iTPosition : ";
         if ($LTemplatePoS[$iTPosition] =~ /^!/){
-            @LPLeft = (0 .. $iTPosition - 1);
-            @LPLeftR = reverse(@LPLeft);
-            @LPRight = ($iTPosition + 1 .. $#LTemplatePoS);
+            push( @LSchedulerKWs, $iTPosition ); # add item to the keyword position list;
+            my @LPLeft = (0 .. $iTPosition - 1);
+            my @LPLeftR = reverse(@LPLeft);
+            my @LPRight = ($iTPosition + 1 .. $#LTemplatePoS);
             print STDERR " unCollocField2Scheduler4NLG :: LTemplatesLeftR=@LPLeftR\n";
             print STDERR " unCollocField2Scheduler4NLG :: LTemplatesRight=@LPRight\n";
             push( @LoLScheduler, \@LPLeftR );
@@ -893,6 +895,7 @@ sub runCollocField2Scheduler4NLG{
     @L1DLinearisation = @{ $ref_L1DLinearisation };
     
     print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler\n";
+    print STDERR " unCollocField2Scheduler4NLG :: LSchedulerKWs = @LSchedulerKWs\n";
     print STDERR " unCollocField2Scheduler4NLG :: L1DLinearisation = @L1DLinearisation\n\n";
 
 }
