@@ -933,11 +933,11 @@ sub printLoH{
         if (scalar(keys %hEl) == 0){
             print STDERR "    {} \n";
         }else{
-            print "    \{\n";
+            print STDERR "  \{\n";
             while(my ($key, $val) = each %hEl){
                 print STDERR "    $key => $val , \n";
             }
-            print "    \}\n";
+            print STDERR "  \}\n";
             
         }
 
