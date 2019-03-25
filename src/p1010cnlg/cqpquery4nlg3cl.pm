@@ -890,12 +890,14 @@ sub runCollocField2Scheduler4NLG{
         
         
     };
-    # joining keywords to the front of the scheduled linearised list to have the full priorities list
-    push(@LSchedule, @LSchedulerKWs);
-    push(@LSchedule, @L1DLinearisation);
     
     my ($IMaxLenScheduler, $ref_L1DLinearisation) = findMaxIndex2DList(@LoLScheduler);
     my @L1DLinearisation = @{ $ref_L1DLinearisation };
+
+    # joining keywords to the front of the scheduled linearised list to have the full priorities list
+    push(@LSchedule, @LSchedulerKWs);
+    push(@LSchedule, @L1DLinearisation);
+
     
     print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler \n";
     print STDERR " unCollocField2Scheduler4NLG :: LSchedulerKWs = @LSchedulerKWs \n";
