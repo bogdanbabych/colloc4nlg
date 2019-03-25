@@ -997,7 +997,13 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # main collocation execution engine
     # function 1.2 to update
-    my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @_;
+    my ($ref_LPositionPoSDistanceFilter , $ref_vLoHDFiedDynam) = @_;
+    my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
+    my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @LPositionPoSDistanceFilter;
+
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
+    print STDERR " runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
+
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG  :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
     
 
@@ -1013,7 +1019,6 @@ sub runCollocField2updtDFieldPosition4NLG{
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
 
     # debug printing 
-    print STDERR " runCollocField2updtDFieldPosition4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
     print STDERR " runCollocField2updtDFieldPosition4NLG :: IPosition = $IPosition \n";
     
     # determine the list of lists of items that are needed to run a collocation search
@@ -1025,7 +1030,7 @@ sub runCollocField2updtDFieldPosition4NLG{
     foreach $ref_LPositionPoSDistanceFilter (@LoLPositionPoSDistNFiltersOut){
         my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
         # calling function 1.2
-        runCollocField2updtDFieldPosition2runCollocSearch4NLG(@LPositionPoSDistanceFilter);
+        runCollocField2updtDFieldPosition2runCollocSearch4NLG(\@LPositionPoSDistanceFilter, $ref_vLoHDFiedDynam);
         
     }
 
