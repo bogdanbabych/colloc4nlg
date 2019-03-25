@@ -859,6 +859,7 @@ sub findMaxIndex2DList{
         }        
     }
     # returning the maximum length and the linearised sequence for the schedule
+    print STDERR " findMaxIndex2DList :: IMaxLen = $IMaxLen \n";
     return $IMaxLen, \@L1DLinearisation;
 }
 
@@ -891,12 +892,12 @@ sub runCollocField2Scheduler4NLG{
     };
     
     
-    my $IMaxLenScheduler, $ref_L1DLinearisation = findMaxIndex2DList(@LoLScheduler);
-    @L1DLinearisation = @{ $ref_L1DLinearisation };
+    my ($IMaxLenScheduler, $ref_L1DLinearisation) = findMaxIndex2DList(@LoLScheduler);
+    my @L1DLinearisation = @{ $ref_L1DLinearisation };
     
-    print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler\n";
-    print STDERR " unCollocField2Scheduler4NLG :: LSchedulerKWs = @LSchedulerKWs\n";
-    print STDERR " unCollocField2Scheduler4NLG :: L1DLinearisation = @L1DLinearisation\n\n";
+    print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler \n";
+    print STDERR " unCollocField2Scheduler4NLG :: LSchedulerKWs = @LSchedulerKWs \n";
+    print STDERR " unCollocField2Scheduler4NLG :: L1DLinearisation = @L1DLinearisation\ n\n";
 
 }
 
