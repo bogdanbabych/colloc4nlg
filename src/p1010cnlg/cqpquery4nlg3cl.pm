@@ -632,7 +632,7 @@ print STDERR "$key, $onefrqc $twofrqc\n" unless $onefrqc and $twofrqc;
 
 sub initialiseVarsCollocSearch4NLGv3(){
     
-    print STDERR "initialiseVarsCollocSearch4NLG() :: \n\n";
+    # print STDERR "initialiseVarsCollocSearch4NLG() :: \n\n";
     # initialisation of variables (copy code -- move to proper position)
     # ########
     # previously global variables caused problems during repeated collocational search
@@ -959,7 +959,7 @@ sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
     # debug printing of the main data structure
     my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  \n"; printLoL(@nlgFilterTemplateXLoLLexProtected);
     my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
-    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; # ### print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
+    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
     my @nlgFilterTemplateXPos = @{ $ref_nlgFilterTemplateXPos }; print STDERR " nlgFilterTemplateXPos :  @nlgFilterTemplateXPos \n";
     my @nlgFilterTemplateXLofLStop = @{ $ref_nlgFilterTemplateXLofLStop }; print STDERR " nlgFilterTemplateXLofLStop :  \n"; printLoL(@nlgFilterTemplateXLofLStop);
     my @nlgFilterTemplateXLofLGo = @{ $ref_nlgFilterTemplateXLofLGo }; print STDERR " nlgFilterTemplateXLofLGo :  \n"; printLoL(@nlgFilterTemplateXLofLGo);
