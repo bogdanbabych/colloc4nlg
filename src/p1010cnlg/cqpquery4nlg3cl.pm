@@ -953,21 +953,30 @@ sub runCollocField2updateDFieldStatPosition2CalculatePositions4NLG{
     my ( $IPosition, $ILenTemplate, $ref_nlgFilterTemplateXPosOnly ) = @_;
     my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updateDFieldStatPosition2CalculatePositions4NLG :  @nlgFilterTemplateXPosOnly \n";
     
-    my @LDistNFilters = (); # output 
+    my @LoLPositionDistNFiltersOut = (); # output 
     
     for ( my $iPosit = 0; $iPosit < $ILenTemplate; $iPosit++ ){
         $IDistance = $iPosit - $IPosition;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
         print STDERR " runCollocField2updateDFieldStatPosition2CalculatePositions4NLG : IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
-        push(@LDistNFilters, "$IDistance~$SPoSFilter");
+        my @LPositionDistanceFilter = ( $IPosition, $IDistance, $SPoSFilter );
+        push(@LoLPositionDistNFiltersOut, \@LPositionDistanceFilter);
     }
     
     
     
-    return @LDistNFilters;
+    return @LoLPositionDistNFiltersOut;
 
 } # end: runCollocField2updateDFieldStat2CalculatePositions4NLG
 
+
+
+sub runCollocField2updateDFieldStatPosition2runCollocSearch4NLG{
+    my ( $IPosition, $IDistance, $SPoSFilter ) = @_;
+    print STDERR "  runCollocField2updateDFieldStatPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter\n";
+    
+
+} # end: runCollocField2updateDFieldStatPosition2runCollocSearch4NLG
         
 sub runCollocField2updateDFieldStatPosition4NLG{
     # update collocation field for one specific position: 
@@ -981,11 +990,16 @@ sub runCollocField2updateDFieldStatPosition4NLG{
     print STDERR " runCollocField2updateDFieldStatPosition4NLG :: IPosition = $IPosition \n";
     
     
-    @LDistNFilters = runCollocField2updateDFieldStatPosition2CalculatePositions4NLG( $IPosition, scalar(@nlgFilterTemplateXPosOnly), $ref_nlgFilterTemplateXPosOnly );
+    @LoLPositionDistNFiltersOut = runCollocField2updateDFieldStatPosition2CalculatePositions4NLG( $IPosition, scalar(@nlgFilterTemplateXPosOnly), $ref_nlgFilterTemplateXPosOnly );
     
     print STDERR " runCollocField2updateDFieldStatPosition4NLG :: LDistNFilters = @LDistNFilters \n";
     
     # for each position pair run collocation search, given parameters (separate function).
+    foreach $ref_LPositionDistanceFilter (@LoLPositionDistNFiltersOut){
+        @LPositionDistanceFilter = @{ $ref_LPositionDistanceFilter };
+        runCollocField2updateDFieldStatPosition2runCollocSearch4NLG(LPositionDistanceFilter);
+        
+    }
 
 } # runCollocField2updateDFieldStat4NLG
 
