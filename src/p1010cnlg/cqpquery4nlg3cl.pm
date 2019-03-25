@@ -907,13 +907,26 @@ sub runCollocField2Scheduler4NLG{
 
 }
 
-    
+sub printLoL{
+    my @LoL = @_;
+    foreach $ref_el (@LoL){
+        @LEl = @{ $ref_el };
+        print STDERR "    @LEl\n";
+        # for $SEl (@LEl){
+        #     print STDERR "\n";
+        # }
+    }
+
+}  # end: sub printLoL
         
             
 # ### collocation field generation: recursive generation and updating of collocations in the template
 sub runCollocField4NLG{
+    # called: runCollocField4NLG(\@nlgFilterTemplateX1, \@nlgFilterTemplate1)
     
-    my @LTemplatePoS = @_;
+    my ($ref_nlgFilterTemplateX1 , $ref_nlgFilterTemplate1) = @_;
+    my @LTemplatePoS = @{ $ref_nlgFilterTemplateX1 };
+    my @LTemplatePoSRaw = @{ $ref_nlgFilterTemplate1 };
     print STDERR "runCollocField4NLG ::  LTemplatePoS = @LTemplatePoS \n\n";
     
     # create a schedule for running collocation searches
@@ -921,6 +934,20 @@ sub runCollocField4NLG{
     print STDERR " runCollocField4NLG :: LSchedule = @LSchedule \n\n";
     
     # create data structures
+    my ( $ref_hLoLDFieldStat, $ref_rejectTemp ) = prepareNlgFilterTemplateX4NLGv3(@LTemplatePoSRaw);
+    my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
+    my @rejectTemp = @{ $ref_rejectTemp };
+    
+    my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
+
+    my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  "; printLoL(@nlgFilterTemplateXLoLLexProtected);
+    my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  "; printLoL(@nlgFilterTemplateXLoLLex);
+    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
+    my @nlgFilterTemplateXPos = @{ $ref_nlgFilterTemplateXPos }; print STDERR " nlgFilterTemplateXPos :  @nlgFilterTemplateXPos \n";
+    my @nlgFilterTemplateXLofLStop = @{ $ref_nlgFilterTemplateXLofLStop }; print STDERR " nlgFilterTemplateXLofLStop :  "; printLoL(@nlgFilterTemplateXLofLStop);
+    my @nlgFilterTemplateXLofLGo = @{ $ref_nlgFilterTemplateXLofLGo }; print STDERR " nlgFilterTemplateXLofLGo :  "; printLoL(@nlgFilterTemplateXLofLGo);
+    
+    # (\@nlgFilterTemplateXLoLLexProtected, \@nlgFilterTemplateXLoLLex, \@nlgFilterTemplateXPosOnly, \@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop,  \@nlgFilterTemplateXLofLGo )
     
     # execute collocation searches updating the data structure
     
@@ -1027,6 +1054,116 @@ sub prepareCollocList4NLG{
 }
 
 # sentence-level function
+
+
+# a new version: preparing a 2D list with inject/reject and PoS codes in their proper place
+# separates a 'pure' pos string + lexical items
+sub prepareNlgFilterTemplateX4NLGv3{
+
+    my @nlgFilterTemplateX = @_;
+    # returned list -- with horizontal data lists
+    
+    my @hLoLDFieldStat = (); # static horizontal list of lists -- main data structure
+
+    # component lists:
+    my @nlgFilterTemplateXLoLLexProtected = (); # protected lexical items (should not be changed, and main result
+    my @nlgFilterTemplateXLoLLex = (); # new list: lexical items -- main working area for running collocation searches
+
+    my @nlgFilterTemplateXPosOnly = (); # part-of-speech list of Strings :: with Lex
+    my @nlgFilterTemplateXPos = (); # part-of-speech list of Strings 
+    my @nlgFilterTemplateXLofLStop = (); # stop-word list : List of Lists
+    my @nlgFilterTemplateXLofLGo = (); # go-word list : List of Lists
+    my @rejectTemp = (); # temporary reject list
+    
+    foreach my $el ( @nlgFilterTemplateX ){
+        my @nlgFilterTemplateXLStop = (); # list of strings
+        my @nlgFilterTemplateXLGo = (); # list of strings
+        
+        if ($el =~ /=/){ # separator for reject/inject lists in the query syntax;
+            @LElWords = split /=/, $el;
+            # $strDebugX = $strDebugX .  "    LElWords = @LElWords<br>\n";
+            
+            push @nlgFilterTemplateXPos, $LElWords[0];
+            $SWordsRejectInject = $LElWords[1]; # the saparator '=' is only used once in the syntax
+            # $strDebugX = $strDebugX . "    SWordsRejectInject = $SWordsRejectInject<br>\n";
+            @LWordsRejectInject = split(/\,/, $SWordsRejectInject); $ILen = scalar(@LWordsRejectInject); 
+            # $strDebugX = $strDebugX . "    LWordsRejectInject = @LWordsRejectInject; $ILen <br>\n";
+             
+            my $ICountElWords = 0;
+            foreach my $SWord (@LWordsRejectInject){
+                $ICountElWords++;
+                # $strDebugX = $strDebugX . " SWord=$SWord ";
+                ##### delete next string #### 
+                # if($ICountElWords <= 1){ $strDebugX = $strDebugX . " ICountElWords = $ICountElWords "; next; }; # first el of the array is PoS, skip
+                
+                # remove leading identifiers: stop / go list
+                if($SWord =~ /^;(.+)/){ # reject word
+                    # $strDebugX = $strDebugX . " xSWordX = $1 ";
+                    push @nlgFilterTemplateXLStop, $1;
+                    push @rejectTemp, $1;
+                }elsif($SWord =~ /^:(.+)/){ # inject word
+                    # $strDebugX = $strDebugX . " +SWord+ = $1 ";
+                    push @nlgFilterTemplateXLGo, $1;
+                    
+                }else{ # undefined so far, possibly for future functionality; ignore
+                
+                };
+                
+                
+            }
+
+            
+        }else{
+            push @nlgFilterTemplateXPos, $el;
+            # an empty list is pushed if there are no stop or go words...
+            # push @nlgFilterTemplateXLStop, "[NONE]";
+            # push @nlgFilterTemplateXLGo, "[NONE]";
+    
+        };
+        push @nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLStop ;
+        push @nlgFilterTemplateXLofLGo, \@nlgFilterTemplateXLGo; 
+        
+    
+    }
+
+    # form pure list of PoS codes and lexical items
+    foreach my $poskw ( @nlgFilterTemplateXPos ){
+        my @LKWs = (); # this is added empty if a keyword is not found
+        if ($poskw =~ /\//){
+            my @LKwPos = split /\//, $poskw;
+            my $SKW = @LKwPos[0]; my $SPoS = @LKwPos[1];
+            
+            # convert a keyword to a list; this list will be added to the LofLists for lexical items
+            push(@LKWs, $SKW);
+            push(@nlgFilterTemplateXPosOnly, $SPoS);
+            
+        }else{
+            push(@nlgFilterTemplateXPosOnly, $poskw);
+        }
+        push(@nlgFilterTemplateXLoLLexProtected, \@LKWs);
+        push(@nlgFilterTemplateXLoLLex, \@LKWs);
+    }
+    
+
+    # main data structure: coordinated lists...
+    @hLoLDFieldStat = (\@nlgFilterTemplateXLoLLexProtected, \@nlgFilterTemplateXLoLLex, \@nlgFilterTemplateXPosOnly, \@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop,  \@nlgFilterTemplateXLofLGo ); # static horizontal list of lists -- main data structure
+
+    # component lists:
+    # my @nlgFilterTemplateXLoLLexProtected = (); # protected lexical items (should not be changed, and main result
+    # my @nlgFilterTemplateXLoLLex = (); # new list: lexical items -- main working area for running collocation searches
+
+    # my @nlgFilterTemplateXPosOnly = (); # part-of-speech list of Strings :: with Lex
+    # my @nlgFilterTemplateXPos = (); # part-of-speech list of Strings 
+    # my @nlgFilterTemplateXLofLStop = (); # stop-word list : List of Lists
+    # my @nlgFilterTemplateXLofLGo = (); # go-word list : List of Lists
+
+    
+    return (\@hLoLDFieldStat, \@rejectTemp);
+    # return (\@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLofLGo, \@rejectTemp);
+    # 
+
+
+}
 
 
 sub prepareNlgFilterTemplateX4NLG{

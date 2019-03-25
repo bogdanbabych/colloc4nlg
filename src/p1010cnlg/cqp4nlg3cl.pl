@@ -499,7 +499,7 @@ if ($originalquery=~/^\s*\[?\]?\s*$/) {
 } elsif ($nlgOutputSentence0) { # sentence-level collocations
 
     runCollocChain4nlgOutputSentence04NLGv3(); # code moved from the main workflow into a function -- to be replaced with collocation field implementation
-    runCollocField4NLG(@nlgFilterTemplateX1);
+    runCollocField4NLG(\@nlgFilterTemplateX1, \@nlgFilterTemplate1); # with PoS cleaned and raw
 
 } elsif($collocation4nlg) {
     
