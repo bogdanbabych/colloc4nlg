@@ -948,14 +948,15 @@ sub printLoH{
 
 
 
-sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
+sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
     # calculating positions for collocation generation
+    # function 1.1 to update
     my ( $IPosition, $ILenTemplate, $ref_hLoLDFieldStat ) = @_;
-    # my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :  @nlgFilterTemplateXPosOnly \n";
+    # my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :  @nlgFilterTemplateXPosOnly \n";
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
 
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
-    print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :!!: \n";
+    print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :!!: \n";
     # debug printing of the main data structure
     my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  \n"; printLoL(@nlgFilterTemplateXLoLLexProtected);
     my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
@@ -971,7 +972,7 @@ sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
     for ( my $iPosit = 0; $iPosit < $ILenTemplate; $iPosit++ ){
         $IDistance = $iPosit - $IPosition;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
-        print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :!!: IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
+        print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :!!: IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
         my @LPositionDistanceFilter = ( $IPosition, $IDistance, $SPoSFilter );
         push(@LoLPositionDistNFiltersOut, \@LPositionDistanceFilter);
     }
@@ -980,16 +981,17 @@ sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
     
     return @LoLPositionDistNFiltersOut;
 
-} # end: runCollocField2updateDFieldStat2CalculatePositions4NLG
+} # end: runCollocField2updtDFieldPosition2CalculatePositions4NLG
 
 
 
-sub runCollocField2updateDFieldStatPosition2runCollocSearch4NLG{
+sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
+    # main collocation execution engine
     my ( $IPosition, $IDistance, $SPoSFilter ) = @_;
-    print STDERR "  runCollocField2updateDFieldStatPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter \n";
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter \n";
     
 
-} # end: runCollocField2updateDFieldStatPosition2runCollocSearch4NLG
+} # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
         
 sub runCollocField2updtDFieldPosition4NLG{
     # update collocation field for one specific position: 
@@ -997,20 +999,20 @@ sub runCollocField2updtDFieldPosition4NLG{
     my ($IPosition, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     
     
-    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updtDFieldPosition4NLG :  @nlgFilterTemplateXPosOnly \n";
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
 
     # debug printing 
     print STDERR " runCollocField2updtDFieldPosition4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
     print STDERR " runCollocField2updtDFieldPosition4NLG :: IPosition = $IPosition \n";
     
-    
-    @LoLPositionDistNFiltersOut = runCollocField2updateDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(@nlgFilterTemplateXPosOnly), $ref_hLoLDFieldStat );
+    # determine the list of lists of items that are needed to run a collocation search
+    # distances, positions, filters
+    @LoLPositionDistNFiltersOut = runCollocField2updtDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(@nlgFilterTemplateXPosOnly), $ref_hLoLDFieldStat );
         
     # for each position pair run collocation search, given parameters (separate function).
     foreach $ref_LPositionDistanceFilter (@LoLPositionDistNFiltersOut){
         @LPositionDistanceFilter = @{ $ref_LPositionDistanceFilter };
-        runCollocField2updateDFieldStatPosition2runCollocSearch4NLG(@LPositionDistanceFilter);
+        runCollocField2updtDFieldPosition2runCollocSearch4NLG(@LPositionDistanceFilter);
         
     }
 
