@@ -1002,10 +1002,13 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @LPositionPoSDistanceFilter;
 
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
-    print STDERR " runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
-
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG  :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
     
+    # to implement: updating the dynamic data structure, using words from the active hash, N-best;
+    # if another run is needed -- resetting with 'protected' values for keywords...
+    # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
+
 
 } # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
         
@@ -1026,7 +1029,7 @@ sub runCollocField2updtDFieldPosition4NLG{
     # calling function 1.1.
     my @LoLPositionPoSDistNFiltersOut = runCollocField2updtDFieldPosition2CalculatePositions4NLG( $IPosition, scalar(  @vLoHDFiedDynam ), $ref_hLoLDFieldStat );
         
-    # for each position pair run collocation search, given parameters (separate function).
+    # for each position focus/pos + span & pos filter --  run collocation search, given parameters (separate function).
     foreach $ref_LPositionPoSDistanceFilter (@LoLPositionPoSDistNFiltersOut){
         my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
         # calling function 1.2
