@@ -973,7 +973,7 @@ sub runCollocField2updateDFieldStatPosition2CalculatePositions4NLG{
 
 sub runCollocField2updateDFieldStatPosition2runCollocSearch4NLG{
     my ( $IPosition, $IDistance, $SPoSFilter ) = @_;
-    print STDERR "  runCollocField2updateDFieldStatPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter\n";
+    print STDERR "  runCollocField2updateDFieldStatPosition2runCollocSearch4NLG  :: IPosition, IDistance, SPoSFilter = $IPosition, $IDistance, $SPoSFilter \n";
     
 
 } # end: runCollocField2updateDFieldStatPosition2runCollocSearch4NLG
@@ -997,7 +997,7 @@ sub runCollocField2updateDFieldStatPosition4NLG{
     # for each position pair run collocation search, given parameters (separate function).
     foreach $ref_LPositionDistanceFilter (@LoLPositionDistNFiltersOut){
         @LPositionDistanceFilter = @{ $ref_LPositionDistanceFilter };
-        runCollocField2updateDFieldStatPosition2runCollocSearch4NLG(LPositionDistanceFilter);
+        runCollocField2updateDFieldStatPosition2runCollocSearch4NLG(@LPositionDistanceFilter);
         
     }
 
