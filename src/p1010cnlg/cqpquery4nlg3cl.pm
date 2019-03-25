@@ -956,7 +956,7 @@ sub runCollocField2updateDFieldStatPosition2CalculatePositions4NLG{
     my @LDistNFilters = (); # output 
     
     for ( my $iPosit = 0; $iPosit < $ILenTemplate; $iPosit++ ){
-        $IDistance = $IPosit - $IPosition;
+        $IDistance = $iPosit - $IPosition;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
         print STDERR " runCollocField2updateDFieldStatPosition2CalculatePositions4NLG : IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
         push(@LDistNFilters, "$IDistance~$SPoSFilter");
