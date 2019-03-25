@@ -957,7 +957,11 @@ sub runCollocField2updateDFieldStatPosition2CalculatePositions4NLG{
 sub runCollocField2updateDFieldStatPosition4NLG{
     # update collocation field for one specific position: 
     # steps: calculate needed positions; 
-    my $iPosition = shift(@_);
+    my ($IPosition, $ref_nlgFilterTemplateXPosOnly, $ref_vLoHDFiedDynam) = @_;
+    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " runCollocField2updateDFieldStatPosition4NLG :  @nlgFilterTemplateXPosOnly \n";
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
+    # debug printing 
+    print STDERR " runCollocField2updateDFieldStatPosition4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
     print STDERR "    runCollocField2updateDFieldStatPosition4NLG :: iPosition = $iPosition \n";
     
     
@@ -986,7 +990,7 @@ sub runCollocField4NLG{
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
     # debug printing 
-    print STDERR " vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);
+    # ### print STDERR " vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);
     
     my @rejectTemp = @{ $ref_rejectTemp };
     
@@ -996,7 +1000,7 @@ sub runCollocField4NLG{
     my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  \n"; printLoL(@nlgFilterTemplateXLoLLexProtected);
     # this is a dynamic LoL structure, where updates will be generated
     my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
-    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
+    my @nlgFilterTemplateXPosOnly = @{ $ref_nlgFilterTemplateXPosOnly }; # ### print STDERR " nlgFilterTemplateXPosOnly :  @nlgFilterTemplateXPosOnly \n";
     my @nlgFilterTemplateXPos = @{ $ref_nlgFilterTemplateXPos }; print STDERR " nlgFilterTemplateXPos :  @nlgFilterTemplateXPos \n";
     my @nlgFilterTemplateXLofLStop = @{ $ref_nlgFilterTemplateXLofLStop }; print STDERR " nlgFilterTemplateXLofLStop :  \n"; printLoL(@nlgFilterTemplateXLofLStop);
     my @nlgFilterTemplateXLofLGo = @{ $ref_nlgFilterTemplateXLofLGo }; print STDERR " nlgFilterTemplateXLofLGo :  \n"; printLoL(@nlgFilterTemplateXLofLGo);
@@ -1008,7 +1012,7 @@ sub runCollocField4NLG{
         # execute collocation search, calculating positions and updating the data structure ; ~ is used for separating scores;
         # list of hashes in the data structure ?
         # 2 steps: 1. updating the data structure for each position
-        runCollocField2updateDFieldStatPosition4NLG($IPosition);
+        runCollocField2updateDFieldStatPosition4NLG($IPosition, $ref_nlgFilterTemplateXPosOnly, $ref_vLoHDFiedDynam);
     
     }
     # 2 steps: 2: at the end: collect top lists, copy to Protected and generate collocation searches;
