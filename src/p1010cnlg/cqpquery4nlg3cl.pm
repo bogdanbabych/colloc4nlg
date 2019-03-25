@@ -902,7 +902,6 @@ sub runCollocField2Scheduler4NLG{
     print STDERR " unCollocField2Scheduler4NLG :: IMaxLenScheduler = $IMaxLenScheduler \n";
     print STDERR " unCollocField2Scheduler4NLG :: LSchedulerKWs = @LSchedulerKWs \n";
     print STDERR " unCollocField2Scheduler4NLG :: L1DLinearisation = @L1DLinearisation \n";
-    print STDERR " unCollocField2Scheduler4NLG :: LSchedule = @LSchedule \n\n";
     
     return @LSchedule;
 
@@ -917,7 +916,13 @@ sub runCollocField4NLG{
     my @LTemplatePoS = @_;
     print STDERR "runCollocField4NLG ::  LTemplatePoS = @LTemplatePoS \n\n";
     
-    runCollocField2Scheduler4NLG(@LTemplatePoS);
+    # create a schedule for running collocation searches
+    @LSchedule = runCollocField2Scheduler4NLG(@LTemplatePoS);
+    print STDERR " runCollocField4NLG :: LSchedule = @LSchedule \n\n";
+    
+    # create data structures
+    
+    # execute collocation searches updating the data structure
     
     
 
