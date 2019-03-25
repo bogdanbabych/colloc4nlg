@@ -924,6 +924,30 @@ sub printLoL{
 }  # end: sub printLoL
 
 
+
+sub printLoH{
+    my @LoH = @_;
+    foreach $ref_el (@LoH){
+        %hEl = %{ $ref_el };
+        
+        if (scalar(keys %hEl) == 0){
+            print STDERR "    {} \n";
+        }else{
+            print "    \{\n";
+            while(my ($key, $val) = each %hEl){
+                print STDERR "    $key => $val , \n";
+            }
+            print "    \}\n";
+            
+        }
+
+    }
+
+}  # end: sub printLoL
+
+
+
+
 sub runCollocField2updateDFieldStatPosition2CalculatePositions4NLG{
     # calculating positions for collocation generation
 
@@ -958,8 +982,12 @@ sub runCollocField4NLG{
     print STDERR " runCollocField4NLG :: LSchedule = @LSchedule \n\n";
     
     # create data structures
-    my ( $ref_hLoLDFieldStat, $ref_rejectTemp ) = prepareNlgFilterTemplateX4NLGv3(@LTemplatePoSRaw);
+    my ( $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $ref_rejectTemp ) = prepareNlgFilterTemplateX4NLGv3(@LTemplatePoSRaw);
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
+    # debug printing 
+    print STDERR " vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);
+    
     my @rejectTemp = @{ $ref_rejectTemp };
     
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
@@ -1091,15 +1119,16 @@ sub prepareCollocList4NLG{
 
 # sentence-level function
 
-
-# a new version: preparing a 2D list with inject/reject and PoS codes in their proper place
-# separates a 'pure' pos string + lexical items
 sub prepareNlgFilterTemplateX4NLGv3{
+    # generate the main data structures
+    # a new version: preparing a 2D list with inject/reject and PoS codes in their proper place
+    # separates a 'pure' pos string + lexical items
 
     my @nlgFilterTemplateX = @_;
     # returned list -- with horizontal data lists
     
     my @hLoLDFieldStat = (); # static horizontal list of lists -- main data structure
+    my @vLoHDFiedDynam = (); # a dynamic vertical data structure: list of hashes, with collocations and scores being updated at respective positions
 
     # component lists:
     my @nlgFilterTemplateXLoLLexProtected = (); # protected lexical items (should not be changed, and main result
@@ -1163,8 +1192,10 @@ sub prepareNlgFilterTemplateX4NLGv3{
     }
 
     # form pure list of PoS codes and lexical items
+    # form dynamic data structure :: @vLoHDFiedDynam
     foreach my $poskw ( @nlgFilterTemplateXPos ){
         my @LKWs = (); # this is added empty if a keyword is not found
+        my %hPosition; # this remains an empty hash if keyword not initialised, will be dynamically updated in the process
         if ($poskw =~ /\//){
             my @LKwPos = split /\//, $poskw;
             my $SKW = @LKwPos[0]; 
@@ -1176,12 +1207,16 @@ sub prepareNlgFilterTemplateX4NLGv3{
             # convert a keyword to a list; this list will be added to the LofLists for lexical items
             push(@LKWs, $SKWnoEM);
             push(@nlgFilterTemplateXPosOnly, $SPoS);
+            # updating the hash value for the keyword; defeault score is 1; can dynamically change
+            $hPosition{ $SKWnoEM } = 1;
             
         }else{
             push(@nlgFilterTemplateXPosOnly, $poskw);
         }
         push(@nlgFilterTemplateXLoLLexProtected, \@LKWs);
         push(@nlgFilterTemplateXLoLLex, \@LKWs);
+        
+        push(@vLoHDFiedDynam, %hPosition); # preparing hashes for keywords, and empty values for 
     }
     
 
@@ -1198,7 +1233,7 @@ sub prepareNlgFilterTemplateX4NLGv3{
     # my @nlgFilterTemplateXLofLGo = (); # go-word list : List of Lists
 
     
-    return (\@hLoLDFieldStat, \@rejectTemp);
+    return (\@hLoLDFieldStat, \@vLoHDFiedDynam, \@rejectTemp);
     # return (\@nlgFilterTemplateXPos, \@nlgFilterTemplateXLofLStop, \@nlgFilterTemplateXLofLGo, \@rejectTemp);
     # 
 
