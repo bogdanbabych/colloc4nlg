@@ -955,7 +955,7 @@ sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
 
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
-    print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :: \n";
+    print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :!!: \n";
     # debug printing of the main data structure
     my @nlgFilterTemplateXLoLLexProtected = @{ $ref_nlgFilterTemplateXLoLLexProtected }; print STDERR " nlgFilterTemplateXLoLLexProtected :  \n"; printLoL(@nlgFilterTemplateXLoLLexProtected);
     my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
@@ -971,7 +971,7 @@ sub runCollocField2updateDFieldPosition2CalculatePositions4NLG{
     for ( my $iPosit = 0; $iPosit < $ILenTemplate; $iPosit++ ){
         $IDistance = $iPosit - $IPosition;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
-        print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG : IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
+        print STDERR " runCollocField2updateDFieldPosition2CalculatePositions4NLG :!!: IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
         my @LPositionDistanceFilter = ( $IPosition, $IDistance, $SPoSFilter );
         push(@LoLPositionDistNFiltersOut, \@LPositionDistanceFilter);
     }
