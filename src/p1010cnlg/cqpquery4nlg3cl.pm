@@ -914,6 +914,11 @@ sub printLoL{
         if (scalar (@LEl) == 0){
             print STDERR "    () \n";
         }else{ 
+            for $element (@LEl){
+                $SType = ref($element);
+                print STDERR " type=$SType ";
+            }
+            print STDERR ""
             print STDERR "    @LEl \n";
         };
         # for $SEl (@LEl){
