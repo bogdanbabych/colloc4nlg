@@ -1200,7 +1200,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my $SPoSFocus = "NN";
     my $collocspanleft = 1;
     my $collocspanright = 0; 
-    my $collocfilter "J.*";
+    my $collocfilter = "J.*";
     $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter)
     %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     printH(\%DColloc4KWScores);
