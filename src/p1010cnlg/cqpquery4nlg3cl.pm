@@ -1035,7 +1035,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
     # taking parameters that are needed, executing and returning output
     # packaged code from main section of cqp4nlg2cl.pl 
     
-    my ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
     my @LFocus = @{ $ref_LFocus };
     
     # intermediate data structure which is updated: holds all the collocation + score values and is updated for each iteration; same values result in higher scores
