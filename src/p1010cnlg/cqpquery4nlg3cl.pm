@@ -1055,7 +1055,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         my $originalquery = "$focus\/$SPoSFocus";
 
         # print "originalquery = $originalquery<br>\n";
-        my $searchstring=makecqpquery($originalquery);
+        # needs to be global: ???
+        $searchstring=makecqpquery($originalquery);
         print STDERR "1.2.1.: searchstring = $searchstring \n";
         
         
