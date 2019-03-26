@@ -1089,7 +1089,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         $numoccur=$totalpairs;
         # foreach $el (keys %paris){ print "Pair: $el <br>\n"}
         my @collocationstr4nlg = showcollocates();
-        # print "collocationstr4nlg = @collocationstr4nlg <br>\n";
+        print STDERR "1.2.1.: collocationstr4nlg = @collocationstr4nlg \n";
         
         my @collocationstr4nlgLocal = @collocationstr4nlg;
         my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
@@ -1097,8 +1097,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         my %collKWordMatch = %{$ref_collKWordMatch};
         # ### Main Data structure now:
         my %coll4KWordSc = %{$ref_coll4KWordSc}; # collocations (keys) and collocation scores (values);
-        my %coll4KWordScLog = runCollocFieldLogScale1HashScores(\%coll4KWordSc);
-        %DColloc4KWScores = runCollocFieldUpdate2HashScoresRef(\%DColloc4KWScores, \%coll4KWordScLog);
+        # ### my %coll4KWordScLog = runCollocFieldLogScale1HashScores(\%coll4KWordSc);
+        # ### %DColloc4KWScores = runCollocFieldUpdate2HashScoresRef(\%DColloc4KWScores, \%coll4KWordScLog);
         
         
         my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
@@ -1129,7 +1129,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         # ###    @LFocusNew = prepareFocus4NLG(@LFocusNew0);
         # ### }
     }
-    return \%DColloc4KWScores;
+    # ### return \%DColloc4KWScores;
 
 } # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG
 
