@@ -1178,7 +1178,11 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # main collocation execution engine
-    # the tasks: (a) create query, (b) send and collect data to/from 1.2.1.; (c) apply stop & go lists; (d) store / update main data structure in correct way
+    # the tasks: 
+    # (a) create query, 
+    # (b) send and collect data to/from 1.2.1.; 
+    # (c) apply stop & go lists; 
+    # (d) store / update main data structure in correct way
     # function 1.2 to update
     my ($ref_LPositionPoSDistanceFilter , $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
@@ -1196,7 +1200,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
     
     # test run of 1.2.1
-    my @LFocus = ("deal", "bond", "tie");
+    my @LFocusX = ("bond", "tie");
     my $SPoSFocus = "NN";
     my $collocspanleft = 1;
     my $collocspanright = 0; 
