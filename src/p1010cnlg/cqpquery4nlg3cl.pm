@@ -934,6 +934,14 @@ sub printLoL{
 }  # end: sub printLoL
 
 
+sub printH{
+    print STDERR "  \{\n";
+    while(my ($key, $val) = each %hEl){
+        print STDERR "    $key => $val , \n";
+    }
+    print STDERR "  \}\n";
+
+} end: printH
 
 sub printLoH{
     my @LoH = @_;
@@ -955,6 +963,170 @@ sub printLoH{
 
 }  # end: sub printLoL
 
+
+sub runCollocFieldLogScale1HashScores{
+    # scaling collocation scores to a logarithm(sc + 1)
+    my ($ref_HashX) = @_;
+    my %HashX = %{ $ref_HashX };
+    my %HashY;
+    while (my ($key, $value) = each %HashX){
+        $HashY{$key} = log($value + 1);
+    }
+    # return completely new hash
+    return \%HashY;
+    
+} # end: runCollocFieldLogScale1HashScores
+
+sub runCollocFieldUpdate2HashScores{
+    # updating collocation hash scores (merging scores of two hashes)
+    my ($ref_HashA, $ref_HashB) = @_;
+    my %HashA = %{ $ref_HashA }; my %HashB = %{ $ref_HashB };
+    my %HashZ; 
+    
+
+    while(my ($keyA, $valA) = each %HashA){
+        $HashZ{ $keyA } = $valA;
+    }
+
+    while(my ($keyB, $valB) = each %HashB){
+        if(exists $HashZ{$keyB} ){
+            $valZ = $HashZ{$keyB}
+            $valZNew = $valZ + $valB;
+            $HashZ{ $keyB } = $valZNew;
+        }else{
+            $HashZ{ $keyB } = $valB;
+        }   
+        
+    }
+    return \%HashZ;
+
+
+} # end runCollocFieldUpdate2HashScores
+
+sub runCollocFieldUpdate2HashScoresRef{ # merges hash in place, without creating a new hash
+    # updating collocation hash scores (merging scores of two hashes)
+    my ($ref_HashZ, $ref_HashB) = @_;
+    my %HashZ = %{ $ref_HashZ }; my %HashB = %{ $ref_HashB }; 
+    
+
+    while(my ($keyB, $valB) = each %HashB){
+        if(exists $HashZ{$keyB} ){
+            $valZ = $HashZ{$keyB}
+            $valZNew = $valZ + $valB;
+            $HashZ{ $keyB } = $valZNew;
+        }else{
+            $HashZ{ $keyB } = $valB;
+        }   
+        
+    }
+    return \%HashZ;
+
+} # end runCollocFieldUpdate2HashScoresRef
+
+
+sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
+    # function 1.2.1
+    # contains all code needed to generate collocates for given values
+    # taking parameters that are needed, executing and returning output
+    # packaged code from main section of cqp4nlg2cl.pl 
+    
+    my ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    my @LFocus = @{ $ref_LFocus };
+    
+    # intermediate data structure which is updated: holds all the collocation + score values and is updated for each iteration; same values result in higher scores
+    # input list of focus words also comes with scores; higher scores matter more;
+    # sum of logarithms ?
+    my %DColloc4KWScores;
+    
+    # ### my $fc = 0; # focus counter
+    foreach my $focus (@LFocus){
+        # print "<br>\n";
+        # print "fc= $fc<br>\n";
+        # dynamic moving focus...
+        
+        # change implemented: combine lex + PoS code : introduce new argument:
+        # $originalquery = $elFocus . '/' . $SPoSFocus 
+        # $originalquery = $focus;
+        my $originalquery = "$focus\/$SPoSFocus";
+
+        # print "originalquery = $originalquery<br>\n";
+        my $searchstring=makecqpquery($originalquery);
+        # print "searchstring = $searchstring<br>\n";
+        
+        
+        initialiseVarsCollocSearch4NLGv3();
+        
+        # initialising query parameters
+        # !!!!!!!
+        # do main search here:
+
+        # change implemented -- these values are now read from the 
+        
+        # ### $collocspanleft= 1; # dynamic determination of value ....
+        # ### $collocspanright = 0;
+        # ### $collocfilter = $elPoS;
+        
+        # ## print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
+        my @corpuslist=split ',', $corpuslist;
+        # already intialised
+        # %pairs = ();
+        # $numoccur = 0;
+       
+        ## main run 
+        # print " corpuslist = @corpuslist<br>\n";
+        foreach $corpus (@corpuslist) {   
+            $numoccur+=processcorpus($corpus, $searchstring);   
+            # print "numoccur = $numoccur<br>\n";     
+        }
+        ## main run
+        
+        print STDLOG "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
+        $numoccur=$totalpairs;
+        # foreach $el (keys %paris){ print "Pair: $el <br>\n"}
+        my @collocationstr4nlg = showcollocates();
+        # print "collocationstr4nlg = @collocationstr4nlg <br>\n";
+        
+        my @collocationstr4nlgLocal = @collocationstr4nlg;
+        my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
+        # print "references = $ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc <br>\n";
+        my %collKWordMatch = %{$ref_collKWordMatch};
+        # ### Main Data structure now:
+        my %coll4KWordSc = %{$ref_coll4KWordSc}; # collocations (keys) and collocation scores (values);
+        my %coll4KWordScLog = runCollocFieldLogScale1HashScores(\%coll4KWordSc);
+        %DColloc4KWScores = runCollocFieldUpdate2HashScoresRef(\%DColloc4KWScores, \%coll4KWordScLog);
+        
+        
+        my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
+        # my @coll4nlgList2clean = cleanupCollList4NLG(@coll4nlgList);
+        my @coll4nlgList2clean = cleanupCollList4NLG( sort {$coll4KWordSc{$b} <=> $coll4KWordSc{$a}} keys %coll4KWordSc );
+        # print "coll4nlgList = @coll4nlgList <br>\n";
+        if ($is_cgi){ print "coll4nlgList2clean = @coll4nlgList2clean <br>\n";};
+        
+        ## debugging
+        # ### my @keysColl4KWordSc = keys(%coll4KWordSc);
+        ## print "keys coll4KWordSc = @keysColl4KWordSc <br>\n" ;
+        
+        # change implemented: this is done in function 2.1 on a higher level
+        # implementing a temporary data structure which holds hashes between iterations (or update on iterative hashes
+        # prototype for the updated iterative hash as main data structure (?)
+        
+        # we just returned ranked collocations, which are used to update the new main data structure...
+        # ### unshift @LofLNLGColl, \@coll4nlgList2clean; # udating main data structure: adding to the beginning of the list, reversed!
+        # unshift @LofLNLGColl, \@coll4nlgList; # udating main data structure: adding to the beginning of the list, reversed!
+        # ### unshift @LofH4NLGColl, \%coll4KWordSc; # udating main data structure (!now Hash!): adding to the beginning of the list, reversed!
+        
+        
+        # change implemented: all focuses are examined, the full list, this is deprecated and removed 
+        # ### if ($fc < 1){ # limit on the length ??? [look it up!!!]
+        # ###    # push @LFocusNew0, $coll4nlgList2clean[0]; # at the moment only one el in focus used, to be updated later
+        # ###    push @LFocusNew0, $coll4nlgList[0]; # at the moment only one el in focus used, to be updated later
+        # ###    # change this first [???]
+        # ###    @LFocusNew = prepareFocus4NLG(@LFocusNew0);
+        # ### }
+    }
+    return \%DColloc4KWScores;
+
+} # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG
 
 
 
@@ -1006,6 +1178,7 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # main collocation execution engine
+    # the tasks: (a) create query, (b) send and collect data to/from 1.2.1.; (c) apply stop & go lists; (d) store / update main data structure in correct way
     # function 1.2 to update
     my ($ref_LPositionPoSDistanceFilter , $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
@@ -1021,7 +1194,16 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # to implement: updating the dynamic data structure, using words from the active hash, N-best;
     # if another run is needed -- resetting with 'protected' values for keywords...
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
-
+    
+    # test run of 1.2.1
+    my @LFocus = ("deal", "bond", "tie");
+    my $SPoSFocus = "NN";
+    my $collocspanleft = 1;
+    my $collocspanright = 0; 
+    my $collocfilter "J.*";
+    $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter)
+    %DColloc4KWScores = %{ $ref_DColloc4KWScores };
+    printH(\%DColloc4KWScores);
 
 } # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
         
