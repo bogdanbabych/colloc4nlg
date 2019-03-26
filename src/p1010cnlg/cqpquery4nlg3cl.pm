@@ -935,7 +935,7 @@ sub printLoL{
 
 
 sub printH{
-    print STDERR "  \{\n";
+    print STDERR "  printH\n\    {\n";
     while(my ($key, $val) = each %hEl){
         print STDERR "    $key => $val , \n";
     }
@@ -1232,7 +1232,7 @@ sub runCollocField2updtDFieldPosition4NLG{
         
     }
 
-} # runCollocField2updateDFieldStat4NLG
+} # runCollocField2updtDFieldPosition4NLG
 
             
 # ### collocation field generation: recursive generation and updating of collocations in the template
