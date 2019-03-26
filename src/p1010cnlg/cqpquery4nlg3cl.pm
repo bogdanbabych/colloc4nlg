@@ -935,8 +935,10 @@ sub printLoL{
 
 
 sub printH{
+    my ($ref_DH) = @_;
+    my %DH = %{ $ref_DH };
     print STDERR "  printH\n\    {\n";
-    while(my ($key, $val) = each %hEl){
+    while(my ($key, $val) = each %DH){
         print STDERR "    $key => $val , \n";
     }
     print STDERR "  \}\n";
@@ -946,7 +948,7 @@ sub printH{
 sub printLoH{
     my @LoH = @_;
     foreach $ref_el (@LoH){
-        %hEl = %{ $ref_el };
+        my %hEl = %{ $ref_el };
         
         if (scalar(keys %hEl) == 0){
             print STDERR "    {} \n";
