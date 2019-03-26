@@ -1854,6 +1854,7 @@ sub showcollocates {
         printf STDOUT $messages{'colloc-header'}, $corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter;
         
     }
+    print STDERR $corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter;
 
   # print short html anchor for each association measure requested
   if ($llstat && $printproofcolloc4nlg0) { print STDOUT qq{<p><a href="#LL score">LL score</a></p>\n};}
