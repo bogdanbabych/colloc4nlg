@@ -918,7 +918,7 @@ sub printLoL{
                 $SType = ref($element);
                 print STDERR " type=$SType ";
             }
-            print STDERR ""
+            # print STDERR "";
             print STDERR "    @LEl \n";
         };
         # for $SEl (@LEl){
