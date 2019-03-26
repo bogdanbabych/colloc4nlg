@@ -918,10 +918,10 @@ sub printLoL{
                 $SType = ref($element);
                 if ($SType eq "ARRAY"){
                     @LElement = @{ $element };
-                    print STDERR "~    @LElement    ~ ";
+                    print STDERR "( @LElement ), ";
                     
                 };
-                print STDERR " type=$SType ";
+                # print STDERR " type=$SType ";
             }
             # print STDERR "";
             print STDERR "    @LEl \n";
