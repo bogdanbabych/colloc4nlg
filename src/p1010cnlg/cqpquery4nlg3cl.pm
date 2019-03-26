@@ -938,8 +938,11 @@ sub printH{
     my ($ref_DH) = @_;
     my %DH = %{ $ref_DH };
     print STDERR "  printH\n\    {\n";
-    while(my ($key, $val) = each %DH){
-        print STDERR "    $key => $val , \n";
+    
+    foreach $key (keys %DH){
+        $val = $DH{$key};
+        print STDERR "  DH:  $key => $val , \n";
+        
     }
     print STDERR "  \}\n";
 
