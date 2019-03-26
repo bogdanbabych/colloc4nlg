@@ -1056,7 +1056,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
 
         # print "originalquery = $originalquery<br>\n";
         my $searchstring=makecqpquery($originalquery);
-        # print "searchstring = $searchstring<br>\n";
+        print STDERR "1.2.1.: searchstring = $searchstring \n";
         
         
         initialiseVarsCollocSearch4NLGv3();
@@ -1085,7 +1085,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         }
         ## main run
         
-        print STDLOG "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
+        print STDERR "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
         $numoccur=$totalpairs;
         # foreach $el (keys %paris){ print "Pair: $el <br>\n"}
         my @collocationstr4nlg = showcollocates();
