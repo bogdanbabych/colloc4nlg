@@ -997,13 +997,16 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # main collocation execution engine
     # function 1.2 to update
-    my ($ref_LPositionPoSDistanceFilter , $ref_vLoHDFiedDynam) = @_;
+    my ($ref_LPositionPoSDistanceFilter , $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
     my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @LPositionPoSDistanceFilter;
 
+    my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
+    
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; printLoL(@hLoLDFieldStat);    
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
     
     # to implement: updating the dynamic data structure, using words from the active hash, N-best;
     # if another run is needed -- resetting with 'protected' values for keywords...
@@ -1033,7 +1036,7 @@ sub runCollocField2updtDFieldPosition4NLG{
     foreach $ref_LPositionPoSDistanceFilter (@LoLPositionPoSDistNFiltersOut){
         my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
         # calling function 1.2
-        runCollocField2updtDFieldPosition2runCollocSearch4NLG(\@LPositionPoSDistanceFilter, $ref_vLoHDFiedDynam);
+        runCollocField2updtDFieldPosition2runCollocSearch4NLG(\@LPositionPoSDistanceFilter, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
         
     }
 
