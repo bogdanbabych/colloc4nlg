@@ -1073,7 +1073,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         # ### $collocfilter = $elPoS;
         
         # ## print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
-        my @corpuslist=split ',', $corpuslist;
+        @corpuslist=split ',', $corpuslist;
         # already intialised
         # %pairs = ();
         # $numoccur = 0;
