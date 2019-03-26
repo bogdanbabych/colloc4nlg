@@ -1205,12 +1205,12 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
     
     # test run of 1.2.1
-    my @LFocusX = ("bond", "tie");
+    my @LFocusX = ("deal");
     my $SPoSFocus = "NN";
     my $collocspanleft = 1;
     my $collocspanright = 0; 
     my $collocfilter = "J.*";
-    $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter);
+    $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter);
     %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     printH(\%DColloc4KWScores);
 
