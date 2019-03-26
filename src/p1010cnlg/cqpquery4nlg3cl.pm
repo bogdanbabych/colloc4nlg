@@ -941,7 +941,7 @@ sub printH{
     }
     print STDERR "  \}\n";
 
-} end: printH
+} # end: printH
 
 sub printLoH{
     my @LoH = @_;
@@ -990,7 +990,7 @@ sub runCollocFieldUpdate2HashScores{
 
     while(my ($keyB, $valB) = each %HashB){
         if(exists $HashZ{$keyB} ){
-            $valZ = $HashZ{$keyB}
+            $valZ = $HashZ{$keyB};
             $valZNew = $valZ + $valB;
             $HashZ{ $keyB } = $valZNew;
         }else{
@@ -1011,7 +1011,7 @@ sub runCollocFieldUpdate2HashScoresRef{ # merges hash in place, without creating
 
     while(my ($keyB, $valB) = each %HashB){
         if(exists $HashZ{$keyB} ){
-            $valZ = $HashZ{$keyB}
+            $valZ = $HashZ{$keyB};
             $valZNew = $valZ + $valB;
             $HashZ{ $keyB } = $valZNew;
         }else{
