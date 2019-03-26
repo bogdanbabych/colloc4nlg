@@ -1078,10 +1078,10 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         # $numoccur = 0;
        
         ## main run 
-        # print " corpuslist = @corpuslist<br>\n";
+        print STDERR "1.2.1: corpuslist = @corpuslist \n";
         foreach $corpus (@corpuslist) {   
             $numoccur+=processcorpus($corpus, $searchstring);   
-            # print "numoccur = $numoccur<br>\n";     
+            print STDERR "numoccur = $numoccur \n"; 
         }
         ## main run
         
