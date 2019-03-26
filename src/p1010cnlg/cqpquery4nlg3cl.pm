@@ -916,6 +916,11 @@ sub printLoL{
         }else{ 
             for $element (@LEl){
                 $SType = ref($element);
+                if ($SType eq "ARRAY"){
+                    @LElement = @{ $element };
+                    print STDERR "~    @LElement    ~ ";
+                    
+                };
                 print STDERR " type=$SType ";
             }
             # print STDERR "";
