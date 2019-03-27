@@ -957,7 +957,8 @@ sub printLoH{
             print STDERR "    {} \n";
         }else{
             print STDERR "  \{\n";
-            while(my ($key, $val) = each %hEl){
+            foreach my $key (sort { $hEl{$b} <=> $hEl{$a} } keys %hEl) {
+            # ### while(my ($key, $val) = each %hEl){
                 print STDERR "    $key => $val , \n";
             }
             print STDERR "  \}\n";
@@ -1138,6 +1139,120 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
 } # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG
 
 
+sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
+    # function 1.2.1v3
+    # direct function -- will not return argument, will work with the data structure directly, implement hard limit on N-best list
+    # limited applicability, but more efficient
+    # contains all code needed to generate collocates for given values
+    # taking parameters that are needed, executing and returning output
+    # packaged code from main section of cqp4nlg2cl.pl 
+    
+    ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    # does not need the list of Focus items, takes them from the relevant hash reference
+    # make the main data structure a global variable...
+    # my @LFocus = @{ $ref_LFocus };
+    
+    # intermediate data structure which is updated: holds all the collocation + score values and is updated for each iteration; same values result in higher scores
+    # input list of focus words also comes with scores; higher scores matter more;
+    # sum of logarithms ?
+    my %DColloc4KWScores;
+    
+    # ### my $fc = 0; # focus counter
+    foreach my $focus (@LFocus){
+        # print "<br>\n";
+        # print "fc= $fc<br>\n";
+        # dynamic moving focus...
+        
+        # change implemented: combine lex + PoS code : introduce new argument:
+        # $originalquery = $elFocus . '/' . $SPoSFocus 
+        # $originalquery = $focus;
+        my $originalquery = "$focus\/$SPoSFocus";
+
+        # print "originalquery = $originalquery<br>\n";
+        # needs to be global: ???
+        $searchstring=makecqpquery($originalquery);
+        print STDERR "1.2.1.: searchstring = $searchstring \n";
+        
+        
+        initialiseVarsCollocSearch4NLGv3();
+        
+        # initialising query parameters
+        # !!!!!!!
+        # do main search here:
+
+        # change implemented -- these values are now read from the 
+        
+        # ### $collocspanleft= 1; # dynamic determination of value ....
+        # ### $collocspanright = 0;
+        # ### $collocfilter = $elPoS;
+        
+        # ## print "&nbsp;Details: $collocspanleft ; $collocspanright ; $collocfilter <br>\n";
+        @corpuslist=split ',', $corpuslist;
+        # already intialised
+        # %pairs = ();
+        # $numoccur = 0;
+       
+        ## main run 
+        print STDERR "1.2.1: corpuslist = @corpuslist \n";
+        foreach $corpus (@corpuslist) {   
+            $numoccur+=processcorpus($corpus, $searchstring);   
+            print STDERR "numoccur = $numoccur \n"; 
+        }
+        ## main run
+        
+        print STDERR "Colloc: left=$collocspanleft, right=$collocspanright, collocfilter=$collocfilter\n";
+        $numoccur=$totalpairs;
+        # foreach $el (keys %paris){ print "Pair: $el <br>\n"}
+        my @collocationstr4nlg = showcollocates();
+        print STDERR "1.2.1.: collocationstr4nlg = @collocationstr4nlg \n";
+        
+        # ### my @collocationstr4nlgLocal = @collocationstr4nlg;
+        
+        # ### my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
+        my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlg); # splitting pairs kw + colloc, only colloc in second list - to be used
+        # print "references = $ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc <br>\n";
+        my %collKWordMatch = %{$ref_collKWordMatch};
+        # ### Main Data structure now:
+        my %coll4KWordSc = %{$ref_coll4KWordSc}; # collocations (keys) and collocation scores (values);
+        # ### my %coll4KWordScLog = runCollocFieldLogScale1HashScores(\%coll4KWordSc);
+        # ### %DColloc4KWScores = runCollocFieldUpdate2HashScoresRef(\%DColloc4KWScores, \%coll4KWordScLog);
+        
+        
+        my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
+        # my @coll4nlgList2clean = cleanupCollList4NLG(@coll4nlgList);
+        my @coll4nlgList2clean = cleanupCollList4NLG( sort {$coll4KWordSc{$b} <=> $coll4KWordSc{$a}} keys %coll4KWordSc );
+        # print "coll4nlgList = @coll4nlgList <br>\n";
+        if ($is_cgi){ print "coll4nlgList2clean = @coll4nlgList2clean <br>\n";};
+        
+        ## debugging
+        # ### my @keysColl4KWordSc = keys(%coll4KWordSc);
+        ## print "keys coll4KWordSc = @keysColl4KWordSc <br>\n" ;
+        
+        # change implemented: this is done in function 2.1 on a higher level
+        # implementing a temporary data structure which holds hashes between iterations (or update on iterative hashes
+        # prototype for the updated iterative hash as main data structure (?)
+        
+        # we just returned ranked collocations, which are used to update the new main data structure...
+        # ### unshift @LofLNLGColl, \@coll4nlgList2clean; # udating main data structure: adding to the beginning of the list, reversed!
+        # unshift @LofLNLGColl, \@coll4nlgList; # udating main data structure: adding to the beginning of the list, reversed!
+        # ### unshift @LofH4NLGColl, \%coll4KWordSc; # udating main data structure (!now Hash!): adding to the beginning of the list, reversed!
+        
+        
+        # change implemented: all focuses are examined, the full list, this is deprecated and removed 
+        # ### if ($fc < 1){ # limit on the length ??? [look it up!!!]
+        # ###    # push @LFocusNew0, $coll4nlgList2clean[0]; # at the moment only one el in focus used, to be updated later
+        # ###    push @LFocusNew0, $coll4nlgList[0]; # at the moment only one el in focus used, to be updated later
+        # ###    # change this first [???]
+        # ###    @LFocusNew = prepareFocus4NLG(@LFocusNew0);
+        # ### }
+    }
+    # return value, or direct update of the main data structure >> speed?
+    # ### return \%DColloc4KWScores;
+
+} # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3
+
+
+
 
 sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
     # calculating positions for collocation generation
@@ -1225,12 +1340,15 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
     
     # test run of 1.2.1
+    # to change to hash representation (as in the main dynamic data structure and N-best generation of collocates only;
+    # hard limit in the generation function
     my @LFocusX = ("deal", "product");
     # ### my $SPoSFocus = "NN";
     
     # ### my $collocspanleft = 1;
     # ### my $collocspanright = 0; 
     # ### my $collocfilter = "J.*";
+    # calculate collocation span
     if($IDistance < 0){
         $collocspanleft = ($IDistance * -1) ;
         $collocspanright = 0; 
@@ -1245,7 +1363,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
     
-    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
+    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
     %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
@@ -1294,6 +1412,7 @@ sub runCollocField4NLG{
     
     # create data structures
     my ( $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $ref_rejectTemp ) = prepareNlgFilterTemplateX4NLGv3(@LTemplatePoSRaw);
+    # ### make these global?
     
     # my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     # my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam }; # vertical dynamic data structure: list of hashes with scores for each position
@@ -1437,6 +1556,8 @@ sub prepareNlgFilterTemplateX4NLGv3{
     my @nlgFilterTemplateX = @_;
     # returned list -- with horizontal data lists
     
+    ## ### the main data structure
+    ## ? to declare this as a global variable, accessible to all functions ? -- a possibility, but not now...
     my @hLoLDFieldStat = (); # static horizontal list of lists -- main data structure
     my @vLoHDFiedDynam = (); # a dynamic vertical data structure: list of hashes, with collocations and scores being updated at respective positions
 
@@ -1548,7 +1669,7 @@ sub prepareNlgFilterTemplateX4NLGv3{
     # 
 
 
-}
+} end: prepareNlgFilterTemplateX4NLGv3
 
 
 sub prepareNlgFilterTemplateX4NLG{
