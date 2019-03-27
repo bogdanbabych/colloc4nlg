@@ -1374,19 +1374,22 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # calculate collocation span
     if($IDistance < 0){
         $collocspanleft = $IDistance * -1 ;
-        $collocspanright = 0; 
+        $collocspanright = 0;
+        runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
+
 
     }elsif($IDistance > 0){
         $collocspanleft = 0;
         $collocspanright = $IDistance; 
+        runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
+
         
     }else{
-        return # if $IDistance == 0 :  -- do not generate collocation without collocation span  
+        # return # if $IDistance == 0 :  -- do not generate collocation without collocation span  
     }
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
     # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
-    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
     # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
