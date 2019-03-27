@@ -1142,6 +1142,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
 
 sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # function 1.2.1v3
+    # todo: to implement filters and injections here
     # direct function -- will not return argument, will work with the data structure directly, implement hard limit on N-best list
     # limited applicability, but more efficient
     # contains all code needed to generate collocates for given values
@@ -1443,9 +1444,20 @@ sub runCollocField2updtDFieldPosition4NLG{
 
 } # runCollocField2updtDFieldPosition4NLG
 
+
+sub runCollocField2collectTopCollocates4NLGv3{
+    # function 2.
+    # collecting a dataset from the main data structure
+    my ($ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
+    my %hLoLDFieldStat = %{ $ref_hLoLDFieldStat };
+    my %vLoHDFiedDynam = %{ $ref_vLoHDFiedDynam };
+    
+
+} # end: runCollocField2collectTopCollocates4NLGv3
             
 # ### collocation field generation: recursive generation and updating of collocations in the template
 sub runCollocField4NLG{
+    # function 0: calls 1, 2; -- new implementation
     # called: runCollocField4NLG(\@nlgFilterTemplateX1, \@nlgFilterTemplate1)
     
     my ($ref_nlgFilterTemplateX1 , $ref_nlgFilterTemplate1) = @_;
@@ -1487,10 +1499,22 @@ sub runCollocField4NLG{
         # list of hashes in the data structure ?
         # 2 steps: 1. updating the data structure for each position
         # runCollocField2updateDFieldStatPosition4NLG($IPosition, $ref_nlgFilterTemplateXPosOnly, $ref_vLoHDFiedDynam);
+        # rund function 1.
         runCollocField2updtDFieldPosition4NLG($IPosition, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
     
     }
     # 2 steps: 2: at the end: collect top lists, copy to Protected and generate collocation searches;
+    # run function 2: collect words 
+    runCollocField2collectTopCollocates4NLGv3($ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
+    
+    # temp comments
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
+    
+    print "\n\n begin:New Output:\n\n";
+    recombineCollocHash4NLG(@vLoHDFiedDynam); # print comibnations based on scores on screen
+    print "\n\n end:New Output\n\n";
+
+    
 
 
 } # ### end: sub runCollocField4NLG()
