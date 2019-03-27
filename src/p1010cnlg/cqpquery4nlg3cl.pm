@@ -1321,8 +1321,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; # printLoL(@hLoLDFieldStat);    
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; # printLoH(@vLoHDFiedDynam);    
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; printLoL(@hLoLDFieldStat);    
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
 
     # my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
     # my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; # print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
@@ -1330,10 +1330,10 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my $collocspanright; 
 
 
-    $ref_LFocusX1 = $nlgFilterTemplateXLoLLex[$IPositionFocus];
+    # ### $ref_LFocusX1 = $nlgFilterTemplateXLoLLex[$IPositionFocus];
     # my @LFocusX1 = @{ $ref_LFocusX1 }; 
-    $type = ref($ref_LFocusX1);
-    print STDERR "1.2: ref_LFocusX1 = $ref_LFocusX1; type = $type \n";
+    # ### $type = ref($ref_LFocusX1);
+    # ### print STDERR "1.2: ref_LFocusX1 = $ref_LFocusX1; type = $type \n";
     
 
     # to implement: updating the dynamic data structure, using words from the active hash, N-best;
