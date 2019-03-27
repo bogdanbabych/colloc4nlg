@@ -1,0 +1,15 @@
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='model'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-model.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='moto'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-moto.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='motomod'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-motomod.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='network'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-network.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='new'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-new.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='offer'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-offer.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='only'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-only.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='phone'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-phone.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='pixel'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-pixel.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='plus'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-plus.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='potential'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-potential.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='primary'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-primary.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='red'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-red.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='samsung'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-samsung.txt
+perl /var/www/cgi-bin/cqp4nlg3cl.pl --keyword='select'  > /data/html/corpuslabs/lab201810cnlg/testKWsV3/cqp4nlg2cl_out4-select.txt
