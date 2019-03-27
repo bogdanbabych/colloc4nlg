@@ -1511,7 +1511,7 @@ sub runCollocField4NLG{
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
     print "\n\n begin:New Output:\n\n";
-    recombineCollocHash4NLG(@vLoHDFiedDynam); # print comibnations based on scores on screen
+    recombineCollocHash4NLGv3(@vLoHDFiedDynam); # print comibnations based on scores on screen
     print "\n\n end:New Output\n\n";
 
     
@@ -1901,6 +1901,71 @@ sub recombineCollocHash4NLG{
 
 
 }
+
+sub recombineCollocHash4NLGv3{
+    my $maxComb = 3; # to implement this as an optional feature --> if needed we restrict the search space
+    my @LoHCollocSc = @_;
+    my %hBeamComb;
+    # print "is_cgi = $is_cgi <br>\n";
+    if ( $is_cgi ){ print "LoHCollocSc = @LoHCollocSc <br>\n"; };
+    foreach my $ref_CollScHash (@LoHCollocSc) { 
+        %CollScHash = %{$ref_CollScHash};
+        my %hBeamCombLine;
+        # $curComb2 = 0;
+        my $currComb = 0;
+        foreach my $collocation (sort {$CollScHash{$b} <=> $CollScHash{$a}} keys %CollScHash){
+            print STDERR "recombineCollocHash4NLG: collocation = $collocation ; $CollScHash{$collocation}\n";
+            $currComb++;
+            if($currComb > $maxComb){ 
+                if ( $is_cgi ){ print " :: currComb = $currComb [break] :: "; }else{print STDERR "    collocation = $collocation; currComb = $currComb [break]";};
+                last;
+            };
+
+            if ($collocation =~ /[0-9]/){
+                next;                
+            };
+            if ( grep( /^$collocation$/, @rejectTemp ) ) { # reject collocations in stoplist
+                next;
+            };
+            # if (){};
+
+            $score = $CollScHash{$collocation};
+            my $sc = $score + 1;
+            my $logsc = log($sc);
+            
+            $hBeamCombLine{$collocation} = $logsc;
+
+            
+            if ( $is_cgi ){ print "$collocation : $score ;;   "; };
+        }
+        print STDERR "\n";
+    
+        $ref_hBeamComb0 = recombineCollocHash4NLG2Hashes(\%hBeamComb , \%hBeamCombLine);
+        undef %hBeamComb;
+        %hBeamComb = %{$ref_hBeamComb0};
+        
+        # %hBeamComb = %hBeamComb0;
+        
+        
+        # $currComb = 0;
+        if ( $is_cgi ){ print " -- line<br><br>\n\n"; };
+        
+    }
+    foreach my $collstring (sort {$hBeamComb{$b} <=> $hBeamComb{$a}} keys %hBeamComb){
+        $sccombined = $hBeamComb{$collstring};
+        if ( $is_cgi ){ 
+            print "$collstring = $sccombined <br>\n";  
+        }else{
+            print "$collstring\t$sccombined\n";
+        };  
+    }
+    if ( $is_cgi ){ print "list end <br>\n"; };
+
+
+
+
+} # end: recombineCollocHash4NLGv3
+
 
 
 sub recombineColloc4NLG2File{
