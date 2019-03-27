@@ -1324,8 +1324,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; # printLoL(@hLoLDFieldStat);    
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; # printLoH(@vLoHDFiedDynam);    
 
-    my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
-    my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; # print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
+    # my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
+    # my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; # print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
     my $collocspanleft;
     my $collocspanright; 
 
@@ -1351,7 +1351,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # ### my $collocfilter = "J.*";
     # calculate collocation span
     if($IDistance < 0){
-        $collocspanleft = ($IDistance * -1) ;
+        $collocspanleft = $IDistance * -1 ;
         $collocspanright = 0; 
 
     }elsif($IDistance > 0){
