@@ -958,8 +958,9 @@ sub printLoH{
         }else{
             print STDERR "  \{\n";
             foreach my $key (sort { $hEl{$b} <=> $hEl{$a} } keys %hEl) {
+                
             # ### while(my ($key, $val) = each %hEl){
-                print STDERR "    $key => $val , \n";
+                print STDERR "    $key => $hEl{$key} , \n";
             }
             print STDERR "  \}\n";
             
