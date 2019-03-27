@@ -1824,6 +1824,9 @@ sub recombineCollocHash4NLG2Hashes{
     }else{
         foreach my $collstr (sort {$hBeamComb{$b} <=> $hBeamComb{$a}} keys %hBeamComb){
             foreach my $collstrLine (sort {$hBeamCombLine{$b} <=> $hBeamCombLine{$a}} keys %hBeamCombLine){
+                if (index(lc($collstr), lc($collstrLine)) != -1) {
+                    next;
+                }
                 $collstr0 = "$collstr $collstrLine ";
                 $sc0 = $hBeamComb{$collstr} + $hBeamCombLine{$collstrLine};
                 $hBeamComb0{$collstr0} = $sc0;
@@ -1903,7 +1906,7 @@ sub recombineCollocHash4NLG{
 }
 
 sub recombineCollocHash4NLGv3{
-    my $maxComb = 9; # to implement this as an optional feature --> if needed we restrict the search space
+    my $maxComb = 8; # to implement this as an optional feature --> if needed we restrict the search space
     my @LoHCollocSc = @_;
     my %hBeamComb;
     # print "is_cgi = $is_cgi <br>\n";
