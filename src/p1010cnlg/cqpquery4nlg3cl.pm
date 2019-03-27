@@ -1148,11 +1148,13 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # taking parameters that are needed, executing and returning output
     # packaged code from main section of cqp4nlg2cl.pl 
     
-    ($ref_LFocus, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    ($ref_LFocus, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter, $iPosit) = @_; ## iPosit argument - position where results will be inserted
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
     my $ref_DInFocusPosition = $vLoHDFiedDynam[$IPositionFocus]; 
+    my $ref_DiPosit = $vLoHDFiedDynam[$iPosit]; # reference to the position of the collocate, where results are inserted
+    
     my %DInFocusPosition = %{ $ref_DInFocusPosition };
     my $iCnt = 0;
     my @LFocusV3 = ();
@@ -1182,6 +1184,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # ### foreach my $focus (@LFocus){
     foreach my $focusNScore (@LFocusV3){
         my ($focus, $score) = split(/~/, $focusNScore);
+        my $scoreFocusLog = log(int($score)+1);
+        
         # print "<br>\n";
         # print "fc= $fc<br>\n";
         # dynamic moving focus...
@@ -1233,12 +1237,27 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
         
         # ### my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
         my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlg); # splitting pairs kw + colloc, only colloc in second list - to be used
+
         # print "references = $ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc <br>\n";
         my %collKWordMatch = %{$ref_collKWordMatch};
         # ### Main Data structure now:
         my %coll4KWordSc = %{$ref_coll4KWordSc}; # collocations (keys) and collocation scores (values);
         # ### my %coll4KWordScLog = runCollocFieldLogScale1HashScores(\%coll4KWordSc);
         # ### %DColloc4KWScores = runCollocFieldUpdate2HashScoresRef(\%DColloc4KWScores, \%coll4KWordScLog);
+        
+        # read existing hash; update scores
+        foreach my $collocKey (sort {$coll4KWordSc{$b} <=> $coll4KWordSc{$a}} keys %coll4KWordSc){
+            $collocVal = log(int($coll4KWordSc{$collocKey}) + 1) + $scoreFocusLog;
+            if(exists $ref_DiPosit -> {$collocKey}){
+                $collocValExists = $ref_DiPosit -> {$collocKey};
+                $collocValNew = $collocValExists + $collocVal;
+                $ref_DiPosit -> {$collocKey} = $collocValNew;
+            }else{
+                $ref_DiPosit -> {$collocKey} = $collocVal;
+            }
+            
+            
+        };
         
         
         my @coll4nlgList = @{$ref_coll4nlgList}; # list of collocates for NLG
@@ -1311,7 +1330,7 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
         $IDistance = $iPosit - $IPositionFocus;
         $SPoSFilter = $nlgFilterTemplateXPosOnly[$iPosit];
         print STDERR " runCollocField2updtDFieldPosition2CalculatePositions4NLG :!!: IDistance = $IDistance; SPoSFilter = $SPoSFilter \n";
-        my @LPositionPoSDistanceFilter = ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter );
+        my @LPositionPoSDistanceFilter = ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter, $iPosit ); # added absolute position of the collocate at the distance level
         push(@LoLPositionPoSDistNFiltersOut, \@LPositionPoSDistanceFilter);
     }
     
@@ -1337,12 +1356,12 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
 
     my ($ref_LPositionPoSDistanceFilter , $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
-    my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @LPositionPoSDistanceFilter;
+    my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter, $iPosit ) = @LPositionPoSDistanceFilter; # $iPosit = absolute position of the collocate at a distance
 
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter, iPosit = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter, $iPosit \n";
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; printLoL(@hLoLDFieldStat);    
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
 
@@ -1375,13 +1394,13 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     if($IDistance < 0){
         $collocspanleft = $IDistance * -1 ;
         $collocspanright = 0;
-        runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
+        # ### runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
 
 
     }elsif($IDistance > 0){
         $collocspanleft = 0;
         $collocspanright = $IDistance; 
-        runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
+        # ### runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
 
         
     }else{
@@ -1389,7 +1408,9 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     }
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
+    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter, $iPosit); # last arg = absolute position of the collocate
     # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
+
     # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
