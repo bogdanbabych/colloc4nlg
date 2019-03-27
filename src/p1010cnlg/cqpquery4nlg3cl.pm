@@ -1365,7 +1365,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
     
     runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
-    %DColloc4KWScores = %{ $ref_DColloc4KWScores };
+    # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
 } # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
