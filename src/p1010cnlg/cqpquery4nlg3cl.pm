@@ -1148,7 +1148,11 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # taking parameters that are needed, executing and returning output
     # packaged code from main section of cqp4nlg2cl.pl 
     
-    ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    ($ref_LFocus, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
+    my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
+    
+
     # does not need the list of Focus items, takes them from the relevant hash reference
     # make the main data structure a global variable...
     my @LFocus = @{ $ref_LFocus };
@@ -1156,7 +1160,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # intermediate data structure which is updated: holds all the collocation + score values and is updated for each iteration; same values result in higher scores
     # input list of focus words also comes with scores; higher scores matter more;
     # sum of logarithms ?
-    my %DColloc4KWScores;
+    # my %DColloc4KWScores;
     
     # ### my $fc = 0; # focus counter
     foreach my $focus (@LFocus){
@@ -1364,7 +1368,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
     # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
-    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
+    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
     # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
