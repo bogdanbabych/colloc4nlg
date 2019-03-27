@@ -1903,7 +1903,7 @@ sub recombineCollocHash4NLG{
 }
 
 sub recombineCollocHash4NLGv3{
-    my $maxComb = 8; # to implement this as an optional feature --> if needed we restrict the search space
+    my $maxComb = 9; # to implement this as an optional feature --> if needed we restrict the search space
     my @LoHCollocSc = @_;
     my %hBeamComb;
     # print "is_cgi = $is_cgi <br>\n";
