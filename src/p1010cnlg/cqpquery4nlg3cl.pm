@@ -1152,7 +1152,8 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
-    my %DInFocusPosition = $vLoHDFiedDynam[$IPositionFocus];
+    my $ref_DInFocusPosition = $vLoHDFiedDynam[$IPositionFocus]; 
+    my %DInFocusPosition = %{ $ref_DInFocusPosition };
     my $iCnt = 0;
     my @LFocusV3 = ();
     
