@@ -1130,6 +1130,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         # ###    @LFocusNew = prepareFocus4NLG(@LFocusNew0);
         # ### }
     }
+    # return value, or direct update of the main data structure >> speed?
     # ### return \%DColloc4KWScores;
 
 } # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG
@@ -1213,7 +1214,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my $collocfilter = "J.*";
     $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter);
     %DColloc4KWScores = %{ $ref_DColloc4KWScores };
-    printH(\%DColloc4KWScores);
+    # ### printH(\%DColloc4KWScores);
 
 } # end: runCollocField2updtDFieldPosition2runCollocSearch4NLG
         
@@ -1855,9 +1856,9 @@ sub showcollocates {
         printf STDOUT $messages{'colloc-header'}, $corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter;
         
     }
-    print STDERR "$corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter, 1=$onefrqc, noW=$numwords,FreqH,PairsH\n";
-    printH(\%freq);
-    printH(\%pairs);
+    # ### print STDERR "$corpuslist, $numwords, $searchstring, $collocspanleft, $collocspanright, $collocfilter, 1=$onefrqc, noW=$numwords,FreqH,PairsH\n";
+    # ### printH(\%freq);
+    # ### printH(\%pairs);
 
   # print short html anchor for each association measure requested
   if ($llstat && $printproofcolloc4nlg0) { print STDOUT qq{<p><a href="#LL score">LL score</a></p>\n};}
