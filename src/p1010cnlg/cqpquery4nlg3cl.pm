@@ -1186,13 +1186,17 @@ sub runCollocField2updtDFieldPosition2CalculatePositions4NLG{
 
 
 sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
+    # function 1.2 
+    # takes a single combination of position, PoS, Distance, PoSFilter, runs collocation search & updates data structure
+    # job -- execute only top-N searches
+    # to update
     # main collocation execution engine
     # the tasks: 
     # (a) create query, 
     # (b) send and collect data to/from 1.2.1.; 
     # (c) apply stop & go lists; 
     # (d) store / update main data structure in correct way
-    # function 1.2 to update
+
     my ($ref_LPositionPoSDistanceFilter , $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
     my @LPositionPoSDistanceFilter = @{ $ref_LPositionPoSDistanceFilter };
     my ( $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter ) = @LPositionPoSDistanceFilter;
@@ -1203,18 +1207,45 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; printLoL(@hLoLDFieldStat);    
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; printLoH(@vLoHDFiedDynam);    
+
+    my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
+    my @nlgFilterTemplateXLoLLex = @{ $ref_nlgFilterTemplateXLoLLex }; # print STDERR " nlgFilterTemplateXLoLLex :  \n"; printLoL(@nlgFilterTemplateXLoLLex);
+    my $collocspanleft;
+    my $collocspanright; 
+
+
+    $ref_LFocusX1 = $nlgFilterTemplateXLoLLex[$IPositionFocus];
+    # my @LFocusX1 = @{ $ref_LFocusX1 }; 
+    $type = ref($ref_LFocusX1);
+    print STDERR "1.2: ref_LFocusX1 = $ref_LFocusX1; type = $type \n";
     
+
     # to implement: updating the dynamic data structure, using words from the active hash, N-best;
     # if another run is needed -- resetting with 'protected' values for keywords...
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
     
     # test run of 1.2.1
     my @LFocusX = ("deal", "product");
-    my $SPoSFocus = "NN";
-    my $collocspanleft = 1;
-    my $collocspanright = 0; 
-    my $collocfilter = "J.*";
-    $ref_DColloc4KWScores = runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter);
+    # ### my $SPoSFocus = "NN";
+    
+    # ### my $collocspanleft = 1;
+    # ### my $collocspanright = 0; 
+    # ### my $collocfilter = "J.*";
+    if($IDistance < 0){
+        $collocspanleft = ($IDistance * -1) ;
+        $collocspanright = 0; 
+
+    }elsif($IDistance > 0){
+        $collocspanleft = 0;
+        $collocspanright = $IDistance; 
+        
+    }else{
+        return # if $IDistance == 0 :  -- do not generate collocation without collocation span  
+    }
+    
+    # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
+    
+    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
     %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
