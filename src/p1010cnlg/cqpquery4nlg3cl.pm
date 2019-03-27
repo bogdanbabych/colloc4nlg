@@ -1151,7 +1151,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     ($ref_LFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $collocfilter) = @_;
     # does not need the list of Focus items, takes them from the relevant hash reference
     # make the main data structure a global variable...
-    # my @LFocus = @{ $ref_LFocus };
+    my @LFocus = @{ $ref_LFocus };
     
     # intermediate data structure which is updated: holds all the collocation + score values and is updated for each iteration; same values result in higher scores
     # input list of focus words also comes with scores; higher scores matter more;
