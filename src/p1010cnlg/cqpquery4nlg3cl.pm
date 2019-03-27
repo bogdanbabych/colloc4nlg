@@ -1321,7 +1321,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: IPositionFocus, SPoSFocus, IDistance, SPoSFilter = $IPositionFocus, $SPoSFocus, $IDistance, $SPoSFilter \n";
-    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; printLoL(@hLoLDFieldStat);    
+    print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: hLoLDFieldStat :::  \n"; # printLoL(@hLoLDFieldStat);    
     print STDERR "  runCollocField2updtDFieldPosition2runCollocSearch4NLG :: vLoHDFiedDynam :::  \n"; # printLoH(@vLoHDFiedDynam);    
 
     my ($ref_nlgFilterTemplateXLoLLexProtected, $ref_nlgFilterTemplateXLoLLex, $ref_nlgFilterTemplateXPosOnly, $ref_nlgFilterTemplateXPos, $ref_nlgFilterTemplateXLofLStop,  $ref_nlgFilterTemplateXLofLGo ) = @hLoLDFieldStat;
@@ -1363,7 +1363,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     }
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
-    
+    # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
     runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
     # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
