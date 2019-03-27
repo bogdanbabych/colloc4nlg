@@ -1,0 +1,6 @@
+HASH(0x1f9b608) a  single  entry/NN 	6.39466989864954
+HASH(0x1f9b608) any  single  entry/NN 	5.4409634908137
+HASH(0x1f9b608) each  single  entry/NN 	3.78957704857792
+HASH(0x1f9b608) either  single  entry/NN 	3.18785395406558
+HASH(0x1f9b608) every  single  entry/NN 	2.85543686732542
+HASH(0x1f9b608) all  single  entry/NN 	2.51183005659205

@@ -1,0 +1,3 @@
+<h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p><h3>CQP Error:<br>	Corpus ``Last'' is undefined</h3><strong>searchstring: </strong> <p><h3>Error in processing your query  in CANADA18</h3><strong>searchstring: </strong> <p>HASH(0x295d578) dream  Cream  Lancome  g/NN 	4.3323948045069
+HASH(0x295d578) n  Cream  Lancome  g/NN 	4.23996574692872
+HASH(0x295d578) hand  Cream  Lancome  g/NN 	4.12207307892199

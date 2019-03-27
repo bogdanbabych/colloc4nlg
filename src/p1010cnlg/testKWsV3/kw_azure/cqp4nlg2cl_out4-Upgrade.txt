@@ -1,0 +1,15 @@
+HASH(0x11d8238) conjunction  with  Upgrade/NP 	5.69615645473131
+HASH(0x11d8238) shipping  with  Upgrade/NP 	4.78866653872565
+HASH(0x11d8238) combination  with  Upgrade/NP 	4.72398863025328
+HASH(0x11d8238) ship­ping  with  Upgrade/NP 	4.34554228952106
+HASH(0x11d8238) saucepan  with  Upgrade/NP 	4.27569524006872
+HASH(0x11d8238) anything  with  Upgrade/NP 	4.19674431510695
+HASH(0x11d8238) purchase  with  Upgrade/NP 	4.1445088405559
+HASH(0x11d8238) con­junc­tion  with  Upgrade/NP 	4.12187146709305
+HASH(0x11d8238) birthday  with  Upgrade/NP 	4.08449932124978
+HASH(0x11d8238) pizza  with  Upgrade/NP 	4.07854485877332
+HASH(0x11d8238) com­bi­na­tion  with  Upgrade/NP 	3.99454136107313
+HASH(0x11d8238) card  with  Upgrade/NP 	3.89815347658499
+HASH(0x11d8238) appetizer  with  Upgrade/NP 	3.60951005122698
+HASH(0x11d8238) sitewide  with  Upgrade/NP 	3.3791701285604
+HASH(0x11d8238) coffee  with  Upgrade/NP 	3.37713452389889

@@ -1,0 +1,2 @@
+HASH(0xfa6478) %  discount/NN 	4.77548194850054
+HASH(0xfa6478) employee  discount/NN 	4.2248387075077
