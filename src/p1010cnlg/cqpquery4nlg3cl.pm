@@ -1092,8 +1092,10 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG{
         my @collocationstr4nlg = showcollocates();
         print STDERR "1.2.1.: collocationstr4nlg = @collocationstr4nlg \n";
         
-        my @collocationstr4nlgLocal = @collocationstr4nlg;
-        my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
+        # ### my @collocationstr4nlgLocal = @collocationstr4nlg;
+        
+        # ### my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlgLocal); # splitting pairs kw + colloc, only colloc in second list - to be used
+        my ($ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc) = prepareCollocList4NLG(@collocationstr4nlg); # splitting pairs kw + colloc, only colloc in second list - to be used
         # print "references = $ref_collKWordMatch, $ref_coll4nlgList, $ref_coll4KWordSc <br>\n";
         my %collKWordMatch = %{$ref_collKWordMatch};
         # ### Main Data structure now:
