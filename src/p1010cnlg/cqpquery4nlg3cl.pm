@@ -1206,7 +1206,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     # this function updates the main data structure for 1.Single focus position; 2. Single collocation span + collocation filter combination
     
     # test run of 1.2.1
-    my @LFocusX = ("deal");
+    my @LFocusX = ("deal", "product");
     my $SPoSFocus = "NN";
     my $collocspanleft = 1;
     my $collocspanright = 0; 
