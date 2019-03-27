@@ -1152,6 +1152,21 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
+    my %DInFocusPosition = $vLoHDFiedDynam[$IPositionFocus];
+    my $iCnt = 0;
+    my @LFocusV3 = ();
+    
+    foreach my $key (sort { $DInFocusPosition{$b} <=> $DInFocusPosition{$a} } keys %DInFocusPosition) {
+        $iCnt++;
+        if($iCnt > 2){ last ; }
+        my $val = $DInFocusPosition{$key};
+        $focusNScore = "$key~$val";
+        push(@LFocusV3, $focusNScore)
+
+    }
+    print STDERR "  1.2.1v3:   LFocusV3 = @LFocusV3 \n";
+    
+    
 
     # does not need the list of Focus items, takes them from the relevant hash reference
     # make the main data structure a global variable...
@@ -1163,7 +1178,9 @@ sub runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3{
     # my %DColloc4KWScores;
     
     # ### my $fc = 0; # focus counter
-    foreach my $focus (@LFocus){
+    # ### foreach my $focus (@LFocus){
+    foreach my $focusNScore (@LFocusV3){
+        my ($focus, $score) = split(/~/, $focusNScore);
         # print "<br>\n";
         # print "fc= $fc<br>\n";
         # dynamic moving focus...
@@ -1368,7 +1385,7 @@ sub runCollocField2updtDFieldPosition2runCollocSearch4NLG{
     
     # ### $ref_DColloc4KWScores = # the function will directly update data structure -- to save time
     # runCollocField2updtDFieldPosition2runCollocSearch2execute4NLG(\@LFocusX, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
-    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright,  $SPoSFilter);
+    runCollocField2updtDFieldPosition2runCollocSearch2execute4NLGv3(\@LFocusX, $ref_hLoLDFieldStat, $ref_vLoHDFiedDynam, $IPositionFocus, $SPoSFocus, $collocspanleft, $collocspanright, $SPoSFilter);
     # ### %DColloc4KWScores = %{ $ref_DColloc4KWScores };
     # ### printH(\%DColloc4KWScores);
 
