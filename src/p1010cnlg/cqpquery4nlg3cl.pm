@@ -1449,8 +1449,8 @@ sub runCollocField2collectTopCollocates4NLGv3{
     # function 2.
     # collecting a dataset from the main data structure
     my ($ref_hLoLDFieldStat, $ref_vLoHDFiedDynam) = @_;
-    my %hLoLDFieldStat = %{ $ref_hLoLDFieldStat };
-    my %vLoHDFiedDynam = %{ $ref_vLoHDFiedDynam };
+    my @hLoLDFieldStat = @{ $ref_hLoLDFieldStat };
+    my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
     
 
 } # end: runCollocField2collectTopCollocates4NLGv3
@@ -1505,7 +1505,7 @@ sub runCollocField4NLG{
     }
     # 2 steps: 2: at the end: collect top lists, copy to Protected and generate collocation searches;
     # run function 2: collect words 
-    runCollocField2collectTopCollocates4NLGv3($ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
+    # ### runCollocField2collectTopCollocates4NLGv3($ref_hLoLDFieldStat, $ref_vLoHDFiedDynam);
     
     # temp comments
     my @vLoHDFiedDynam = @{ $ref_vLoHDFiedDynam };
